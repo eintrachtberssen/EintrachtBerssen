@@ -1,0 +1,11 @@
+---
+title: "Zwischenbericht der 1. Damenmannschaft"
+date: 2018-10-25
+tags: ["1. Damen","Damen","Fußball"]
+legacyId: 50
+---
+
+Bereits in der Rückrunde des letzten Jahres wurde uns bewusst, dass einige Spielerinnen in der kommenden Saison aus unterschiedlichen Gründen nicht weiter mitspielen würden, teilte die Trainerin Tatjana Portten mit. Am Ende blieb ein Kader von 15 Leuten, wobei einige nur unregelmäßig am Training und an den Spielen teilnehmen würden/können. So mussten wir uns eine Lösung suchen, um überhaupt die Mannschaft aufrecht erhalten und aktiv am Spielgeschehen teilnehmen zu können. Nach diversen anderen Gesprächen bot uns glücklicherweise die 2. Damen SpG Lähden/Berssen/Eisten-Hüven ihre Hilfe an. Sie würden uns, solange es ihre eigenen Spiele zulassen, einige unterschiedliche Spieler zur Verfügung stellen. Dies wurde mit der Mannschaft besprochen und für die beste Lösung befunden. So wurde ein gemeinsamer Trainingstag am Montag in Lähden eingerichtet, um gegenseitig voneinander zu lernen und um sich ebenfalls (besser) kennenzulernen, fuhr Tatjana weiter fort.  
+Mittlerweile wurden einige Spiele bestritten und dementsprechend befinden sich die Damen aktuell auf dem 1. Tabellenplatz. Die meisten Spielen wurden mit 12 oder 13 Mädels bestritten, trotz der Hilfe der 2. Damen. Aber das Ergebnis zeigt, dass die Zusammenarbeit bestens funktioniert und die Motivation der Spielerinnen trotz der Lage sehr hoch ist. So konnten 6 Spiele mit Kampf und Ehrgeiz gewonnen werden; nur eins wurde unentschieden gespielt.  
+Unglücklicherweise verletzten sich in dieser Hinrunde zwei Spielerinnen längerfristig, sodass Franziska Dörtelmann und Jennifer Rolfes auf unbegrenzte Zeit nicht mehr zum spielfähigen Kader dazugezählt werden können. Wir wünschen beiden gute Genesung.  
+Aber sogar im Bezirkspokal kam unsere 1. Damen eine Runde weiter und setzte sich gegen den Bezirksligisten SG Neulangen/Langen mit 2:1 unerwartet durch. Die Freude war selbstverständlich riesig. In der 2. Runde folgte dann der Landesligist TUS Neuenkirchen, bei dem es dann für ein Sieg leider nicht reichte. Dort war der Unterschied des Können zu groß. Dennoch erfolgte ein faires Spiel, von dem unsere Damen nur lernen konnten.
