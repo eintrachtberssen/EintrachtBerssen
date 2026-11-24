@@ -32,6 +32,16 @@ try {
     if (extRequests.length) failures.push(`${label}: externe Anfragen ohne Klick: ${[...new Set(extRequests)].join(', ')}`);
 
     if (label === 'mobil') {
+      // Alle gebauten Seiten auf Handybreite: kein horizontales Scrollen
+      const { readdirSync, statSync } = await import('node:fs');
+      const walk = (d) => readdirSync(d).flatMap((f) => { const p = `${d}/${f}`; return statSync(p).isDirectory() ? walk(p) : [p]; });
+      const all = walk('dist').filter((f) => f.endsWith('/index.html') && !f.includes('/_astro/')).map((f) => f.slice(4, -10) || '/');
+      for (const path of all) {
+        await page.goto(`http://localhost:${PORT}${base}${path}`, { waitUntil: 'load' });
+        const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
+        if (overflow > 0) failures.push(`mobil ${path}: ${overflow}px horizontales Scrollen`);
+      }
+
       await page.goto(`http://localhost:${PORT}${base}/`);
       await page.click('.burger');
       if (!(await page.isVisible('#site-nav a[href$="/kontakt/"]'))) failures.push('mobil: Menü öffnet nicht');

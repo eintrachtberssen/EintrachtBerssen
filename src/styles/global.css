@@ -79,7 +79,7 @@ h3 { font-size: 1.2rem; font-weight: 700; }
 .btn--light { background: #fff; color: var(--red); }
 .btn--light:hover { background: var(--red-soft); color: var(--red-dark); }
 
-.link-arrow { font-weight: 650; text-decoration: none; white-space: nowrap; }
+.link-arrow { font-weight: 650; text-decoration: none; }
 .link-arrow::after { content: ' →'; }
 
 .grid { display: grid; gap: 24px; }
@@ -91,7 +91,9 @@ h3 { font-size: 1.2rem; font-weight: 700; }
   overflow: hidden; box-shadow: var(--shadow);
 }
 
-.prose { max-width: 72ch; }
+.prose { max-width: 72ch; overflow-wrap: anywhere; }
+.prose * { max-width: 100%; }
+.prose table { width: auto !important; }
 .prose img { border-radius: var(--radius-sm); margin: 1.2em 0; }
 .prose h2, .prose h3 { margin-top: 1.6em; }
 .prose table { border-collapse: collapse; width: 100%; display: block; overflow-x: auto; }

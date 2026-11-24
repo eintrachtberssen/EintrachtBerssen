@@ -28,6 +28,7 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm test
+      - run: node scripts/optimize-uploads.mjs
       - run: npm run build
       - run: node scripts/check-site.mjs
       - uses: actions/upload-pages-artifact@v3

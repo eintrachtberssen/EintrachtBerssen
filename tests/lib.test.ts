@@ -87,3 +87,14 @@ describe('section content files', () => {
     expect(missing).toEqual([]);
   });
 });
+
+import { gallerySchema } from '../src/lib/schemas';
+
+describe('gallerySchema', () => {
+  it('accepts an album saved by the CMS with empty images (null) instead of failing the whole build', () => {
+    expect(gallerySchema.parse({ title: 'Neues Album', year: 2026, images: null }).images).toEqual([]);
+  });
+  it('accepts the year as string from the CMS', () => {
+    expect(gallerySchema.parse({ title: 'A', year: '2025' }).year).toBe(2025);
+  });
+});

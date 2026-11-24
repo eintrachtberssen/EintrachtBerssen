@@ -2,6 +2,7 @@ import { defineCollection, z } from 'astro:content';
 import { glob, file } from 'astro/loaders';
 import { TAGS } from './data/tags';
 import { parseContacts } from './lib/contacts';
+import { gallerySchema } from './lib/schemas';
 
 const posts = defineCollection({
   loader: glob({ pattern: '**/[^_]*.md', base: './src/content/posts' }),
@@ -26,11 +27,7 @@ const sections = defineCollection({
 
 const galleries = defineCollection({
   loader: glob({ pattern: '**/[^_]*.md', base: './src/content/galleries' }),
-  schema: z.object({
-    title: z.string(),
-    year: z.number(),
-    images: z.array(z.string()).default([]),
-  }),
+  schema: gallerySchema,
 });
 
 const pages = defineCollection({
