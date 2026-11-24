@@ -27,7 +27,7 @@ const base = `/sport/${path.join('/')}/`;
 
 {(hasText || trainingHtml) && (
   <section class="section">
-    <div class="container intro">
+    <div class:list={['container', 'intro', { 'intro--split': hasText && trainingHtml }]}>
       {hasText && <div class="prose"><slot /></div>}
       {trainingHtml && (
         <aside class="training card">
@@ -81,7 +81,8 @@ const base = `/sport/${path.join('/')}/`;
 
 <style>
   .intro { display: grid; gap: 32px; align-items: start; }
-  @media (min-width: 900px) { .intro { grid-template-columns: minmax(0, 1fr) 360px; } }
+  @media (min-width: 900px) { .intro--split { grid-template-columns: minmax(0, 1fr) 360px; } }
+  .intro:not(.intro--split) .training { max-width: 720px; }
   .training { padding: 24px; }
   .training .prose { font-size: 0.95rem; }
   .tile { display: flex; align-items: center; justify-content: space-between; padding: 20px 22px; background: #fff; border: 1px solid var(--line); border-radius: var(--radius); text-decoration: none; color: var(--ink); font-weight: 700; transition: 0.15s; }

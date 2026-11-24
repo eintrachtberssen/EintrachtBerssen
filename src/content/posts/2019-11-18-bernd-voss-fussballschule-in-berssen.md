@@ -14,7 +14,7 @@ Eine Teilnahmebestätigung macht sich natürlich auch super als Weihnachtsgesche
 
 In den nächsten Tagen werden wir die Flyer und Plakate erhalten und auch an den passenden Stellen auslegen bzw. aufhängen, um weiter Werbung für dieses Event zu machen. Alle weiteren Informationen findet ihr auf der Homepage des Veranstalters ( [https://www.wiesenhof-fussballschule.de/](https://www.wiesenhof-fussballschule.de/) ). Die Anmeldung erfolgt direkt online.  
 Anmeldung: [https://www.wiesenhof-fussballschule.de/anmeldung/?termin=71846  
-](https://www.wiesenhof-fussballschule.de/anmeldung/?termin=71846)Flyer(PDF): [https://eintracht-berssen.de/images/sampledata/2020/Fussballschule/Flyer\_2020.pdf](/images/sampledata/2020/Fussballschule/Flyer_2020.pdf)
+](https://www.wiesenhof-fussballschule.de/anmeldung/?termin=71846)Flyer(PDF): [https://eintracht-berssen.de/images/sampledata/2020/Fussballschule/Flyer\_2020.pdf](/downloads/flyer-2020.pdf)
 
 ![](/images/posts/2019-11-18-bernd-voss-fussballschule-in-berssen/flyer-information.png)![](/images/posts/2019-11-18-bernd-voss-fussballschule-in-berssen/flyer-termine.png)
 

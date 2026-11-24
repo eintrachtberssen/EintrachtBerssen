@@ -5,7 +5,7 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync } from 
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { htmlToMarkdown, localPath } from './article.mjs';
-import { importImage, importFile } from './images.mjs';
+import { importImage, importFile, importDocumentLink } from './images.mjs';
 import { mapLegacyUrl } from './legacy.mjs';
 import { mapPageUrl } from './pagemap.mjs';
 
@@ -29,7 +29,7 @@ const mapLink = (href) => {
   if (/^(mailto:|tel:|#)/.test(href)) return undefined;
   if (/^https?:/.test(href) && !/eintracht-berssen\.de/.test(href)) return undefined;
   const local = localPath(href);
-  if (/^\/(download|images)\//.test(local)) return undefined; // Dateien: separat behandelt
+  if (/^\/(download|images)\//.test(local)) return importDocumentLink(local, process.env.MIRROR);
   return mapLegacyUrl(local) ?? mapPageUrl(local) ?? undefined;
 };
 

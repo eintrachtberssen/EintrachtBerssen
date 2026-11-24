@@ -21,14 +21,21 @@ export function consentHtml(kind, src, title = 'Externer Inhalt') {
 }
 
 /** Ersetzt <div class="consent-embed" data-kind data-src> durch den Zwei-Klick-Platzhalter. */
+const RAW_EMBED = /<div class="consent-embed" data-kind="([a-z]+)" data-src="([^"]*)">[\s\S]*?<\/div>/g;
+const titleFor = (kind) => (kind === 'youtube' ? 'Video' : kind === 'maps' ? 'Karte' : 'Externer Inhalt');
+const unesc = (s) => s.replace(/&quot;/g, '"').replace(/&amp;/g, '&');
+
 export function rehypeConsentEmbed() {
   return (tree) => {
+    visit(tree, 'raw', (node) => {
+      node.value = node.value.replace(RAW_EMBED, (_, kind, src) => consentHtml(kind, unesc(src), titleFor(kind)));
+    });
     visit(tree, 'element', (node, index, parent) => {
       const cls = node.properties?.className;
       if (node.tagName !== 'div' || !parent || !(Array.isArray(cls) ? cls.includes('consent-embed') : cls === 'consent-embed')) return;
       const kind = node.properties.dataKind ?? 'other';
       const src = node.properties.dataSrc ?? '';
-      parent.children[index] = { type: 'raw', value: consentHtml(kind, src, kind === 'youtube' ? 'Video' : kind === 'maps' ? 'Karte' : 'Externer Inhalt') };
+      parent.children[index] = { type: 'raw', value: consentHtml(kind, src, titleFor(kind)) };
     });
   };
 }
@@ -38,6 +45,9 @@ export function rehypeBase({ base = '/' } = {}) {
   const b = base.replace(/\/+$/, '');
   return (tree) => {
     if (!b) return;
+    const esc = b.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const rawRe = new RegExp(`(\\s(?:src|href)=["'])\\/(?!\\/)(?!${esc.slice(1)}\\/)`, 'g');
+    visit(tree, 'raw', (node) => { node.value = node.value.replace(rawRe, `$1${b}/`); });
     visit(tree, 'element', (node) => {
       for (const attr of ['src', 'href']) {
         const v = node.properties?.[attr];

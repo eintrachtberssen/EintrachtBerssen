@@ -48,9 +48,23 @@ describe('rehype plugins', () => {
     expect(out).toContain('href="/EintrachtBerssen/beitrag/x/"');
     expect(out).toContain('href="https://e.de/"');
   });
+  it('also prefixes paths inside raw HTML blocks', () => {
+    const tree = { type: 'root', children: [{ type: 'raw', value: '<div><img src="/images/b.jpg"><a href="https://x.de/">x</a></div>' }] };
+    (rehypeBase as any)({ base: '/EintrachtBerssen/' })(tree);
+    expect((tree.children[0] as any).value).toContain('src="/EintrachtBerssen/images/b.jpg"');
+    expect((tree.children[0] as any).value).toContain('href="https://x.de/"');
+  });
   it('does not double-prefix and leaves base "/" untouched', () => {
     expect(run('<img src="/EintrachtBerssen/images/a.jpg">')).toContain('src="/EintrachtBerssen/images/a.jpg"');
     expect(run('<img src="/images/a.jpg">', '/')).toContain('src="/images/a.jpg"');
+  });
+  it('also converts consent-embed placeholders inside raw HTML blocks', () => {
+    const tree = { type: 'root', children: [{ type: 'raw', value: '<div class="consent-embed" data-kind="youtube" data-src="https://www.youtube.com/embed/abc"><a href="https://www.youtube.com/embed/abc">Externen Inhalt öffnen</a></div>' }] };
+    (rehypeConsentEmbed as any)()(tree);
+    const v = (tree.children[0] as any).value;
+    expect(v).toContain('data-consent-load');
+    expect(v).toContain('data-consent-src="https://www.youtube.com/embed/abc"');
+    expect(v).not.toContain('consent-embed');
   });
   it('turns consent-embed placeholders into a two-click box without iframe', () => {
     const out = run('<div class="consent-embed" data-kind="youtube" data-src="https://www.youtube.com/embed/abc"><a href="x">x</a></div>');

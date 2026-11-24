@@ -3,7 +3,7 @@ import { readFileSync, readdirSync, writeFileSync, mkdirSync, rmSync } from 'nod
 import { join } from 'node:path';
 import { parseArticle, htmlToMarkdown, EXCLUDED_IDS, localPath } from './article.mjs';
 import { suggestTags } from './tagging.mjs';
-import { importImage } from './images.mjs';
+import { importImage, importDocumentLink } from './images.mjs';
 import { mapLegacyUrl, postSlugById } from './legacy.mjs';
 import { mapPageUrl } from './pagemap.mjs';
 
@@ -40,7 +40,7 @@ for (const a of keep) {
     if (/^(mailto:|tel:|#)/.test(href)) return undefined;
     const local = /^https?:/.test(href) && !/eintracht-berssen\.de/.test(href) ? null : localPath(href);
     if (!local) return undefined;
-    return mapLegacyUrl(local) ?? mapPageUrl(local) ?? undefined;
+    return importDocumentLink(local, MIRROR) ?? mapLegacyUrl(local) ?? mapPageUrl(local) ?? undefined;
   };
   const text = htmlToMarkdown(bodyHtml, imageMap, mapLink);
   const tags = suggestTags(a.title, text);

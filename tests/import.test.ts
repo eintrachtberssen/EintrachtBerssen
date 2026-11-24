@@ -92,3 +92,24 @@ describe('suggestTags', () => {
     expect(new Set(t).size).toBe(t.length);
   });
 });
+
+import { mkdtempSync, mkdirSync, writeFileSync, existsSync, rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+import { importDocumentLink } from '../scripts/import/images.mjs';
+
+describe('importDocumentLink', () => {
+  it('copies linked PDFs from the mirror into public/downloads and returns the new path', () => {
+    const mirror = mkdtempSync(join(tmpdir(), 'mirror-'));
+    mkdirSync(join(mirror, 'images/x'), { recursive: true });
+    writeFileSync(join(mirror, 'images/x/Test_Dokument_Smoke.pdf'), '%PDF');
+    const out = importDocumentLink('/images/x/Test_Dokument_Smoke.pdf', mirror);
+    expect(out).toBe('/downloads/test-dokument-smoke.pdf');
+    expect(existsSync('public/downloads/test-dokument-smoke.pdf')).toBe(true);
+    rmSync('public/downloads/test-dokument-smoke.pdf');
+  });
+  it('ignores non-document links and missing files', () => {
+    expect(importDocumentLink('/verein/chronik.html', '/nirgends')).toBeUndefined();
+    expect(importDocumentLink('/images/fehlt.pdf', '/nirgends')).toBeUndefined();
+  });
+});

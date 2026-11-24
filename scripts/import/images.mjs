@@ -41,3 +41,9 @@ export function importFile(localSrc, publicDir, mirror = process.env.MIRROR) {
   copyFileSync(src, join(outDir, outName));
   return `/${publicDir}/${outName}`;
 }
+
+/** Verlinkte Dokumente (PDF, Office) aus dem Spiegel nach public/downloads kopieren. */
+export function importDocumentLink(localPath, mirror = process.env.MIRROR) {
+  if (!/\.(pdf|docx?|xlsx?|pptx?)$/i.test(localPath)) return undefined;
+  return importFile(localPath, 'downloads', mirror) ?? undefined;
+}
