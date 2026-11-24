@@ -11,7 +11,6 @@ export function decodeHiddenMail(el, $) {
   return `${b64(e.attr('first'))}@${b64(e.attr('last'))}`;
 }
 
-const slug = (s) => s.toLowerCase().replace(/ß/g, 'ss').replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
 
 export function parseContactList(html, group) {
   const $ = cheerio.load(html);
@@ -30,7 +29,7 @@ export function parseContactList(html, group) {
       if (ph && !phone) phone = ph[1].trim();
       else if (!ph && !/^(Deutschland|Niedersachsen|Klein Berssen|Groß Berssen|\d{5}\b)/.test(l)) role.push(l);
     }
-    out.push({ id: `${slug(group)}-${slug(name)}`, group, name, role: role.join(', '), ...(phone && { phone }), ...(email && { email }) });
+    out.push({ group, name, role: role.join(', '), ...(phone && { phone }), ...(email && { email }) });
   });
   return out;
 }
@@ -48,6 +47,6 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const MIRROR = process.env.MIRROR;
   if (!MIRROR) throw new Error('MIRROR nicht gesetzt');
   const all = GROUPS.flatMap(([file, group]) => parseContactList(readFileSync(join(MIRROR, 'kontakte', `${file}.html`), 'utf8'), group));
-  writeFileSync('src/data/contacts.json', JSON.stringify(all, null, 2) + '\n');
+  writeFileSync('src/data/contacts.json', JSON.stringify({ contacts: all }, null, 2) + '\n');
   console.log(`${all.length} Kontakte`);
 }

@@ -20,10 +20,9 @@ describe('parseContactList', () => {
   it('decodes the e-mail address', () => {
     expect(c.find((x: { name: string }) => x.name === 'Sebastian Untiedt')!.email).toMatch(/^[^@\s]+@[^@\s]+\.[a-z]+$/);
   });
-  it('reads all eleven board members with group and stable id', () => {
+  it('reads all eleven board members with their group', () => {
     expect(c.length).toBe(11);
-    expect(c.every((x: { group: string; id: string }) => x.group === 'Vorstand' && x.id.length > 0)).toBe(true);
-    expect(new Set(c.map((x: { id: string }) => x.id)).size).toBe(11);
+    expect(c.every((x: { group: string }) => x.group === 'Vorstand')).toBe(true);
   });
   it('leaves no Joomla spam-protection text in the role', () => {
     expect(c.some((x: { role: string }) => /Spambots/.test(x.role))).toBe(false);

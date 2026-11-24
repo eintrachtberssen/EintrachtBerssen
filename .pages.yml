@@ -1,0 +1,139 @@
+# Konfiguration der Eingabemaske (Pages CMS, https://app.pagescms.org)
+# Feldnamen müssen zu src/content.config.ts passen. Neue Tags: hier UND in src/data/tags.ts ergänzen.
+media:
+  input: public/images/uploads
+  output: /images/uploads
+
+content:
+  - name: posts
+    label: Beiträge
+    type: collection
+    path: src/content/posts
+    filename: "{year}-{month}-{day}-{primary}.md"
+    view:
+      fields: [title, date, tags]
+      primary: title
+      sort: [date, title]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: title
+        label: Titel
+        type: string
+        required: true
+      - name: date
+        label: Datum
+        type: date
+        required: true
+      - name: tags
+        label: Tags (bestimmen, auf welchen Seiten der Beitrag erscheint)
+        type: select
+        options:
+          multiple: true
+          values: ["Verein", "Fußball", "Herren", "Damen", "Junioren", "Juniorinnen", "1. Herren", "2. Herren", "1. Damen", "2. Damen", "Alte Herren", "A-Jugend", "B-Jugend", "C-Jugend", "D-Jugend", "E-Jugend", "F-Jugend", "Minikicker", "B-Juniorinnen", "C-Juniorinnen", "D-Juniorinnen", "E-Juniorinnen", "Tennis", "Volleyball", "Rückensport", "Fitness/Gymnastik", "Veranstaltung", "Nachruf", "Sponsoren"]
+      - name: image
+        label: Titelbild
+        type: image
+      - name: body
+        label: Text
+        type: rich-text
+      - name: gallery
+        label: Bildergalerie (optional, mehrere Bilder)
+        type: image
+        list: true
+
+  - name: sections
+    label: Abteilungen & Teams
+    type: collection
+    path: src/content/sections
+    view:
+      fields: [title]
+      primary: title
+    fields:
+      - name: title
+        label: Name
+        type: string
+        required: true
+      - name: image
+        label: Mannschaftsfoto / Titelbild
+        type: image
+      - name: training
+        label: Trainingszeiten
+        type: text
+      - name: body
+        label: Beschreibung
+        type: rich-text
+
+  - name: contacts
+    label: Ansprechpartner
+    type: file
+    path: src/data/contacts.json
+    format: json
+    fields:
+      - name: contacts
+        label: Ansprechpartner
+        type: object
+        list: true
+        fields:
+          - name: group
+            label: Gruppe
+            type: select
+            required: true
+            options:
+              values: ["Vorstand", "Vorstand Tennis", "Fußball Senioren", "Fußball Junioren", "Fußball Juniorinnen", "Fitness/Gymnastik"]
+          - name: name
+            label: Name
+            type: string
+            required: true
+          - name: role
+            label: Funktion
+            type: string
+          - name: phone
+            label: Telefon
+            type: string
+          - name: email
+            label: E-Mail
+            type: string
+
+  - name: galleries
+    label: Fotoalben
+    type: collection
+    path: src/content/galleries
+    filename: "{year}-{primary}.md"
+    view:
+      fields: [title, year]
+      primary: title
+      sort: [year]
+      default:
+        sort: year
+        order: desc
+    fields:
+      - name: title
+        label: Titel
+        type: string
+        required: true
+      - name: year
+        label: Jahr
+        type: number
+        required: true
+      - name: images
+        label: Bilder
+        type: image
+        list: true
+
+  - name: pages
+    label: Seiten (Chronik, Impressum, …)
+    type: collection
+    path: src/content/pages
+    view:
+      fields: [title]
+      primary: title
+    fields:
+      - name: title
+        label: Titel
+        type: string
+        required: true
+      - name: body
+        label: Inhalt
+        type: rich-text

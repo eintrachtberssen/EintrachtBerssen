@@ -1,6 +1,7 @@
 import { defineCollection, z } from 'astro:content';
 import { glob, file } from 'astro/loaders';
 import { TAGS } from './data/tags';
+import { parseContacts } from './lib/contacts';
 
 const posts = defineCollection({
   loader: glob({ pattern: '**/[^_]*.md', base: './src/content/posts' }),
@@ -38,7 +39,7 @@ const pages = defineCollection({
 });
 
 const contacts = defineCollection({
-  loader: file('./src/data/contacts.json'),
+  loader: file('./src/data/contacts.json', { parser: parseContacts }),
   schema: z.object({
     group: z.string(),
     name: z.string(),

@@ -61,3 +61,29 @@ describe('contactsForSection', () => {
     expect(contactsForSection(findSection(['fussball', 'junioren', 'a-jugend'])!, all).map((x) => x.id)).toEqual(['A', 'B']);
   });
 });
+
+import { parseContacts } from '../src/lib/contacts';
+
+describe('parseContacts', () => {
+  it('reads the CMS-editable {contacts: [...]} file and adds stable ids', () => {
+    const list = parseContacts(JSON.stringify({ contacts: [{ group: 'Vorstand', name: 'Max Müller', role: 'Kassenwart' }, { group: 'Vorstand Tennis', name: 'Max Müller' }] }));
+    expect(list.map((c) => c.id)).toEqual(['vorstand-max-mueller', 'vorstand-tennis-max-mueller']);
+  });
+  it('makes duplicate names in one group unique instead of dropping one', () => {
+    const list = parseContacts(JSON.stringify({ contacts: [{ group: 'Vorstand', name: 'A B' }, { group: 'Vorstand', name: 'A B' }] }));
+    expect(new Set(list.map((c) => c.id)).size).toBe(2);
+  });
+  it('tolerates an empty file', () => {
+    expect(parseContacts(JSON.stringify({}))).toEqual([]);
+  });
+});
+
+import { existsSync } from 'node:fs';
+import { flattenSections } from '../src/data/sections';
+
+describe('section content files', () => {
+  it('exist for every section so the CMS can edit training times and texts', () => {
+    const missing = flattenSections().filter(({ section }) => !existsSync(`src/content/sections/${section.slug}.md`)).map(({ section }) => section.slug);
+    expect(missing).toEqual([]);
+  });
+});
