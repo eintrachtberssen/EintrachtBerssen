@@ -12,7 +12,7 @@ Beitrags so einfach ist, dass es auch passiert, und die günstiger läuft.
 
 ## Ziele
 
-- Alle bisherigen Inhalte übernehmen: Seiten, alle 113 öffentlich sichtbaren Beiträge (mit Datum, Text, Bildern),
+- Alle bisherigen Inhalte übernehmen: Seiten, alle 113 öffentlich sichtbaren Beiträge abzüglich der zugesagten Altlasten (mit Datum, Text, Bildern),
   Fotogalerien, Kontakte, Downloads, Impressum, Datenschutz, externe Links (Fanshop,
   Fußball-Spielplan, „Werde Schiedsrichter!“).
 - Eingabemaske im Browser für neue Beiträge: Titel, Datum, Text, Bilder, **Tags**.
@@ -21,6 +21,8 @@ Beitrags so einfach ist, dass es auch passiert, und die günstiger läuft.
   automatisch die neuesten Beiträge ihres Tags – dadurch sind Teamseiten nie mehr leer.
 - Hosting kostenlos über GitHub Pages; Domain + kleines Postfach bei einem günstigen
   Anbieter (z. B. INWX) statt Mittwald.
+- **Deutlich moderner Look** als eigenes Ziel (klare Typografie, große Bilder, Karten,
+  viel Weißraum, Rot/Weiß als Akzent).
 - Gut auf dem Handy lesbar, schnell, ohne Cookie-Banner-Pflicht (keine Tracker, keine
   externen Fonts/Dienste ohne Not).
 
@@ -63,6 +65,21 @@ Beitrags so einfach ist, dass es auch passiert, und die günstiger läuft.
 - Weg 1 (GitHub Pages + Eingabemaske).
 - Domain zieht zu einem günstigeren Anbieter mit kleinem Mailspace (Beispiel INWX).
 - „Intern“ wird nicht mehr gebraucht.
+- Repo zieht vor Einrichtung der Eingabemaske in eine GitHub-Organisation des Vereins;
+  bis dahin wird in `sebutd/EintrachtBerssen` gebaut (Astro `base`/`site` per Konfiguration
+  umstellbar). Keine Frist.
+- **Altlasten weglassen (zugesagt):**
+  1. Erledigte Kurzhinweise (~25 Beiträge): vergangene GV-Einladungen, Spielausfälle/
+     -verlegungen, Corona-Meldungen 2020, Oster-/Weihnachtsgrüße, „Neuer Homepageauftritt“
+     2017, abgelaufene Kurs-/Schulungs-/Suchtermine, Glasfaserausbau. Berichte, Erfolge,
+     Spenden, Nachrufe bleiben. Liste wird im Plan festgelegt.
+  2. Leere Seiten entfallen; jede Abteilung/jedes Team hat eine Seite mit Tag-Beiträgen und
+     Ansprechpartner statt leerem Inhalt.
+  3. Einzelseiten pro Kontaktperson entfallen → eine Ansprechpartner-Seite.
+  4. „Verein › Vorstand“ und „Ansprechpartner › Vorstand“ werden zusammengelegt.
+  5. Abgelaufene Umfrage-Links (Nextcloud) werden entfernt, Beitrag bleibt.
+- Belegungspläne (Bilder) sind aktuell → übernehmen.
+- Alle Fotogalerien inkl. 2015/2016 bleiben.
 
 ## Aufbau (Calls von Claude, korrigierbar)
 
