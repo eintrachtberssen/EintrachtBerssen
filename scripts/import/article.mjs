@@ -49,6 +49,11 @@ export function htmlToMarkdown(bodyHtml, imageMap, mapLink = () => undefined) {
   const $ = cheerio.load(`<div id="root">${bodyHtml}</div>`);
   const root = $('#root');
   root.find('.sige, script, style').remove();
+  root.find('joomla-hidden-mail').each((_, m) => {
+    const b64 = (v) => Buffer.from(v ?? '', 'base64').toString('utf8');
+    const mail = `${b64($(m).attr('first'))}@${b64($(m).attr('last'))}`;
+    $(m).replaceWith(`<a href="mailto:${mail}">${mail}</a>`);
+  });
   root.contents().filter((_, n) => n.type === 'comment').remove();
   root.find('img').each((_, img) => {
     const src = $(img).attr('src') ?? '';

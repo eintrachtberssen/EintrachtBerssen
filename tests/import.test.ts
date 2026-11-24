@@ -34,6 +34,11 @@ describe('htmlToMarkdown', () => {
   it('removes nextcloud survey links but keeps their text', () => {
     expect(htmlToMarkdown('<p><a href="https://nextcloud.x/apps/forms/s/1">Zur Umfrage</a></p>', {})).toBe('Zur Umfrage');
   });
+  it('decodes Joomla hidden e-mail elements into mailto links', () => {
+    const md = htmlToMarkdown('<p>Mail: <joomla-hidden-mail first="bWF4" last="ZXhhbXBsZS5vcmc=">Diese E-Mail-Adresse ist vor Spambots geschützt!</joomla-hidden-mail></p>', {});
+    expect(md).toContain('[max@example.org](mailto:max@example.org)');
+    expect(md).not.toContain('Spambots');
+  });
   it('rewrites mapped image sources', () => {
     expect(htmlToMarkdown('<p><img src="/images/a.jpg" alt="x"></p>', { '/images/a.jpg': '/images/posts/s/a.jpg' })).toContain('/images/posts/s/a.jpg');
   });
