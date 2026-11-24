@@ -1,0 +1,34 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE } from '../data/site';
+import { url } from '../lib/url';
+
+interface Props { title?: string; description?: string; image?: string }
+const { title, description = `${SITE.legalName} – Fußball, Tennis, Volleyball und Rückensport in Berssen.`, image } = Astro.props;
+const fullTitle = title ? `${title} · ${SITE.name}` : `${SITE.name} – Rot-Weiß seit 1946`;
+const ogImage = new URL(image ?? url('/images/site/banner.png'), Astro.site).href;
+---
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#d7141a" />
+    <link rel="icon" href={url('/images/site/wappen.png')} type="image/png" />
+    <link rel="alternate" type="application/rss+xml" title={`${SITE.name} – Aktuelles`} href={url('/rss.xml')} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:type" content="website" />
+  </head>
+  <body>
+    <a class="visually-hidden" href="#main">Zum Inhalt springen</a>
+    <Header />
+    <main id="main"><slot /></main>
+    <Footer />
+  </body>
+</html>

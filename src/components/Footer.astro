@@ -1,0 +1,52 @@
+---
+import { SITE } from '../data/site';
+import { url } from '../lib/url';
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <div class="container cols">
+    <div>
+      <img src={url('/images/site/wappen.png')} alt="" width="48" height="55" class="crest" />
+      <p class="name">{SITE.legalName}</p>
+      <p>{SITE.address.map((l) => <>{l}<br /></>)}Telefon {SITE.phone}</p>
+    </div>
+    <nav aria-label="Verein">
+      <h2>Verein</h2>
+      <ul>
+        <li><a href={url('/aktuelles/')}>Aktuelles</a></li>
+        <li><a href={url('/verein/vorstand/')}>Vorstand</a></li>
+        <li><a href={url('/verein/downloads/')}>Mitglied werden</a></li>
+        <li><a href={url('/kontakt/')}>Ansprechpartner</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Mehr">
+      <h2>Mehr</h2>
+      <ul>
+        <li><a href={url('/spielplan/')}>Fußball-Spielplan</a></li>
+        <li><a href={SITE.fanshop} rel="noopener">Fanshop</a></li>
+        <li><a href={url('/rss.xml')}>RSS-Feed</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Rechtliches">
+      <h2>Rechtliches</h2>
+      <ul>
+        <li><a href={url('/impressum/')}>Impressum</a></li>
+        <li><a href={url('/datenschutz/')}>Datenschutz</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="container legal">© {year} {SITE.legalName} · Rot-Weiß seit 1946</div>
+</footer>
+
+<style>
+  .site-footer { background: #121317; color: #c9ccd3; padding: 56px 0 24px; margin-top: 0; font-size: 0.95rem; }
+  .cols { display: grid; gap: 32px; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+  .crest { width: 44px; margin-bottom: 12px; }
+  .name { color: #fff; font-weight: 700; margin: 0 0 6px; }
+  p { margin: 0; }
+  h2 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: #fff; margin-bottom: 12px; }
+  ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+  a { color: #c9ccd3; text-decoration: none; }
+  a:hover { color: #fff; }
+  .legal { border-top: 1px solid #2a2c33; margin-top: 40px; padding-top: 20px; font-size: 0.85rem; color: #8b8f99; }
+</style>
