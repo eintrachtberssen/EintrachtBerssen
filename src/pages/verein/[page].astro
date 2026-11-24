@@ -1,0 +1,14 @@
+---
+import ContentPage from '../../components/ContentPage.astro';
+export function getStaticPaths() {
+  return [
+    { params: { page: 'chronik' }, props: { lead: 'Seit dem 30. Mai 1946 – die Geschichte unseres Vereins.' } },
+    { params: { page: 'sportgelaende' }, props: { lead: 'Sport- und Schützenhaus, zwei Fußballplätze und zwei Tennisplätze.' } },
+    { params: { page: 'anfahrt' }, props: { lead: 'So findest du zu unserer Sportanlage in Klein Berssen.' } },
+    { params: { page: 'belegungsplan' }, props: { lead: 'Wer trainiert wann auf dem Platz und in der Halle?' } },
+  ];
+}
+const { page } = Astro.params;
+const { lead } = Astro.props;
+---
+<ContentPage id={page} lead={lead} crumbs={[{ label: 'Verein', href: '/verein/' }]} />

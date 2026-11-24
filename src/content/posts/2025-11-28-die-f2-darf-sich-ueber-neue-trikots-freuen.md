@@ -2,6 +2,7 @@
 title: "Die F2 darf sich über neue Trikots freuen!"
 date: 2025-11-28
 tags: ["Sponsoren"]
+image: "/images/posts/2025-11-28-die-f2-darf-sich-ueber-neue-trikots-freuen/f2-nieters.jpg"
 legacyId: 167
 ---
 

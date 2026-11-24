@@ -111,3 +111,24 @@ h3 { font-size: 1.2rem; font-weight: 700; }
 .visually-hidden { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 :focus-visible { outline: 3px solid color-mix(in srgb, var(--red) 60%, transparent); outline-offset: 2px; }
+
+/* Zwei-Klick-Inhalte */
+.consent { position: relative; margin: 1.5em 0; border-radius: var(--radius); overflow: hidden; background: repeating-linear-gradient(135deg, #f3f3f6 0 12px, #ececf1 12px 24px); border: 1px solid var(--line); min-height: 240px; display: grid; place-items: center; }
+.consent__inner { max-width: 460px; padding: 28px 24px; text-align: center; background: rgb(255 255 255 / 92%); border-radius: var(--radius); margin: 16px; box-shadow: var(--shadow); }
+.consent__title { font-weight: 750; margin: 0 0 6px; }
+.consent__text { font-size: 0.88rem; color: var(--ink-2); margin: 0 0 16px; }
+.consent.loaded { display: block; background: none; border: 0; min-height: 0; }
+.consent iframe { display: block; width: 100%; border: 0; aspect-ratio: 16 / 9; border-radius: var(--radius); }
+.consent--maps iframe { aspect-ratio: 4 / 3; }
+.consent--fussballde.loaded { min-height: 400px; }
+
+/* Lightbox */
+.lightbox { border: 0; padding: 0; background: transparent; max-width: 100vw; max-height: 100vh; width: 100vw; height: 100vh; }
+.lightbox::backdrop { background: rgb(10 10 12 / 92%); }
+.lightbox__img { max-width: 92vw; max-height: 86vh; margin: auto; position: absolute; inset: 0; object-fit: contain; border-radius: 6px; }
+.lightbox button { position: absolute; background: rgb(255 255 255 / 12%); color: #fff; border: 0; width: 52px; height: 52px; border-radius: 50%; font-size: 1.6rem; cursor: pointer; }
+.lightbox button:hover { background: rgb(255 255 255 / 25%); }
+.lightbox__close { top: 16px; right: 16px; }
+.lightbox__prev { left: 12px; top: 50%; transform: translateY(-50%); }
+.lightbox__next { right: 12px; top: 50%; transform: translateY(-50%); }
+.lightbox__count { position: absolute; bottom: 18px; left: 0; right: 0; text-align: center; color: #ccc; font-size: 0.9rem; }

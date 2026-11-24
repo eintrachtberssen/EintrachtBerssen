@@ -1,0 +1,33 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import { NAV, SITE } from '../../data/site';
+import { url } from '../../lib/url';
+const items = NAV.find((n) => n.label === 'Verein')!.children!;
+const DESC: Record<string, string> = {
+  Vorstand: 'Wer den Verein führt und für was zuständig ist.',
+  Chronik: 'Von der Gründung 1946 bis heute.',
+  Fotos: 'Bilder von Festen, Turnieren und Spielen.',
+  Sportgelände: 'Unsere Anlage am Schützenplatz.',
+  Belegungsplan: 'Platz- und Hallenzeiten.',
+  Anfahrt: 'Wegbeschreibung und Karte.',
+  Downloads: 'Aufnahmeanträge und Protokolle.',
+};
+---
+<Base title="Verein">
+  <PageHero title="Verein" lead={`${SITE.legalName} – gegründet am ${SITE.founded}, Farben Rot und Weiß.`} />
+  <section class="section">
+    <div class="container grid grid--tiles">
+      {items.map((i) => (
+        <a class="tile card" href={url(i.href)}><strong>{i.label}</strong><span>{DESC[i.label]}</span></a>
+      ))}
+    </div>
+  </section>
+</Base>
+<style>
+  .tile { display: grid; gap: 4px; padding: 22px; text-decoration: none; color: var(--ink); transition: 0.15s; }
+  .tile:hover { border-color: var(--red); transform: translateY(-2px); }
+  .tile strong { font-size: 1.1rem; }
+  .tile strong::after { content: ' →'; color: var(--red); }
+  .tile span { color: var(--ink-2); font-size: 0.93rem; }
+</style>

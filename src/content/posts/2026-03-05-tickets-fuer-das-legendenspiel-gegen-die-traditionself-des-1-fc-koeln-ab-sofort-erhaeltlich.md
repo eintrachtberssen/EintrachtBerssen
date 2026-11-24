@@ -2,6 +2,7 @@
 title: "Tickets für das Legendenspiel gegen die Traditionself des 1. FC Köln ab sofort erhältlich"
 date: 2026-03-05
 tags: ["Alte Herren","Herren","Fußball"]
+image: "/images/posts/2026-03-05-tickets-fuer-das-legendenspiel-gegen-die-traditionself-des-1-fc-koeln-ab-sofort-erhaeltlich/ticketvorverkauf-ankundigung.png"
 legacyId: 171
 ---
 

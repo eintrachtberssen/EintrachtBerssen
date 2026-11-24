@@ -2,6 +2,7 @@
 title: "Save the date: 80jähriges Vereinsjubiläum - großes Fest geplant"
 date: 2025-09-09
 tags: ["Fußball","Veranstaltung"]
+image: "/images/posts/2025-09-09-save-the-date-80jaehriges-vereinsjubilaeum-grosses-fest-geplant/verein.png"
 legacyId: 162
 ---
 

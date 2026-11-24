@@ -1,0 +1,29 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getCollection, getEntry, render } from 'astro:content';
+import { marked } from 'marked';
+import Base from '../../layouts/Base.astro';
+import SectionView from '../../components/SectionView.astro';
+import { flattenSections, allTags, findSection } from '../../data/sections';
+import { getPosts } from '../../lib/content';
+import { postsForTags } from '../../lib/posts';
+
+export const getStaticPaths = (() =>
+  flattenSections().map(({ path, section }) => ({ params: { path: path.join('/') }, props: { path, section } }))) satisfies GetStaticPaths;
+
+const { path, section } = Astro.props;
+const posts = postsForTags(await getPosts(), allTags(section));
+const contacts = await getCollection('contacts');
+const entry = await getEntry('sections', section.slug);
+const Content = entry ? (await render(entry)).Content : null;
+const trainingHtml = entry?.data.training ? await marked.parse(entry.data.training) : undefined;
+const crumbs = path.slice(0, -1).map((_, i) => {
+  const p = path.slice(0, i + 1);
+  return { label: findSection(p)!.title, href: `/sport/${p.join('/')}/` };
+});
+---
+<Base title={section.title} image={entry?.data.image}>
+  <SectionView section={section} path={path} posts={posts} contacts={contacts} entry={entry} trainingHtml={trainingHtml} crumbs={crumbs}>
+    {Content && <Content />}
+  </SectionView>
+</Base>

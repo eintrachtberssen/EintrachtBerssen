@@ -1,0 +1,15 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import ConsentEmbed from '../components/ConsentEmbed.astro';
+import { SITE } from '../data/site';
+---
+<Base title="Spielplan">
+  <PageHero title="Vereinsspielplan" lead="Alle Spiele unserer Mannschaften – direkt von fussball.de." crumbs={[{ label: 'Sport', href: '/sport/' }]} />
+  <section class="section">
+    <div class="container">
+      <ConsentEmbed kind="fussballde" src={SITE.fussballdeWidget} title="Spielplan von fussball.de" />
+      <p>Lieber direkt bei fussball.de schauen? <a href={SITE.fussballdeClub} rel="noopener">Zum Vereinsspielplan auf fussball.de</a></p>
+    </div>
+  </section>
+</Base>

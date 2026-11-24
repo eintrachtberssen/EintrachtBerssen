@@ -2,6 +2,7 @@
 title: "Werde Schiedsrichter*in beim SV Eintracht Berssen!"
 date: 2025-11-16
 tags: ["Fußball"]
+image: "/images/posts/2025-11-16-werde-schiedsrichter-in-beim-sv-eintracht-berssen/schiedsrichterlehrgang-min.png"
 legacyId: 166
 ---
 

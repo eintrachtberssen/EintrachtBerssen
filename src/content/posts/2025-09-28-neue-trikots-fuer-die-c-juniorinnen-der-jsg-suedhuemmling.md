@@ -2,6 +2,7 @@
 title: "Neue Trikots für die C-Juniorinnen der JSG Südhümmling"
 date: 2025-09-28
 tags: ["Juniorinnen","C-Juniorinnen","Fußball","Sponsoren"]
+image: "/images/posts/2025-09-28-neue-trikots-fuer-die-c-juniorinnen-der-jsg-suedhuemmling/c-juniorinnen-trikots-compressed.jpg"
 legacyId: 164
 ---
 

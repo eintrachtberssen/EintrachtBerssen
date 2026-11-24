@@ -1,0 +1,93 @@
+---
+import PageHero from './PageHero.astro';
+import PostList from './PostList.astro';
+import ContactCard from './ContactCard.astro';
+import { type Section } from '../data/sections';
+import { contactsForSection, type ContactLike } from '../lib/contacts';
+import { slugify } from '../lib/slug';
+import { url } from '../lib/url';
+import type { PostLike } from '../lib/posts';
+
+interface Props {
+  section: Section;
+  path: string[];
+  posts: (PostLike & { body?: string })[];
+  contacts: ContactLike[];
+  entry?: { data: { title: string; image?: string; training?: string }; body?: string };
+  trainingHtml?: string;
+  crumbs?: { label: string; href: string }[];
+}
+const { section, path, posts, contacts, entry, trainingHtml, crumbs = [] } = Astro.props;
+const shown = posts.slice(0, 9);
+const people = contactsForSection(section, contacts);
+const hasText = Boolean(entry?.body?.trim());
+const base = `/sport/${path.join('/')}/`;
+---
+<PageHero title={section.title} crumbs={[{ label: 'Sport', href: '/sport/' }, ...crumbs]} image={entry?.data.image} />
+
+{(hasText || trainingHtml) && (
+  <section class="section">
+    <div class="container intro">
+      {hasText && <div class="prose"><slot /></div>}
+      {trainingHtml && (
+        <aside class="training card">
+          <span class="eyebrow">Trainingszeiten</span>
+          <div class="prose" set:html={trainingHtml} />
+        </aside>
+      )}
+    </div>
+  </section>
+)}
+
+{section.children && (
+  <section class:list={['section', { 'section--alt': hasText }]}>
+    <div class="container">
+      <div class="section-head"><h2>Mannschaften</h2></div>
+      <div class="grid grid--tiles">
+        {section.children.map((c) => (
+          <a class="tile" href={url(`${base}${c.slug}/`)}>
+            <span class="tile__title">{c.title}</span>
+            <span class="tile__go" aria-hidden="true">→</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <h2>Neues aus dem Bereich {section.title}</h2>
+      {posts.length > shown.length && <a class="link-arrow" href={url(`/aktuelles/tag/${slugify(section.tags[0])}/`)}>Alle {posts.length} Beiträge</a>}
+    </div>
+    {shown.length ? <PostList posts={shown} /> : (
+      <div class="empty card">
+        <p><strong>Hier gibt es noch keine Beiträge.</strong></p>
+        <p class="muted">Fragen zum Training oder zur Mannschaft? Sprich unsere Ansprechpartner an.</p>
+      </div>
+    )}
+  </div>
+</section>
+
+{people.length > 0 && (
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section-head"><h2>Ansprechpartner</h2><a class="link-arrow" href={url('/kontakt/')}>Alle Kontakte</a></div>
+      <div class="grid grid--cards">{people.map((c) => <ContactCard contact={c} />)}</div>
+    </div>
+  </section>
+)}
+
+<style>
+  .intro { display: grid; gap: 32px; align-items: start; }
+  @media (min-width: 900px) { .intro { grid-template-columns: minmax(0, 1fr) 360px; } }
+  .training { padding: 24px; }
+  .training .prose { font-size: 0.95rem; }
+  .tile { display: flex; align-items: center; justify-content: space-between; padding: 20px 22px; background: #fff; border: 1px solid var(--line); border-radius: var(--radius); text-decoration: none; color: var(--ink); font-weight: 700; transition: 0.15s; }
+  .tile:hover { border-color: var(--red); color: var(--red); transform: translateY(-2px); box-shadow: var(--shadow); }
+  .tile__go { color: var(--red); }
+  .empty { padding: 28px; }
+  .empty p { margin: 0; }
+  .empty p + p { margin-top: 4px; }
+</style>

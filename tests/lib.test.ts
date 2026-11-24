@@ -39,3 +39,25 @@ describe('postsForTags', () => {
     expect(postsForTags(posts, ['Tennis']).map((x) => x.id)).toEqual(['b', 'a']);
   });
 });
+
+import { contactsForSection } from '../src/lib/contacts';
+
+describe('contactsForSection', () => {
+  const c = (name: string, group: string, role: string) => ({ id: name, data: { group, name, role } });
+  const all = [
+    c('A', 'Fußball Junioren', 'Trainer D-Junioren'),
+    c('B', 'Fußball Junioren', 'E-Jugend Trainer'),
+    c('C', 'Fußball Juniorinnen', 'Trainer D-Juniorinnen'),
+    c('D', 'Fußball Senioren', '1. Herren Trainer'),
+  ];
+  it('narrows team pages to the matching coaches', () => {
+    expect(contactsForSection(findSection(['fussball', 'junioren', 'd-jugend'])!, all).map((x) => x.id)).toEqual(['A']);
+    expect(contactsForSection(findSection(['fussball', 'herren', '1-herren'])!, all).map((x) => x.id)).toEqual(['D']);
+  });
+  it('does not confuse D-Junioren with D-Juniorinnen', () => {
+    expect(contactsForSection(findSection(['fussball', 'juniorinnen', 'd-juniorinnen'])!, all).map((x) => x.id)).toEqual(['C']);
+  });
+  it('falls back to the whole group when no coach matches', () => {
+    expect(contactsForSection(findSection(['fussball', 'junioren', 'a-jugend'])!, all).map((x) => x.id)).toEqual(['A', 'B']);
+  });
+});

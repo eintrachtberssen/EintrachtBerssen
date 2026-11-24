@@ -1,0 +1,9 @@
+---
+import PostCard from './PostCard.astro';
+import type { PostLike } from '../lib/posts';
+interface Props { posts: (PostLike & { body?: string })[]; featureFirst?: boolean }
+const { posts, featureFirst = false } = Astro.props;
+---
+<div class="grid grid--cards">
+  {posts.map((p, i) => <PostCard post={p} featured={featureFirst && i === 0} />)}
+</div>

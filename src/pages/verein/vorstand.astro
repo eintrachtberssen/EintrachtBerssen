@@ -1,0 +1,18 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import ContactCard from '../../components/ContactCard.astro';
+import { url } from '../../lib/url';
+const board = (await getCollection('contacts')).filter((c) => c.data.group === 'Vorstand');
+---
+<Base title="Vorstand">
+  <PageHero title="Vorstand" lead="Ehrenamtlich für den Verein im Einsatz." crumbs={[{ label: 'Verein', href: '/verein/' }]} />
+  <section class="section">
+    <div class="container">
+      <div class="grid grid--cards">{board.map((c) => <ContactCard contact={c} />)}</div>
+      <p class="more"><a class="link-arrow" href={url('/kontakt/')}>Alle Ansprechpartner (Tennis, Fußball, Fitness)</a></p>
+    </div>
+  </section>
+</Base>
+<style>.more { margin-top: 32px; }</style>

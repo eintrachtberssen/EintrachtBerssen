@@ -30,6 +30,14 @@ describe('parseArticle', () => {
   });
 });
 
+describe('parseArticle cover image', () => {
+  it('reads the Joomla full-text image outside the body as cover', () => {
+    const a = parseArticle(readFileSync('tests/fixtures/article-177.html', 'utf8'), '177-ein-unvergessliches-wochenende-rueckblick-auf-unser-80-jaehriges-vereinsjubilaeum.html');
+    expect(a.cover).toBe('/images/sampledata/2026/jubilaeum/spiel/010-DSC04716.jpg');
+    expect(a.images).toContain(a.cover);
+  });
+});
+
 describe('htmlToMarkdown', () => {
   it('removes nextcloud survey links but keeps their text', () => {
     expect(htmlToMarkdown('<p><a href="https://nextcloud.x/apps/forms/s/1">Zur Umfrage</a></p>', {})).toBe('Zur Umfrage');

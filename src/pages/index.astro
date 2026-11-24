@@ -1,4 +1,125 @@
 ---
 import Base from '../layouts/Base.astro';
+import PostList from '../components/PostList.astro';
+import { getPosts } from '../lib/content';
+import { url } from '../lib/url';
+import { SITE } from '../data/site';
+
+const posts = await getPosts();
+const latest = posts.slice(0, 7);
+
+const SPORTS = [
+  { title: 'Fußball', href: '/sport/fussball/', img: '/images/site/fussball.jpg', text: 'Herren, Damen, Junioren & Juniorinnen' },
+  { title: 'Tennis', href: '/sport/tennis/', img: '/images/teams/tennis/tennis-titelbild-sommer.jpg', text: 'Zwei Plätze, Training für alle Altersklassen' },
+  { title: 'Volleyball', href: '/sport/volleyball/', img: '/images/teams/volleyball/volleyball.png', text: 'Hobby-Volleyball mit Teamgeist' },
+  { title: 'Rückensport', href: '/sport/rueckensport/', img: '/images/site/frauensportgruppe.jpg', text: 'Kräftigung, Gleichgewicht, Wohlbefinden' },
+];
 ---
-<Base><div class="container section"><h1>SV Eintracht Berssen</h1></div></Base>
+<Base>
+  <section class="hero" style={`--hero-img: url('${url('/images/site/hero-tribuene.jpg')}')`}>
+    <div class="container hero__inner">
+      <img class="hero__crest" src={url('/images/site/wappen.png')} alt="" width="100" height="114" />
+      <div>
+        <span class="hero__eyebrow">Rot-Weiß seit 1946</span>
+        <h1>SV Eintracht <span>Berssen</span></h1>
+        <p>Fußball, Tennis, Volleyball und Rückensport – Sport und Gemeinschaft in Klein und Groß Berssen.</p>
+        <div class="hero__cta">
+          <a class="btn btn--light" href={url('/aktuelles/')}>Aktuelles</a>
+          <a class="btn hero__ghost" href={url('/verein/downloads/')}>Mitglied werden</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div><span class="eyebrow">Neuigkeiten</span><h2>Aktuelles aus dem Verein</h2></div>
+        <a class="link-arrow" href={url('/aktuelles/')}>Alle {posts.length} Beiträge</a>
+      </div>
+      <PostList posts={latest} featureFirst />
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section-head">
+        <div><span class="eyebrow">Abteilungen</span><h2>Finde deinen Sport</h2></div>
+        <a class="link-arrow" href={url('/sport/')}>Alle Abteilungen</a>
+      </div>
+      <div class="sports">
+        {SPORTS.map((s) => (
+          <a class="sport" href={url(s.href)}>
+            <img src={url(s.img)} alt="" loading="lazy" />
+            <span class="sport__txt"><strong>{s.title}</strong><small>{s.text}</small></span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container info">
+      <a class="info__card info__card--red" href={url('/spielplan/')}>
+        <span class="eyebrow">Fußball</span>
+        <h3>Spielplan</h3>
+        <p>Alle Spiele unserer Mannschaften auf einen Blick.</p>
+        <span class="link-arrow">Zum Spielplan</span>
+      </a>
+      <a class="info__card" href={url('/verein/downloads/')}>
+        <span class="eyebrow">Mitmachen</span>
+        <h3>Mitglied werden</h3>
+        <p>Aufnahmeantrag herunterladen, ausfüllen und beim Vorstand abgeben.</p>
+        <span class="link-arrow">Zu den Anträgen</span>
+      </a>
+      <a class="info__card info__card--img" href={url('/kontakt/')} style={`--img: url('${url('/images/site/schiedsrichter.jpg')}')`}>
+        <span class="eyebrow">Gesucht</span>
+        <h3>Werde Schiedsrichter!</h3>
+        <p>Lust, an der Pfeife zu stehen? Sprich uns an.</p>
+        <span class="link-arrow">Ansprechpartner</span>
+      </a>
+      <a class="info__card" href={SITE.fanshop} rel="noopener">
+        <span class="eyebrow">Fanshop</span>
+        <h3>Rot-Weiß tragen</h3>
+        <p>Trikots, Hoodies und mehr im Eintracht-Fanshop.</p>
+        <span class="link-arrow">Zum Fanshop</span>
+      </a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero { position: relative; color: #fff; background-image: linear-gradient(105deg, rgb(140 10 14 / 94%) 0%, rgb(215 20 26 / 82%) 50%, rgb(215 20 26 / 35%) 100%), var(--hero-img); background-size: cover; background-position: center; padding: clamp(64px, 12vw, 150px) 0 clamp(56px, 10vw, 120px); overflow: hidden; }
+  .hero__inner { display: flex; gap: 32px; align-items: center; }
+  .hero__crest { width: clamp(72px, 12vw, 130px); height: auto; filter: drop-shadow(0 8px 24px rgb(0 0 0 / 30%)); flex: none; }
+  .hero__eyebrow { display: inline-block; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; background: rgb(255 255 255 / 16%); padding: 6px 12px; border-radius: 999px; margin-bottom: 16px; }
+  .hero h1 { font-size: clamp(2.4rem, 7vw, 4.6rem); margin: 0 0 12px; letter-spacing: -0.035em; line-height: 1; }
+  .hero h1 span { display: block; font-weight: 400; opacity: 0.95; }
+  .hero p { font-size: clamp(1.05rem, 2vw, 1.25rem); max-width: 40ch; margin: 0 0 28px; opacity: 0.95; }
+  .hero__cta { display: flex; gap: 12px; flex-wrap: wrap; }
+  .hero__ghost { background: transparent; box-shadow: inset 0 0 0 2px rgb(255 255 255 / 70%); }
+  .hero__ghost:hover { background: rgb(255 255 255 / 14%); }
+  @media (max-width: 640px) { .hero__inner { flex-direction: column; align-items: flex-start; gap: 20px; } }
+
+  .sports { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); }
+  .sport { position: relative; display: block; aspect-ratio: 4 / 5; border-radius: var(--radius); overflow: hidden; color: #fff; text-decoration: none; box-shadow: var(--shadow); }
+  .sport img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+  .sport::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, rgb(0 0 0 / 75%) 100%); }
+  .sport:hover img { transform: scale(1.06); }
+  .sport__txt { position: absolute; left: 20px; right: 20px; bottom: 20px; z-index: 1; display: grid; gap: 2px; }
+  .sport__txt strong { font-size: 1.5rem; letter-spacing: -0.02em; }
+  .sport__txt small { font-size: 0.92rem; opacity: 0.9; }
+  .sport:hover { color: #fff; }
+  @media (max-width: 640px) { .sport { aspect-ratio: 16 / 9; } }
+
+  .info { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); }
+  .info__card { display: flex; flex-direction: column; gap: 4px; padding: 28px; border-radius: var(--radius); background: var(--bg-2); color: var(--ink); text-decoration: none; transition: 0.2s; min-height: 220px; }
+  .info__card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); color: var(--ink); }
+  .info__card h3 { font-size: 1.4rem; margin: 0; }
+  .info__card p { margin: 0 0 auto; color: var(--ink-2); padding-bottom: 16px; }
+  .info__card--red { background: linear-gradient(135deg, var(--red), var(--red-dark)); color: #fff; }
+  .info__card--red:hover { color: #fff; }
+  .info__card--red .eyebrow, .info__card--red p, .info__card--red .link-arrow, .info__card--img .eyebrow, .info__card--img p, .info__card--img .link-arrow { color: #fff; }
+  .info__card--img { background-image: linear-gradient(180deg, rgb(0 0 0 / 30%), rgb(0 0 0 / 75%)), var(--img); background-size: cover; background-position: center; color: #fff; }
+  .info__card--img:hover { color: #fff; }
+</style>

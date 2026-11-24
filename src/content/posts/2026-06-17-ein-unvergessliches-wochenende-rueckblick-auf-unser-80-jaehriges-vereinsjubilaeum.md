@@ -2,6 +2,7 @@
 title: "Ein unvergessliches Wochenende: Rückblick auf unser 80-jähriges Vereinsjubiläum"
 date: 2026-06-17
 tags: ["Veranstaltung"]
+image: "/images/posts/2026-06-17-ein-unvergessliches-wochenende-rueckblick-auf-unser-80-jaehriges-vereinsjubilaeum/010-dsc04716.jpg"
 legacyId: 177
 ---
 

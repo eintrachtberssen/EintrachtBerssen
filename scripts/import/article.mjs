@@ -22,7 +22,10 @@ export function parseArticle(html, file) {
   const add = (list, src) => { if (!src) return; const p = localPath(src); if (/\.(jpe?g|png|gif|webp)$/i.test(p) && !gallery.includes(p) && !inline.includes(p)) list.push(p); };
   body.find('.sige a').each((_, a) => add(gallery, $(a).attr('href')));
   body.find('img').each((_, img) => { const s = $(img).attr('src') ?? ''; if (!s.includes('/thumbs/') && !s.includes('/media/')) add(inline, s); });
-  const images = [...inline, ...gallery];
+  // Joomla-Feld "Beitragsbild" (figure.item-image) liegt außerhalb des Textes
+  const fullImg = main.find('figure.item-image img').first().attr('src');
+  const cover = fullImg ? localPath(fullImg) : undefined;
+  const images = [...new Set([...(cover ? [cover] : []), ...inline, ...gallery])];
 
   const embeds = [];
   body.find('iframe').each((_, f) => {
@@ -30,7 +33,7 @@ export function parseArticle(html, file) {
     embeds.push({ kind: /youtube|youtu\.be/.test(src) ? 'youtube' : /google\.[a-z.]+\/maps/.test(src) ? 'maps' : 'other', src });
   });
 
-  return { id: Number(m[1]), slug: m[2], title, date, bodyHtml: body.html() ?? '', images, inline, gallery, embeds };
+  return { id: Number(m[1]), slug: m[2], title, date, bodyHtml: body.html() ?? '', images, inline, gallery, cover, embeds };
 }
 
 const td = new TurndownService({ headingStyle: 'atx', bulletListMarker: '-', emDelimiter: '*' });

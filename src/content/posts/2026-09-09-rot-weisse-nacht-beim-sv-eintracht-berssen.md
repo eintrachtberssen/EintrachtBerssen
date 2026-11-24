@@ -2,6 +2,7 @@
 title: "🔴⚪ Rot-Weiße Nacht beim SV Eintracht Berssen ⚪🔴"
 date: 2026-09-09
 tags: ["Veranstaltung","Verein"]
+image: "/images/posts/2026-09-09-rot-weisse-nacht-beim-sv-eintracht-berssen/rot-weisse-nacht.png"
 legacyId: 183
 ---
 

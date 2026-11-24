@@ -2,6 +2,7 @@
 title: "JSG Südhümmling C-Juniorinnen sind Meister! 🏆"
 date: 2026-06-16
 tags: ["Juniorinnen","C-Juniorinnen","Fußball"]
+image: "/images/posts/2026-06-16-jsg-suedhuemmling-c-juniorinnen-sind-meister/c-juniorinnen-meister.jpg"
 legacyId: 175
 ---
 

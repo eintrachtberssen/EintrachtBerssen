@@ -2,6 +2,7 @@
 title: "Nachruf: Ehrenvorsitzender Bernhard Mensen verstorben"
 date: 2026-07-27
 tags: ["Nachruf","Verein"]
+image: "/images/posts/2026-07-27-nachruf-ehrenvorsitzender-bernhard-mensen-verstorben/traueranzeige-bernd-mensen.png"
 legacyId: 180
 ---
 

@@ -1,0 +1,32 @@
+---
+import type { GetStaticPaths } from 'astro';
+import Base from '../../../../layouts/Base.astro';
+import PageHero from '../../../../components/PageHero.astro';
+import PostList from '../../../../components/PostList.astro';
+import Pagination from '../../../../components/Pagination.astro';
+import TagChips from '../../../../components/TagChips.astro';
+import { getPosts, usedTags, PAGE_SIZE } from '../../../../lib/content';
+import { postsForTags } from '../../../../lib/posts';
+import { slugify } from '../../../../lib/slug';
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const posts = await getPosts();
+  const tags = usedTags(posts);
+  return tags.flatMap((tag) =>
+    paginate(postsForTags(posts, [tag]), { pageSize: PAGE_SIZE, params: { tag: slugify(tag) }, props: { tag, tags } }),
+  );
+}) satisfies GetStaticPaths;
+
+const { page, tag, tags } = Astro.props;
+---
+<Base title={`${tag} – Aktuelles`}>
+  <PageHero title={tag} lead={`${page.total} Beiträge mit dem Tag „${tag}“`} crumbs={[{ label: 'Aktuelles', href: '/aktuelles/' }]} />
+  <section class="section">
+    <div class="container">
+      <div class="filters"><TagChips tags={tags} active={tag} all /></div>
+      <PostList posts={page.data} />
+      <Pagination current={page.currentPage} last={page.lastPage} base={`/aktuelles/tag/${slugify(tag)}/`} />
+    </div>
+  </section>
+</Base>
+<style>.filters { margin-bottom: 32px; }</style>

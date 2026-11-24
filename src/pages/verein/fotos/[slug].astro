@@ -1,0 +1,14 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import Base from '../../../layouts/Base.astro';
+import PageHero from '../../../components/PageHero.astro';
+import Gallery from '../../../components/Gallery.astro';
+export async function getStaticPaths() {
+  return (await getCollection('galleries')).map((album) => ({ params: { slug: album.id }, props: { album } }));
+}
+const { album } = Astro.props as { album: CollectionEntry<'galleries'> };
+---
+<Base title={album.data.title} image={album.data.images[0]}>
+  <PageHero title={album.data.title} lead={`${album.data.year} · ${album.data.images.length} Bilder`} crumbs={[{ label: 'Verein', href: '/verein/' }, { label: 'Fotos', href: '/verein/fotos/' }]} />
+  <section class="section"><div class="container"><Gallery images={album.data.images} title={album.data.title} /></div></section>
+</Base>

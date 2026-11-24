@@ -1,0 +1,29 @@
+---
+import { url } from '../lib/url';
+interface Props { current: number; last: number; base: string }
+const { current, last, base } = Astro.props;
+const href = (n: number) => url(n === 1 ? base : `${base}${n}/`);
+const pages = Array.from({ length: last }, (_, i) => i + 1).filter((n) => n === 1 || n === last || Math.abs(n - current) <= 1);
+---
+{last > 1 && (
+  <nav class="pager" aria-label="Seiten">
+    {current > 1 ? <a href={href(current - 1)} rel="prev">← Neuer</a> : <span />}
+    <ol>
+      {pages.map((n, i) => (
+        <>
+          {i > 0 && n - pages[i - 1] > 1 && <li aria-hidden="true">…</li>}
+          <li>{n === current ? <span aria-current="page">{n}</span> : <a href={href(n)}>{n}</a>}</li>
+        </>
+      ))}
+    </ol>
+    {current < last ? <a href={href(current + 1)} rel="next">Älter →</a> : <span />}
+  </nav>
+)}
+<style>
+  .pager { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 40px; flex-wrap: wrap; }
+  .pager > a { font-weight: 650; text-decoration: none; }
+  ol { list-style: none; display: flex; gap: 6px; margin: 0; padding: 0; }
+  ol a, ol span { display: grid; place-items: center; min-width: 40px; height: 40px; border-radius: 999px; text-decoration: none; color: var(--ink); font-weight: 600; }
+  ol a:hover { background: var(--bg-2); }
+  [aria-current] { background: var(--red); color: #fff !important; }
+</style>

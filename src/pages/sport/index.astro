@@ -1,0 +1,43 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import { SECTIONS } from '../../data/sections';
+import { url } from '../../lib/url';
+
+const IMAGES: Record<string, string> = {
+  fussball: '/images/site/fussball.jpg',
+  tennis: '/images/teams/tennis/tennis-titelbild-sommer.jpg',
+  volleyball: '/images/teams/volleyball/volleyball.png',
+  rueckensport: '/images/site/frauensportgruppe.jpg',
+};
+const LEADS: Record<string, string> = {
+  fussball: 'Herren, Damen, Junioren und Juniorinnen – von den Minikickern bis zur 1. Herren.',
+  tennis: 'Zwei Plätze, Training für Groß und Klein und eine eigene Abteilung.',
+  volleyball: 'Hobby-Volleyball für Spielerinnen jeden Alters.',
+  rueckensport: 'Rücken, Muskelaufbau und Gleichgewicht mit erfahrener Trainerin.',
+  'fitness-gymnastik': 'Bewegung und Gesundheit für alle Altersgruppen.',
+};
+---
+<Base title="Sport">
+  <PageHero title="Sport" lead="Vier Abteilungen, ein Verein: Finde deine Sportart bei Eintracht Berssen." />
+  <section class="section">
+    <div class="container grid grid--cards">
+      {SECTIONS.map((s) => (
+        <a class="sport card" href={url(`/sport/${s.slug}/`)}>
+          <span class="img">{IMAGES[s.slug] ? <img src={url(IMAGES[s.slug])} alt="" loading="lazy" /> : <img class="crest" src={url('/images/site/wappen.png')} alt="" />}</span>
+          <span class="txt"><strong>{s.title}</strong><span>{LEADS[s.slug]}</span></span>
+        </a>
+      ))}
+    </div>
+  </section>
+</Base>
+<style>
+  .sport { display: flex; flex-direction: column; text-decoration: none; color: var(--ink); transition: 0.2s; }
+  .sport:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+  .img { aspect-ratio: 16 / 10; background: linear-gradient(135deg, var(--red), var(--red-dark)); display: grid; place-items: center; overflow: hidden; }
+  .img img { width: 100%; height: 100%; object-fit: cover; }
+  .img .crest { width: 70px; height: auto; object-fit: contain; }
+  .txt { padding: 20px; display: grid; gap: 4px; }
+  .txt strong { font-size: 1.25rem; }
+  .txt span { color: var(--ink-2); font-size: 0.95rem; }
+</style>

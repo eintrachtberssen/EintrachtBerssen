@@ -30,5 +30,73 @@ const ogImage = new URL(image ?? url('/images/site/banner.png'), Astro.site).hre
     <Header />
     <main id="main"><slot /></main>
     <Footer />
+    <dialog class="lightbox" aria-label="Bildansicht">
+      <img class="lightbox__img" alt="" />
+      <button class="lightbox__close" type="button" aria-label="Schließen">×</button>
+      <button class="lightbox__prev" type="button" aria-label="Vorheriges Bild">‹</button>
+      <button class="lightbox__next" type="button" aria-label="Nächstes Bild">›</button>
+      <p class="lightbox__count"></p>
+    </dialog>
+    <script is:inline>
+      (function () {
+        // E-Mail-Adressen erst im Browser zusammensetzen (Spam-Schutz)
+        document.querySelectorAll('a.mail[data-u]').forEach(function (a) {
+          var m = a.dataset.u + '@' + a.dataset.d;
+          a.href = 'mailto:' + m;
+          a.textContent = m;
+        });
+
+        // Zwei-Klick-Inhalte
+        document.addEventListener('click', function (e) {
+          var btn = e.target.closest && e.target.closest('[data-consent-load]');
+          if (!btn) return;
+          var box = btn.closest('.consent');
+          var kind = box.dataset.consentKind, src = box.dataset.consentSrc, title = box.dataset.consentTitle || '';
+          box.classList.add('loaded');
+          if (kind === 'fussballde') {
+            var id = 'fbde-' + Math.random().toString(36).slice(2);
+            box.innerHTML = '<div id="' + id + '"></div>';
+            var s = document.createElement('script');
+            s.src = 'https://www.fussball.de/static/layout/fbde2/egm//js/widget2.js';
+            s.onload = function () { new window.fussballdeWidgetAPI().showWidget(id, src); };
+            document.body.appendChild(s);
+            return;
+          }
+          if (kind === 'youtube') src = src.replace('www.youtube.com/embed', 'www.youtube-nocookie.com/embed');
+          var f = document.createElement('iframe');
+          f.src = src; f.title = title; f.loading = 'lazy'; f.allowFullscreen = true;
+          f.setAttribute('allow', 'accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen');
+          box.innerHTML = '';
+          box.appendChild(f);
+        });
+
+        // Lightbox für Galerien
+        var dlg = document.querySelector('.lightbox');
+        if (!dlg || !dlg.showModal) return;
+        var img = dlg.querySelector('.lightbox__img'), count = dlg.querySelector('.lightbox__count');
+        var list = [], idx = 0;
+        function show(i) { idx = (i + list.length) % list.length; img.src = list[idx].href; img.alt = list[idx].querySelector('img').alt; count.textContent = (idx + 1) + ' / ' + list.length; }
+        document.addEventListener('click', function (e) {
+          var a = e.target.closest && e.target.closest('[data-gallery] a');
+          if (!a) return;
+          e.preventDefault();
+          list = Array.prototype.slice.call(a.closest('[data-gallery]').querySelectorAll('a'));
+          show(list.indexOf(a));
+          dlg.showModal();
+        });
+        dlg.querySelector('.lightbox__close').onclick = function () { dlg.close(); };
+        dlg.querySelector('.lightbox__prev').onclick = function () { show(idx - 1); };
+        dlg.querySelector('.lightbox__next').onclick = function () { show(idx + 1); };
+        dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
+        document.addEventListener('keydown', function (e) {
+          if (!dlg.open) return;
+          if (e.key === 'ArrowLeft') show(idx - 1);
+          if (e.key === 'ArrowRight') show(idx + 1);
+        });
+        var x0 = null;
+        dlg.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+        dlg.addEventListener('touchend', function (e) { if (x0 === null) return; var dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 40) show(idx + (dx < 0 ? 1 : -1)); x0 = null; });
+      })();
+    </script>
   </body>
 </html>

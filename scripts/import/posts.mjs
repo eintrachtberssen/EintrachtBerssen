@@ -31,7 +31,7 @@ for (const a of keep) {
     if (out) imageMap[src] = out;
   }
   const gallery = a.gallery.map((g) => imageMap[g]).filter(Boolean);
-  let cover = gallery[0];
+  let cover = (a.cover && imageMap[a.cover]) || gallery[0];
   let bodyHtml = a.bodyHtml;
   if (!cover && a.inline.length && imageMap[a.inline[0]]) {
     cover = imageMap[a.inline[0]];

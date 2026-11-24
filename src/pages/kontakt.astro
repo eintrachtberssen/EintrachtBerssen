@@ -1,0 +1,29 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import ContactCard from '../components/ContactCard.astro';
+import { slugify } from '../lib/slug';
+import { SITE } from '../data/site';
+const contacts = await getCollection('contacts');
+const groups = [...new Set(contacts.map((c) => c.data.group))];
+---
+<Base title="Kontakt & Ansprechpartner">
+  <PageHero title="Kontakt" lead={`${SITE.legalName} · ${SITE.address.join(', ')} · Telefon ${SITE.phone}`}>
+    <nav class="jump" aria-label="Gruppen">{groups.map((g) => <a href={`#${slugify(g)}`}>{g}</a>)}</nav>
+  </PageHero>
+  {groups.map((g, i) => (
+    <section class:list={['section', { 'section--alt': i % 2 === 1 }]} id={slugify(g)}>
+      <div class="container">
+        <h2>{g}</h2>
+        <div class="grid grid--cards">{contacts.filter((c) => c.data.group === g).map((c) => <ContactCard contact={c} />)}</div>
+      </div>
+    </section>
+  ))}
+</Base>
+<style>
+  .jump { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+  .jump a { padding: 6px 14px; border-radius: 999px; background: rgb(255 255 255 / 16%); text-decoration: none; font-weight: 600; font-size: 0.9rem; }
+  .jump a:hover { background: rgb(255 255 255 / 28%); }
+  section[id] { scroll-margin-top: 80px; }
+</style>

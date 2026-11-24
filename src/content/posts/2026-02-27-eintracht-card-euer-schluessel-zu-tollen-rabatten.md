@@ -2,6 +2,7 @@
 title: "Eintracht-Card: Euer Schlüssel zu tollen Rabatten! ⚽️"
 date: 2026-02-27
 tags: ["Verein"]
+image: "/images/posts/2026-02-27-eintracht-card-euer-schluessel-zu-tollen-rabatten/eintracht-card.png"
 legacyId: 170
 ---
 

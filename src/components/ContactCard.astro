@@ -1,0 +1,27 @@
+---
+interface Props { contact: { id: string; data: { name: string; role?: string; phone?: string | null; email?: string | null } } }
+const { name, role, phone, email } = Astro.props.contact.data;
+const initials = name.split(/\s+/).map((p) => p[0]).slice(0, 2).join('');
+const tel = phone?.replace(/[^\d+]/g, '').replace(/^0049/, '+49');
+const [user, domain] = (email ?? '').split('@');
+---
+<div class="contact">
+  <span class="avatar" aria-hidden="true">{initials}</span>
+  <div>
+    <p class="name">{name}</p>
+    {role && <p class="role">{role}</p>}
+    <p class="links">
+      {phone && <a href={`tel:${tel}`}>{phone}</a>}
+      {email && <a class="mail" data-u={user} data-d={domain} href="#">{user} [at] {domain}</a>}
+    </p>
+  </div>
+</div>
+<style>
+  .contact { display: flex; gap: 14px; align-items: flex-start; padding: 18px; background: #fff; border: 1px solid var(--line); border-radius: var(--radius); }
+  .avatar { flex: none; width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; background: var(--red-soft); color: var(--red-dark); font-weight: 750; }
+  p { margin: 0; }
+  .name { font-weight: 700; }
+  .role { color: var(--ink-2); font-size: 0.92rem; }
+  .links { display: flex; flex-direction: column; gap: 2px; margin-top: 6px; font-size: 0.92rem; overflow-wrap: anywhere; }
+  .links a { text-decoration: none; }
+</style>

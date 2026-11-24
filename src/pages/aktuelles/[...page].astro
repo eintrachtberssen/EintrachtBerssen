@@ -1,0 +1,28 @@
+---
+import type { GetStaticPaths } from 'astro';
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import PostList from '../../components/PostList.astro';
+import Pagination from '../../components/Pagination.astro';
+import TagChips from '../../components/TagChips.astro';
+import { getPosts, usedTags, PAGE_SIZE } from '../../lib/content';
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const posts = await getPosts();
+  const tags = usedTags(posts);
+  return paginate(posts, { pageSize: PAGE_SIZE, props: { tags } });
+}) satisfies GetStaticPaths;
+
+const { page, tags } = Astro.props;
+---
+<Base title={page.currentPage > 1 ? `Aktuelles – Seite ${page.currentPage}` : 'Aktuelles'}>
+  <PageHero title="Aktuelles" lead="Berichte, Termine und Neuigkeiten aus allen Abteilungen." />
+  <section class="section">
+    <div class="container">
+      <div class="filters"><TagChips tags={tags} all /></div>
+      <PostList posts={page.data} featureFirst={page.currentPage === 1} />
+      <Pagination current={page.currentPage} last={page.lastPage} base="/aktuelles/" />
+    </div>
+  </section>
+</Base>
+<style>.filters { margin-bottom: 32px; }</style>
