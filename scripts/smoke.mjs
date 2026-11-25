@@ -16,6 +16,17 @@ await new Promise((resolve, reject) => {
 });
 
 const failures = [];
+
+// Auswerten nach Abschluss evtl. Weiterleitungen (Meta-Refresh alter Adressen)
+async function evalSettled(page, fn) {
+  for (let i = 0; i < 5; i++) {
+    try { return await page.evaluate(fn); } catch (e) {
+      if (!String(e).includes('Execution context was destroyed')) throw e;
+      await page.waitForLoadState('load');
+    }
+  }
+  return page.evaluate(fn);
+}
 const browser = await chromium.launch();
 try {
   for (const [width, label] of [[1280, 'desktop'], [375, 'mobil']]) {
@@ -25,10 +36,13 @@ try {
     for (const path of PAGES) {
       const res = await page.goto(`http://localhost:${PORT}${base}${path}`, { waitUntil: 'networkidle' });
       if (!res || res.status() !== 200) failures.push(`${label} ${path}: Status ${res?.status()}`);
-      const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
+      const overflow = await evalSettled(page, () => document.documentElement.scrollWidth - window.innerWidth);
       if (overflow > 0) failures.push(`${label} ${path}: ${overflow}px horizontales Scrollen`);
       if (process.env.SHOTS) await page.screenshot({ path: `${process.env.SHOTS}/${label}${path.replace(/[/.]+/g, '_')}.png`, fullPage: false });
     }
+    // Alte Spielplan-Adresse muss auf die Fußball-Seite führen
+    await page.goto(`http://localhost:${PORT}${base}/spielplan/`);
+    await page.waitForURL(/\/sport\/fussball\/#spielplan$/, { timeout: 5000 }).catch(() => failures.push(`${label}: /spielplan/ leitet nicht auf die Fußball-Seite`));
     if (extRequests.length) failures.push(`${label}: externe Anfragen ohne Klick: ${[...new Set(extRequests)].join(', ')}`);
 
     if (label === 'mobil') {
@@ -38,7 +52,7 @@ try {
       const all = walk('dist').filter((f) => f.endsWith('/index.html') && !f.includes('/_astro/')).map((f) => f.slice(4, -10) || '/');
       for (const path of all) {
         await page.goto(`http://localhost:${PORT}${base}${path}`, { waitUntil: 'load' });
-        const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
+        const overflow = await evalSettled(page, () => document.documentElement.scrollWidth - window.innerWidth);
         if (overflow > 0) failures.push(`mobil ${path}: ${overflow}px horizontales Scrollen`);
       }
 
