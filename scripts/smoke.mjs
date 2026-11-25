@@ -45,6 +45,17 @@ try {
       await page.goto(`http://localhost:${PORT}${base}/`);
       await page.click('.burger');
       if (!(await page.isVisible('#site-nav a[href$="/kontakt/"]'))) failures.push('mobil: Menü öffnet nicht');
+      // Das geöffnete Menü muss den Bildschirm unter dem Header füllen (nicht abgeschnitten)
+      const nav = await page.evaluate(() => { const r = document.getElementById('site-nav').getBoundingClientRect(); return { bottom: r.bottom, h: r.height, vh: window.innerHeight }; });
+      if (nav.bottom < nav.vh - 1) failures.push(`mobil: Menü nur ${Math.round(nav.h)}px hoch, Bildschirm ${nav.vh}px`);
+      // Jeder Menüpunkt muss tatsächlich sichtbar und anklickbar sein
+      const hidden = await page.evaluate(() => [...document.querySelectorAll('#site-nav a')].filter((a) => {
+        a.scrollIntoView({ block: 'center' });
+        const r = a.getBoundingClientRect();
+        const hit = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2);
+        return !(hit && (hit === a || a.contains(hit)));
+      }).map((a) => a.textContent.trim()));
+      if (hidden.length) failures.push(`mobil: Menüpunkte verdeckt/abgeschnitten: ${hidden.join(', ')}`);
     }
     await page.goto(`http://localhost:${PORT}${base}/beitrag/2020-09-17-fussballcamp-auf-unserem-sportgelaende/`);
     if (await page.locator('iframe').count()) failures.push(`${label}: iframe vor Klick`);

@@ -46,7 +46,10 @@ const isActive = (href: string) => current.startsWith(url(href));
 </script>
 
 <style>
-  .site-header { position: sticky; top: 0; z-index: 50; background: rgb(255 255 255 / 92%); backdrop-filter: saturate(1.4) blur(10px); border-bottom: 1px solid var(--line); }
+  /* Unschärfe auf eigener Ebene: backdrop-filter direkt am Header würde ihn zum Bezugsrahmen
+     für das fixierte Handy-Menü machen und dieses auf Header-Höhe abschneiden. */
+  .site-header { position: sticky; top: 0; z-index: 50; border-bottom: 1px solid var(--line); }
+  .site-header::before { content: ''; position: absolute; inset: 0; z-index: -1; background: rgb(255 255 255 / 92%); backdrop-filter: saturate(1.4) blur(10px); -webkit-backdrop-filter: saturate(1.4) blur(10px); }
   .bar { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 16px; }
   .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); font-size: 1.15rem; letter-spacing: -0.01em; }
   .brand img { width: 38px; height: auto; }
@@ -68,7 +71,7 @@ const isActive = (href: string) => current.startsWith(url(href));
 
   @media (max-width: 899px) {
     .burger { display: flex; }
-    .nav { position: fixed; inset: 68px 0 0 0; background: #fff; overflow-y: auto; padding: 16px var(--gutter) 40px; display: none; }
+    .nav { position: fixed; inset: 68px 0 0 0; height: calc(100dvh - 68px); background: #fff; overflow-y: auto; overscroll-behavior: contain; padding: 16px var(--gutter) 40px; display: none; }
     .nav.open { display: block; }
     .nav > ul { flex-direction: column; gap: 2px; }
     .nav > ul > li > a { font-size: 1.15rem; padding: 12px 14px; }
