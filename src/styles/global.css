@@ -96,6 +96,7 @@ h3 { font-size: 1.2rem; font-weight: 700; }
 .prose table { width: auto !important; }
 .prose img { border-radius: var(--radius-sm); margin: 1.2em 0; }
 .prose h2, .prose h3 { margin-top: 1.6em; }
+.prose > :first-child { margin-top: 0; }
 .prose table { border-collapse: collapse; width: 100%; display: block; overflow-x: auto; }
 .prose td, .prose th { border: 1px solid var(--line); padding: 6px 10px; text-align: left; vertical-align: top; }
 .prose blockquote { margin: 1em 0; padding: 0.5em 1em; border-left: 4px solid var(--red); background: var(--bg-2); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
