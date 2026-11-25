@@ -23,7 +23,7 @@ content:
         type: string
         required: true
       - name: date
-        label: Datum
+        label: Datum (liegt es in der Zukunft, erscheint der Beitrag erst an diesem Tag)
         type: date
         required: true
       - name: tags

@@ -17,7 +17,7 @@ Für alle, die auf der Vereinsseite Beiträge veröffentlichen. Du brauchst nur 
 1. Links auf **Beiträge** klicken, dann oben rechts auf **Add an entry** (Neuer Eintrag).
 2. Felder ausfüllen:
    - **Titel** – kurz und aussagekräftig, z. B. „D-Juniorinnen holen den Kreispokal“.
-   - **Datum** – heutiges Datum (bestimmt die Reihenfolge).
+   - **Datum** – heutiges Datum (bestimmt die Reihenfolge). Ein Datum in der Zukunft plant den Beitrag für später, siehe unten.
    - **Tags** – *wichtig!* Hier legst du fest, wo der Beitrag erscheint:
      - einen Beitrag mit „Tennis“ siehst du auf der Tennis-Seite,
      - einen mit „D-Juniorinnen“ bei den D-Juniorinnen **und** automatisch unter Juniorinnen und Fußball.
@@ -32,6 +32,17 @@ Für alle, die auf der Vereinsseite Beiträge veröffentlichen. Du brauchst nur 
 
 - Fotos vom Handy kannst du direkt hochladen.
 - Bitte nur Bilder, auf denen die Abgebildeten mit der Veröffentlichung einverstanden sind – bei Kindern die Eltern.
+
+## Beitrag für später planen
+
+Du kannst einen Beitrag schon heute fertig schreiben und erst später erscheinen lassen:
+
+- Trage beim **Datum** einfach den gewünschten Tag in der Zukunft ein und speichere.
+- Bis dahin ist der Beitrag nur in der Eingabemaske sichtbar, nicht auf der Homepage.
+- An dem Tag erscheint er automatisch kurz nach Mitternacht.
+- Soll er doch sofort online gehen: Datum auf heute ändern und speichern.
+
+So lassen sich Beiträge auch gegenlesen, bevor sie erscheinen: in die Zukunft datieren, von einer zweiten Person prüfen lassen, dann aufs gewünschte Datum setzen.
 
 ## Beitrag ändern oder löschen
 

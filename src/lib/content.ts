@@ -1,11 +1,12 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
-import { sortByDate } from './posts';
+import { sortByDate, isPublished } from './posts';
 import { TAGS, type Tag } from '../data/tags';
 
 export type Post = CollectionEntry<'posts'>;
 
 export async function getPosts(): Promise<Post[]> {
-  return sortByDate(await getCollection('posts'));
+  // Beiträge mit Datum in der Zukunft erscheinen erst an diesem Tag (täglicher Neubau, siehe deploy.yml)
+  return sortByDate(await getCollection('posts', (p) => isPublished(p)));
 }
 
 /** Tags in fester Reihenfolge, die mindestens einen Beitrag haben. */

@@ -98,3 +98,21 @@ describe('gallerySchema', () => {
     expect(gallerySchema.parse({ title: 'A', year: '2025' }).year).toBe(2025);
   });
 });
+
+import { isPublished } from '../src/lib/posts';
+
+describe('isPublished (zeitgesteuerte Veröffentlichung)', () => {
+  const post = (d: string) => ({ id: d, data: { title: d, date: new Date(d), tags: [], gallery: [] } });
+  const now = new Date('2026-12-01T10:00:00+01:00');
+  it('shows posts dated today or earlier', () => {
+    expect(isPublished(post('2026-12-01'), now)).toBe(true);
+    expect(isPublished(post('2026-11-30'), now)).toBe(true);
+  });
+  it('hides posts dated in the future', () => {
+    expect(isPublished(post('2026-12-02'), now)).toBe(false);
+  });
+  it('uses the German calendar day, not UTC (shortly after midnight in Berlin)', () => {
+    // 00:30 Uhr am 2.12. in Berlin ist in UTC noch der 1.12.
+    expect(isPublished(post('2026-12-02'), new Date('2026-12-01T23:30:00Z'))).toBe(true);
+  });
+});

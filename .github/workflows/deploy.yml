@@ -3,6 +3,10 @@ name: Seite bauen und veröffentlichen
 on:
   push:
     branches: [main]
+  # Täglicher Neubau kurz nach Mitternacht (deutsche Zeit), damit vorgeplante
+  # Beiträge (Datum in der Zukunft) an ihrem Tag automatisch erscheinen.
+  schedule:
+    - cron: '7 23 * * *'
   workflow_dispatch:
 
 permissions:
