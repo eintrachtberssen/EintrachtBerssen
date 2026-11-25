@@ -59,6 +59,19 @@ try {
     }
     await page.goto(`http://localhost:${PORT}${base}/beitrag/2020-09-17-fussballcamp-auf-unserem-sportgelaende/`);
     if (await page.locator('iframe').count()) failures.push(`${label}: iframe vor Klick`);
+    if (label === 'desktop') {
+      // Beitragsseite auf breitem Bildschirm: nichts breiter als Logo-Anfang bis Navigations-Ende
+      await page.setViewportSize({ width: 1920, height: 1000 });
+      const out = await page.evaluate(() => {
+        const box = (e) => e.getBoundingClientRect();
+        const left = box(document.querySelector('.brand')).left, right = box(document.querySelector('.nav > ul')).right;
+        return [...document.querySelectorAll('article .post-head > *, article .body, article .body > *, article .cover, article .gallery')]
+          .filter((e) => { const r = box(e); return r.width && (r.left < left - 1 || r.right > right + 1); })
+          .map((e) => `${e.tagName.toLowerCase()}.${e.className.split(' ')[0]} ${Math.round(box(e).left)}–${Math.round(box(e).right)} (erlaubt ${Math.round(left)}–${Math.round(right)})`);
+      });
+      if (out.length) failures.push(`desktop 1920px Beitrag zu breit: ${[...new Set(out)].slice(0, 4).join('; ')}`);
+      await page.setViewportSize({ width: 1280, height: 900 });
+    }
     await page.route(/youtube/, (r) => r.abort());
     await page.locator('[data-consent-load]').first().click();
     if ((await page.locator('iframe[src*="youtube-nocookie.com"]').count()) !== 1) failures.push(`${label}: Zwei-Klick lädt kein Video`);
