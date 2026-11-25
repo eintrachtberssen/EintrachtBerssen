@@ -26,6 +26,10 @@ const shown = posts.slice(0, 9);
 const people = contactsForSection(section, contacts);
 const hasText = Boolean(entry?.body?.trim());
 const base = `/sport/${path.join('/')}/`;
+// Abschnitte abwechselnd weiß/grau: Intro → Mannschaften → Spielplan → Neues → Ansprechpartner
+const hasIntro = hasText || Boolean(trainingHtml);
+const teamsAlt = hasIntro;
+const spielplanAlt = section.children ? !teamsAlt : hasIntro;
 ---
 <PageHero title={section.title} crumbs={[{ label: 'Sport', href: '/sport/' }, ...crumbs]} image={entry?.data.image} />
 
@@ -43,18 +47,8 @@ const base = `/sport/${path.join('/')}/`;
   </section>
 )}
 
-{(spielplanHtml || widget) && (
-  <section class:list={['section', { 'section--alt': hasText || trainingHtml }]} id="spielplan">
-    <div class="container">
-      <div class="section-head"><h2>Spielplan</h2>{widgetLink && <a class="link-arrow" href={widgetLink} rel="noopener">Auf fussball.de ansehen</a>}</div>
-      {spielplanHtml && <div class="prose spielplan" set:html={spielplanHtml} />}
-      {widget && <ConsentEmbed kind="fussballde" src={widget.id} type={widget.type} script={widget.script} title={`Spielplan ${section.title} von fussball.de`} />}
-    </div>
-  </section>
-)}
-
 {section.children && (
-  <section class:list={['section', { 'section--alt': hasText }]}>
+  <section class:list={['section', { 'section--alt': teamsAlt }]}>
     <div class="container">
       <div class="section-head"><h2>Mannschaften</h2></div>
       <div class="grid grid--tiles">
@@ -65,6 +59,16 @@ const base = `/sport/${path.join('/')}/`;
           </a>
         ))}
       </div>
+    </div>
+  </section>
+)}
+
+{(spielplanHtml || widget) && (
+  <section class:list={['section', { 'section--alt': spielplanAlt }]} id="spielplan">
+    <div class="container">
+      <div class="section-head"><h2>Spielplan</h2>{widgetLink && <a class="link-arrow" href={widgetLink} rel="noopener">Auf fussball.de ansehen</a>}</div>
+      {spielplanHtml && <div class="prose spielplan" set:html={spielplanHtml} />}
+      {widget && <ConsentEmbed kind="fussballde" src={widget.id} type={widget.type} script={widget.script} title={`Spielplan ${section.title} von fussball.de`} />}
     </div>
   </section>
 )}
