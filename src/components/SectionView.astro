@@ -1,6 +1,7 @@
 ---
 import PageHero from './PageHero.astro';
 import PostList from './PostList.astro';
+import ConsentEmbed from './ConsentEmbed.astro';
 import ContactCard from './ContactCard.astro';
 import { type Section } from '../data/sections';
 import { contactsForSection, type ContactLike } from '../lib/contacts';
@@ -15,9 +16,12 @@ interface Props {
   contacts: ContactLike[];
   entry?: { data: { title: string; image?: string; training?: string }; body?: string };
   trainingHtml?: string;
+  spielplanHtml?: string;
+  widget?: { id: string; type?: string; script?: string };
+  widgetLink?: string;
   crumbs?: { label: string; href: string }[];
 }
-const { section, path, posts, contacts, entry, trainingHtml, crumbs = [] } = Astro.props;
+const { section, path, posts, contacts, entry, trainingHtml, spielplanHtml, widget, widgetLink, crumbs = [] } = Astro.props;
 const shown = posts.slice(0, 9);
 const people = contactsForSection(section, contacts);
 const hasText = Boolean(entry?.body?.trim());
@@ -35,6 +39,16 @@ const base = `/sport/${path.join('/')}/`;
           <div class="prose" set:html={trainingHtml} />
         </aside>
       )}
+    </div>
+  </section>
+)}
+
+{(spielplanHtml || widget) && (
+  <section class:list={['section', { 'section--alt': hasText || trainingHtml }]} id="spielplan">
+    <div class="container">
+      <div class="section-head"><h2>Spielplan</h2>{widgetLink && <a class="link-arrow" href={widgetLink} rel="noopener">Auf fussball.de ansehen</a>}</div>
+      {spielplanHtml && <div class="prose spielplan" set:html={spielplanHtml} />}
+      {widget && <ConsentEmbed kind="fussballde" src={widget.id} type={widget.type} script={widget.script} title={`Spielplan ${section.title} von fussball.de`} />}
     </div>
   </section>
 )}
@@ -88,6 +102,9 @@ const base = `/sport/${path.join('/')}/`;
   .tile { display: flex; align-items: center; justify-content: space-between; padding: 20px 22px; background: #fff; border: 1px solid var(--line); border-radius: var(--radius); text-decoration: none; color: var(--ink); font-weight: 700; transition: 0.15s; }
   .tile:hover { border-color: var(--red); color: var(--red); transform: translateY(-2px); box-shadow: var(--shadow); }
   .tile__go { color: var(--red); }
+  #spielplan { scroll-margin-top: 80px; }
+  .spielplan { max-width: none; margin-bottom: 24px; }
+  .spielplan :global(table) { min-width: min(100%, 560px); }
   .empty { padding: 28px; }
   .empty p { margin: 0; }
   .empty p + p { margin-top: 4px; }

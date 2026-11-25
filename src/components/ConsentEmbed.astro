@@ -1,6 +1,6 @@
 ---
 import { consentHtml } from '../lib/rehype.mjs';
-interface Props { kind: 'youtube' | 'maps' | 'fussballde' | 'other'; src: string; title: string }
-const { kind, src, title } = Astro.props;
+interface Props { kind: 'youtube' | 'maps' | 'fussballde' | 'other'; src: string; title: string; type?: string; script?: string }
+const { kind, src, title, type, script } = Astro.props;
 ---
-<Fragment set:html={consentHtml(kind, src, title)} />
+<Fragment set:html={consentHtml(kind, src, title, { type, script })} />

@@ -11,10 +11,11 @@ export const PROVIDERS = {
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
 
 /** HTML für den Zwei-Klick-Platzhalter. Wird von ConsentEmbed.astro und rehypeConsentEmbed genutzt. */
-export function consentHtml(kind, src, title = 'Externer Inhalt') {
+export function consentHtml(kind, src, title = 'Externer Inhalt', { type, script } = {}) {
   const provider = PROVIDERS[kind] ?? PROVIDERS.other;
   const k = PROVIDERS[kind] ? kind : 'other';
-  return `<div class="consent consent--${k}" data-consent-kind="${k}" data-consent-src="${esc(src)}" data-consent-title="${esc(title)}">`
+  const extra = (type ? ` data-consent-type="${esc(type)}"` : '') + (script ? ` data-consent-script="${esc(script)}"` : '');
+  return `<div class="consent consent--${k}" data-consent-kind="${k}" data-consent-src="${esc(src)}" data-consent-title="${esc(title)}"${extra}>`
     + `<div class="consent__inner"><p class="consent__title">${esc(title)}</p>`
     + `<p class="consent__text">Dieser Inhalt wird von ${esc(provider)} bereitgestellt. Beim Laden werden Daten (z.&nbsp;B. deine IP-Adresse) an ${esc(provider)} übertragen.</p>`
     + `<button type="button" class="btn" data-consent-load>Inhalt laden</button></div></div>`;

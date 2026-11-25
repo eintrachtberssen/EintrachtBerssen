@@ -7,6 +7,8 @@ import SectionView from '../../components/SectionView.astro';
 import { flattenSections, allTags, findSection } from '../../data/sections';
 import { getPosts } from '../../lib/content';
 import { postsForTags } from '../../lib/posts';
+import { extractFussballdeId, extractFussballdeType, extractFussballdeScript } from '../../lib/fussballde';
+import { SITE } from '../../data/site';
 
 export const getStaticPaths = (() =>
   flattenSections().map(({ path, section }) => ({ params: { path: path.join('/') }, props: { path, section } }))) satisfies GetStaticPaths;
@@ -17,13 +19,17 @@ const contacts = await getCollection('contacts');
 const entry = await getEntry('sections', section.slug);
 const Content = entry ? (await render(entry)).Content : null;
 const trainingHtml = entry?.data.training ? await marked.parse(entry.data.training) : undefined;
+const spielplanHtml = entry?.data.spielplan ? await marked.parse(entry.data.spielplan) : undefined;
+const widgetId = extractFussballdeId(entry?.data.fussballde);
+const widget = widgetId ? { id: widgetId, type: extractFussballdeType(entry?.data.fussballde), script: extractFussballdeScript(entry?.data.fussballde) } : undefined;
+const widgetLink = section.slug === 'fussball' ? SITE.fussballdeClub : undefined;
 const crumbs = path.slice(0, -1).map((_, i) => {
   const p = path.slice(0, i + 1);
   return { label: findSection(p)!.title, href: `/sport/${p.join('/')}/` };
 });
 ---
 <Base title={section.title} image={entry?.data.image}>
-  <SectionView section={section} path={path} posts={posts} contacts={contacts} entry={entry} trainingHtml={trainingHtml} crumbs={crumbs}>
+  <SectionView section={section} path={path} posts={posts} contacts={contacts} entry={entry} trainingHtml={trainingHtml} spielplanHtml={spielplanHtml} widget={widget} widgetLink={widgetLink} crumbs={crumbs}>
     {Content && <Content />}
   </SectionView>
 </Base>

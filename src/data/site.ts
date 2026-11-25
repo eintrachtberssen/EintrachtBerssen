@@ -33,7 +33,6 @@ export const NAV: NavItem[] = [
       { label: 'Volleyball', href: '/sport/volleyball/' },
       { label: 'Rückensport', href: '/sport/rueckensport/' },
       { label: 'Fitness/Gymnastik', href: '/sport/fitness-gymnastik/' },
-      { label: 'Spielplan', href: '/spielplan/' },
     ],
   },
   { label: 'Kontakt', href: '/kontakt/' },

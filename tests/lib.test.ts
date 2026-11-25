@@ -116,3 +116,45 @@ describe('isPublished (zeitgesteuerte Veröffentlichung)', () => {
     expect(isPublished(post('2026-12-02'), new Date('2026-12-01T23:30:00Z'))).toBe(true);
   });
 });
+
+import { extractFussballdeId } from '../src/lib/fussballde';
+
+describe('extractFussballdeId', () => {
+  const ID = '022010VSB4000000VS541L4KVVGEASRE';
+  it('accepts a bare widget id', () => {
+    expect(extractFussballdeId(ID)).toBe(ID);
+    expect(extractFussballdeId(`  ${ID.toLowerCase()} `)).toBe(ID);
+  });
+  it('extracts the id from the old embed code (showWidget)', () => {
+    expect(extractFussballdeId(`<div id="widget1"></div><script>new fussballdeWidgetAPI().showWidget('widget1', '${ID}');</script>`)).toBe(ID);
+  });
+  it('extracts the id from the new embed code (data-id)', () => {
+    expect(extractFussballdeId(`<script src="https://www.fussball.de/widgets.js"></script><fussballde-widget data-id="${ID}" data-type="table"></fussballde-widget>`)).toBe(ID);
+  });
+  it('returns undefined for empty or unusable input', () => {
+    expect(extractFussballdeId('')).toBeUndefined();
+    expect(extractFussballdeId(null)).toBeUndefined();
+    expect(extractFussballdeId('irgendein Text')).toBeUndefined();
+  });
+});
+
+import { extractFussballdeType } from '../src/lib/fussballde';
+
+describe('extractFussballdeType', () => {
+  it('reads data-type from the new embed code and is undefined for the old API', () => {
+    expect(extractFussballdeType('<div class="fussballde_widget" data-id="ABCDEFGHIJKLMNOPQRSTUV1234" data-type="table"></div>')).toBe('table');
+    expect(extractFussballdeType("showWidget('w', 'ABCDEFGHIJKLMNOPQRSTUV1234')")).toBeUndefined();
+  });
+});
+
+import { extractFussballdeScript } from '../src/lib/fussballde';
+
+describe('extractFussballdeScript', () => {
+  it('takes the script URL from a pasted fussball.de embed code', () => {
+    expect(extractFussballdeScript('<script src="https://www.fussball.de/widgets.js"></script><div data-id="X"></div>')).toBe('https://www.fussball.de/widgets.js');
+  });
+  it('ignores scripts from other hosts and falls back to undefined', () => {
+    expect(extractFussballdeScript('<script src="https://evil.example/x.js"></script>')).toBeUndefined();
+    expect(extractFussballdeScript('ABCDEFGHIJKLMNOPQRSTUV1234')).toBeUndefined();
+  });
+});

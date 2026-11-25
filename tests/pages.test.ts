@@ -4,7 +4,7 @@ import SectionView from '../src/components/SectionView.astro';
 import PostCard from '../src/components/PostCard.astro';
 import ConsentEmbed from '../src/components/ConsentEmbed.astro';
 import { findSection } from '../src/data/sections';
-import { rehypeConsentEmbed, rehypeBase } from '../src/lib/rehype.mjs';
+import { rehypeConsentEmbed, rehypeBase, consentHtml } from '../src/lib/rehype.mjs';
 import { unified } from 'unified';
 import rehypeParse from 'rehype-parse';
 import rehypeStringify from 'rehype-stringify';
@@ -71,5 +71,17 @@ describe('rehype plugins', () => {
     expect(out).not.toContain('<iframe');
     expect(out).toContain('Inhalt laden');
     expect(out).toContain('data-consent-src="https://www.youtube.com/embed/abc"');
+  });
+});
+
+describe('consentHtml for fussball.de widgets', () => {
+  it('carries widget type and script URL as data attributes, escaped', () => {
+    const h = consentHtml('fussballde', 'ABC123', 'Spielplan', { type: 'table', script: 'https://www.fussball.de/widgets.js?a=1&b="2"' });
+    expect(h).toContain('data-consent-type="table"');
+    expect(h).toContain('data-consent-script="https://www.fussball.de/widgets.js?a=1&amp;b=&quot;2&quot;"');
+    expect(h).toContain('fussball.de');
+  });
+  it('omits the attributes when not given', () => {
+    expect(consentHtml('fussballde', 'ABC123', 'Spielplan')).not.toContain('data-consent-type');
   });
 });

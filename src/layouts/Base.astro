@@ -54,11 +54,23 @@ const ogImage = new URL(image ?? url('/images/site/banner.png'), Astro.site).hre
           var kind = box.dataset.consentKind, src = box.dataset.consentSrc, title = box.dataset.consentTitle || '';
           box.classList.add('loaded');
           if (kind === 'fussballde') {
-            var id = 'fbde-' + Math.random().toString(36).slice(2);
-            box.innerHTML = '<div id="' + id + '"></div>';
+            var type = box.dataset.consentType, script = box.dataset.consentScript;
             var s = document.createElement('script');
-            s.src = 'https://www.fussball.de/static/layout/fbde2/egm//js/widget2.js';
-            s.onload = function () { new window.fussballdeWidgetAPI().showWidget(id, src); };
+            if (type && script) {
+              // neuer fussball.de-Einbettungscode: Platzhalter-Element + Script
+              var w = document.createElement('div');
+              w.className = 'fussballde_widget';
+              w.setAttribute('data-id', src);
+              w.setAttribute('data-type', type);
+              box.innerHTML = '';
+              box.appendChild(w);
+              s.src = script;
+            } else {
+              var id = 'fbde-' + Math.random().toString(36).slice(2);
+              box.innerHTML = '<div id="' + id + '"></div>';
+              s.src = 'https://www.fussball.de/static/layout/fbde2/egm//js/widget2.js';
+              s.onload = function () { new window.fussballdeWidgetAPI().showWidget(id, src); };
+            }
             document.body.appendChild(s);
             return;
           }

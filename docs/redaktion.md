@@ -49,6 +49,18 @@ So lassen sich Beiträge auch gegenlesen, bevor sie erscheinen: in die Zukunft d
 - **Ändern:** *Beiträge* → Beitrag anklicken → ändern → **Save**.
 - **Löschen:** Beitrag öffnen → Menü (⋯) → **Delete**.
 
+## Spielplan einer Mannschaft
+
+Unter **Abteilungen & Teams** gibt es für jede Mannschaft zwei Felder. Ist mindestens eins ausgefüllt, erscheint auf der Teamseite ein Bereich „Spielplan“:
+
+- **Spielplan** – Spiele selbst eintragen, z. B. als Liste („Sa 14.03., 15:00 Uhr – Heimspiel gegen …“) oder als Tabelle.
+- **fussball.de-Widget** – den Spielplan direkt von fussball.de anzeigen:
+  1. Auf [fussball.de](https://www.fussball.de) die Mannschaft aufrufen und **Widget** bzw. „Für deine Webseite“ wählen.
+  2. Als Webseite die Vereinsdomain angeben (`eintracht-berssen.de`), Anzeige wählen (z. B. Spielplan oder Tabelle) und den Code erzeugen.
+  3. Den **kompletten Code** (oder nur die lange Widget-ID) in das Feld kopieren und speichern.
+
+Das Widget lädt aus Datenschutzgründen erst, wenn Besucher auf „Inhalt laden“ klicken. Der Vereinsspielplan aller Mannschaften steht auf der Fußball-Seite.
+
 ## Trainingszeiten, Mannschaftsfotos, Ansprechpartner
 
 - **Abteilungen & Teams:** Für jede Mannschaft gibt es einen Eintrag. Dort kannst du Mannschaftsfoto, Trainingszeiten und eine kurze Beschreibung pflegen. Bitte keine neuen Einträge anlegen – neue Mannschaften richtet die technische Betreuung ein.

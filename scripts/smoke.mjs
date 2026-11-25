@@ -7,7 +7,7 @@ const { chromium } = require('playwright');
 
 const base = (process.env.BASE_PATH ?? '/EintrachtBerssen').replace(/\/+$/, '');
 const PORT = 4329;
-const PAGES = ['/', '/aktuelles/', '/beitrag/2020-09-17-fussballcamp-auf-unserem-sportgelaende/', '/sport/tennis/', '/sport/fussball/juniorinnen/d-juniorinnen/', '/kontakt/', '/spielplan/', '/verein/fotos/2026-legendenspiel/', '/impressum.html'];
+const PAGES = ['/', '/aktuelles/', '/beitrag/2020-09-17-fussballcamp-auf-unserem-sportgelaende/', '/sport/tennis/', '/sport/fussball/juniorinnen/d-juniorinnen/', '/kontakt/', '/sport/fussball/', '/spielplan/', '/verein/fotos/2026-legendenspiel/', '/impressum.html'];
 
 const server = spawn('npx', ['astro', 'preview', '--port', String(PORT)], { stdio: 'pipe', detached: true });
 await new Promise((resolve, reject) => {

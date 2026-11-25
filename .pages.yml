@@ -61,6 +61,12 @@ content:
       - name: training
         label: Trainingszeiten
         type: text
+      - name: spielplan
+        label: Spielplan (Spiele selbst eintragen, z. B. als Liste oder Tabelle)
+        type: rich-text
+      - name: fussballde
+        label: fussball.de-Widget (Widget-ID oder kompletten Einbettungscode von fussball.de einfügen)
+        type: text
       - name: body
         label: Beschreibung
         type: rich-text

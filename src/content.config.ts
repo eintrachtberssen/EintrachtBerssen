@@ -22,6 +22,8 @@ const sections = defineCollection({
     title: z.string(),
     image: z.string().nullish().transform((v) => v || undefined),
     training: z.string().nullish().transform((v) => v || undefined),
+    spielplan: z.string().nullish().transform((v) => v || undefined),
+    fussballde: z.string().nullish().transform((v) => v || undefined),
   }),
 });
 
