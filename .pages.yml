@@ -182,6 +182,105 @@ content:
             label: Hinweis (optional)
             type: string
 
+  - name: belegung
+    label: Belegungsplan
+    type: file
+    path: src/data/belegung.json
+    format: json
+    fields:
+      - name: platz
+        label: Fußballplätze
+        type: object
+        fields:
+          - name: title
+            label: Überschrift
+            type: string
+          - name: season
+            label: Saison (optional)
+            type: string
+          - name: intro
+            label: Einleitung
+            type: text
+          - name: notes
+            label: Hinweise (je Punkt ein Eintrag)
+            type: string
+            list: true
+          - name: entries
+            label: Zeiten
+            type: object
+            list: true
+            fields:
+              - name: day
+                label: Wochentag
+                type: select
+                required: true
+                options:
+                  values: [Montag, Dienstag, Mittwoch, Donnerstag, Freitag, Samstag, Sonntag]
+              - name: from
+                label: Von (z. B. 17:30)
+                type: string
+                required: true
+              - name: to
+                label: Bis (z. B. 19:00)
+                type: string
+                required: true
+              - name: team
+                label: Mannschaft / Gruppe
+                type: string
+                required: true
+              - name: place
+                label: Platz (z. B. B-Platz)
+                type: string
+              - name: note
+                label: Hinweis (optional)
+                type: string
+      - name: halle
+        label: Turnhalle
+        type: object
+        fields:
+          - name: title
+            label: Überschrift
+            type: string
+          - name: season
+            label: Saison (optional)
+            type: string
+          - name: intro
+            label: Einleitung
+            type: text
+          - name: notes
+            label: Hinweise (je Punkt ein Eintrag)
+            type: string
+            list: true
+          - name: entries
+            label: Zeiten
+            type: object
+            list: true
+            fields:
+              - name: day
+                label: Wochentag
+                type: select
+                required: true
+                options:
+                  values: [Montag, Dienstag, Mittwoch, Donnerstag, Freitag, Samstag, Sonntag]
+              - name: from
+                label: Von (z. B. 17:30)
+                type: string
+                required: true
+              - name: to
+                label: Bis (z. B. 19:00)
+                type: string
+                required: true
+              - name: team
+                label: Mannschaft / Gruppe
+                type: string
+                required: true
+              - name: club
+                label: Verein (z. B. Eintracht Berssen, SV Stavern)
+                type: string
+              - name: note
+                label: Hinweis (optional)
+                type: string
+
   - name: galleries
     label: Fotoalben
     type: collection

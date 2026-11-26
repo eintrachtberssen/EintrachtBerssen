@@ -76,6 +76,7 @@ Das Widget lädt aus Datenschutzgründen erst, wenn Besucher auf „Inhalt laden
   - *Neues Dokument:* unten auf **Add**, Titel und Kategorie eintragen (Einträge mit gleicher Kategorie stehen zusammen, z. B. „Protokolle“), bei **Datei hochladen** das PDF auswählen – oder statt einer Datei einen **Link** zu einer externen Datei eintragen. Speichern.
   - *Dokument ersetzen* (z. B. neuer Aufnahmeantrag): den Eintrag öffnen, bei **Datei hochladen** die neue Datei wählen, speichern. Der Download-Link zeigt dann automatisch auf die neue Datei. Am besten der neuen Datei einen eigenen Namen geben (z. B. `aufnahmeantrag-2027.pdf`), dann bekommt niemand eine alte Fassung aus dem Browser-Zwischenspeicher.
   - *Dokument entfernen:* den Eintrag in der Liste löschen und speichern. Die alte Datei bleibt im Medienordner liegen und kann dort bei Bedarf gelöscht werden.
+- **Belegungsplan:** zwei Bereiche – *Fußballplätze* und *Turnhalle*. Jede Zeit ist ein Eintrag mit Wochentag, Von/Bis (z. B. `17:30`), Mannschaft und Platz bzw. Verein. Die Seite sortiert automatisch nach Tag und Uhrzeit und färbt ein (Fußball: Jugend grün, Herren/Damen blau; Halle: je Verein). Zum Ändern einfach den Eintrag anpassen, neue Zeiten mit **Add** anlegen, wegfallende löschen. Saison, Einleitung und Hinweise (z. B. Hallenregeln, Schlüsselverantwortliche) stehen oben im jeweiligen Bereich.
 - **Fotoalben:** Neues Album anlegen, Titel und Jahr eintragen, Bilder hochladen.
 
 ## Wenn etwas nicht klappt

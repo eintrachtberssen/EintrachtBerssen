@@ -1,0 +1,271 @@
+{
+  "platz": {
+    "title": "Fußballplätze",
+    "intro": "Trainingszeiten auf dem B- und C-Platz. Der A-Platz (Hauptplatz) ist dem Spielbetrieb vorbehalten.",
+    "notes": [],
+    "entries": [
+      {
+        "day": "Montag",
+        "place": "B-Platz",
+        "from": "17:30",
+        "to": "19:00",
+        "team": "E-Junioren"
+      },
+      {
+        "day": "Montag",
+        "place": "B-Platz",
+        "from": "19:00",
+        "to": "21:00",
+        "team": "1. Damen"
+      },
+      {
+        "day": "Montag",
+        "place": "C-Platz",
+        "from": "17:00",
+        "to": "18:00",
+        "team": "G-Junioren"
+      },
+      {
+        "day": "Montag",
+        "place": "C-Platz",
+        "from": "18:00",
+        "to": "19:00",
+        "team": "F-Junioren"
+      },
+      {
+        "day": "Dienstag",
+        "place": "B-Platz",
+        "from": "17:30",
+        "to": "19:00",
+        "team": "C-Junioren"
+      },
+      {
+        "day": "Dienstag",
+        "place": "B-Platz",
+        "from": "19:00",
+        "to": "21:00",
+        "team": "1. Herren"
+      },
+      {
+        "day": "Dienstag",
+        "place": "C-Platz",
+        "from": "18:00",
+        "to": "19:30",
+        "team": "B-Junioren"
+      },
+      {
+        "day": "Mittwoch",
+        "place": "B-Platz",
+        "from": "19:00",
+        "to": "21:00",
+        "team": "2. Herren"
+      },
+      {
+        "day": "Mittwoch",
+        "place": "C-Platz",
+        "from": "19:00",
+        "to": "21:00",
+        "team": "Alte Herren"
+      },
+      {
+        "day": "Donnerstag",
+        "place": "B-Platz",
+        "from": "18:00",
+        "to": "19:30",
+        "team": "C-Junioren"
+      },
+      {
+        "day": "Donnerstag",
+        "place": "B-Platz",
+        "from": "18:00",
+        "to": "19:30",
+        "team": "D-Junioren"
+      },
+      {
+        "day": "Donnerstag",
+        "place": "C-Platz",
+        "from": "18:00",
+        "to": "19:30",
+        "team": "B-, C- und D-Juniorinnen"
+      },
+      {
+        "day": "Freitag",
+        "place": "B-Platz",
+        "from": "18:30",
+        "to": "20:30",
+        "team": "1. Herren"
+      },
+      {
+        "day": "Freitag",
+        "place": "C-Platz",
+        "from": "19:00",
+        "to": "21:00",
+        "team": "1. Damen"
+      }
+    ]
+  },
+  "halle": {
+    "title": "Turnhalle Klein Berssen",
+    "season": "Saison 2026/2027",
+    "intro": "Montag bis Freitag ist die Halle bis 16 Uhr durch den Schulsport belegt.",
+    "notes": [
+      "Schlüsselverantwortlich – Eintracht Berssen: Sebastian Untiedt (Tel. 05965/9498472), SV Eisten-Hüven: Pascal Hinrichs, SV Stavern: Anette Günnemann",
+      "Die Turnhalle darf nur mit Turnschuhen mit abriebfester Sohle betreten werden.",
+      "Jede Gruppe oder Mannschaft muss sich ins Anwesenheitsbuch eintragen."
+    ],
+    "entries": [
+      {
+        "day": "Montag",
+        "from": "16:00",
+        "to": "17:00",
+        "team": "Frauensport"
+      },
+      {
+        "day": "Montag",
+        "from": "17:00",
+        "to": "18:00",
+        "team": "G-Junioren",
+        "club": "Eintracht Berssen"
+      },
+      {
+        "day": "Montag",
+        "from": "18:00",
+        "to": "19:00",
+        "team": "F-Junioren",
+        "club": "Eintracht Berssen"
+      },
+      {
+        "day": "Montag",
+        "from": "19:00",
+        "to": "20:00",
+        "team": "Frauen Rückenfit"
+      },
+      {
+        "day": "Montag",
+        "from": "20:00",
+        "to": "21:00",
+        "team": "Halle geteilt",
+        "club": "Eintracht Berssen / SV Stavern",
+        "note": "je ½ Halle"
+      },
+      {
+        "day": "Dienstag",
+        "from": "16:00",
+        "to": "18:00",
+        "team": "belegt"
+      },
+      {
+        "day": "Dienstag",
+        "from": "18:00",
+        "to": "19:00",
+        "team": "E-Junioren",
+        "club": "Eintracht Berssen"
+      },
+      {
+        "day": "Dienstag",
+        "from": "19:00",
+        "to": "20:00",
+        "team": "D-Junioren",
+        "club": "Eintracht Berssen"
+      },
+      {
+        "day": "Dienstag",
+        "from": "20:00",
+        "to": "21:00",
+        "team": "Volleyball Frauen",
+        "club": "Eintracht Berssen"
+      },
+      {
+        "day": "Mittwoch",
+        "from": "17:00",
+        "to": "18:00",
+        "team": "D-Juniorinnen",
+        "club": "SV Eisten/Hüven"
+      },
+      {
+        "day": "Mittwoch",
+        "from": "18:00",
+        "to": "19:00",
+        "team": "F-Juniorinnen",
+        "club": "SV Eisten/Hüven"
+      },
+      {
+        "day": "Mittwoch",
+        "from": "19:00",
+        "to": "20:00",
+        "team": "C-Junioren",
+        "club": "SV Eisten/Hüven"
+      },
+      {
+        "day": "Mittwoch",
+        "from": "20:00",
+        "to": "21:00",
+        "team": "SV Eisten/Hüven",
+        "club": "SV Eisten/Hüven"
+      },
+      {
+        "day": "Donnerstag",
+        "from": "16:00",
+        "to": "17:00",
+        "team": "Kinderturnen",
+        "club": "SV Eisten/Hüven"
+      },
+      {
+        "day": "Donnerstag",
+        "from": "17:00",
+        "to": "21:00",
+        "team": "SV Stavern",
+        "club": "SV Stavern"
+      },
+      {
+        "day": "Freitag",
+        "from": "16:00",
+        "to": "21:00",
+        "team": "SV Stavern",
+        "club": "SV Stavern"
+      },
+      {
+        "day": "Samstag",
+        "from": "09:00",
+        "to": "10:00",
+        "team": "Tischtennis",
+        "club": "Eintracht Berssen"
+      },
+      {
+        "day": "Samstag",
+        "from": "10:00",
+        "to": "11:30",
+        "team": "B-Juniorinnen",
+        "club": "Eintracht Berssen"
+      },
+      {
+        "day": "Samstag",
+        "from": "11:30",
+        "to": "13:30",
+        "team": "C-Juniorinnen",
+        "club": "Eintracht Berssen"
+      },
+      {
+        "day": "Samstag",
+        "from": "13:30",
+        "to": "15:30",
+        "team": "B-Junioren",
+        "club": "Eintracht Berssen"
+      },
+      {
+        "day": "Samstag",
+        "from": "15:30",
+        "to": "16:30",
+        "team": "SV Eisten/Hüven",
+        "club": "SV Eisten/Hüven"
+      },
+      {
+        "day": "Samstag",
+        "from": "16:30",
+        "to": "18:00",
+        "team": "SV Stavern",
+        "club": "SV Stavern"
+      }
+    ]
+  }
+}

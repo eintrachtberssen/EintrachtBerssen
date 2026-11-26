@@ -1,0 +1,83 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import WeekPlan from '../../components/WeekPlan.astro';
+import raw from '../../data/belegung.json';
+import { belegungSchema } from '../../lib/belegung';
+
+const { platz, halle } = belegungSchema.parse(raw);
+---
+<Base title="Belegungsplan" description="Trainingszeiten auf den Fußballplätzen und in der Turnhalle Klein Berssen.">
+  <PageHero title="Belegungsplan" lead="Wer trainiert wann – auf unseren Fußballplätzen und in der Turnhalle Klein Berssen." crumbs={[{ label: 'Verein', href: '/verein/' }]}>
+    <nav class="tabs" aria-label="Bereiche">
+      <a href="#platz">⚽ {platz.title ?? 'Fußballplätze'}</a>
+      <a href="#halle">🏠 Turnhalle</a>
+    </nav>
+  </PageHero>
+
+  <section class="section" id="platz">
+    <div class="container">
+      <div class="head">
+        <div>
+          <h2>{platz.title ?? 'Fußballplätze'}</h2>
+          {platz.intro && <p class="muted">{platz.intro}</p>}
+        </div>
+        <ul class="legend" aria-label="Legende">
+          <li><span class="sw sw--jugend"></span>Junioren & Juniorinnen</li>
+          <li><span class="sw sw--senioren"></span>Herren & Damen</li>
+        </ul>
+      </div>
+      <WeekPlan entries={platz.entries} mode="platz" />
+    </div>
+  </section>
+
+  <section class="section section--alt" id="halle">
+    <div class="container">
+      <div class="head">
+        <div>
+          <h2>{halle.title ?? 'Turnhalle'} {halle.season && <span class="season">{halle.season}</span>}</h2>
+          {halle.intro && <p class="muted">{halle.intro}</p>}
+        </div>
+        <ul class="legend" aria-label="Legende">
+          <li><span class="sw sw--berssen"></span>Eintracht Berssen</li>
+          <li><span class="sw sw--hueven"></span>SV Eisten/Hüven</li>
+          <li><span class="sw sw--stavern"></span>SV Stavern</li>
+        </ul>
+      </div>
+      <WeekPlan entries={halle.entries} mode="halle" />
+      {halle.notes.length > 0 && (
+        <aside class="rules card">
+          <h3>Hinweise zur Halle</h3>
+          <ul>{halle.notes.map((n) => <li>{n}</li>)}</ul>
+        </aside>
+      )}
+    </div>
+  </section>
+</Base>
+
+<script is:inline>
+  (function () {
+    var d = ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'][new Date().getDay()];
+    document.querySelectorAll('.day[data-day="' + d + '"]').forEach(function (el) { el.classList.add('today'); });
+  })();
+</script>
+
+<style>
+  .tabs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+  .tabs a { padding: 9px 18px; border-radius: 999px; background: #fff; color: var(--red-dark); font-weight: 700; text-decoration: none; }
+  .tabs a:hover { background: var(--red-soft); }
+  section[id] { scroll-margin-top: 70px; }
+  .head { display: flex; flex-wrap: wrap; gap: 16px 32px; align-items: end; justify-content: space-between; margin-bottom: 24px; }
+  .head h2 { margin-bottom: 4px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+  .head p { margin: 0; max-width: 60ch; }
+  .season { font-size: 0.85rem; font-weight: 700; background: var(--red); color: #fff; padding: 4px 12px; border-radius: 999px; letter-spacing: 0; }
+  .legend { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 0.88rem; color: var(--ink-2); font-weight: 600; }
+  .legend li { display: inline-flex; align-items: center; gap: 8px; }
+  .sw { width: 14px; height: 14px; border-radius: 4px; display: inline-block; }
+  .sw--jugend, .sw--hueven { background: #3f9a3a; }
+  .sw--senioren, .sw--stavern { background: #2f6fd6; }
+  .sw--berssen { background: var(--red); }
+  .rules { margin-top: 24px; padding: 22px 24px; }
+  .rules h3 { margin: 0 0 10px; font-size: 1.05rem; }
+  .rules ul { margin: 0; padding-left: 20px; display: grid; gap: 6px; color: var(--ink-2); }
+</style>

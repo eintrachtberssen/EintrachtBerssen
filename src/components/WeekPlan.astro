@@ -1,0 +1,61 @@
+---
+import { byDay, DAYS, teamKind, clubKey, type Entry, type Day } from '../lib/belegung';
+interface Props { entries: Entry[]; mode: 'platz' | 'halle'; days?: readonly Day[] }
+const { entries, mode } = Astro.props;
+// Mo–Fr immer; Wochenende nur, wenn dort etwas eingetragen ist
+const days = Astro.props.days ?? DAYS.filter((d, i) => i < 5 || entries.some((e) => e.day === d));
+const groups = byDay(entries, days);
+const color = (e: Entry) => (mode === 'platz' ? teamKind(e.team) : /^belegt$/i.test(e.team) ? 'blocked' : clubKey(e.club));
+---
+<div class="week">
+  {groups.map((g) => (
+    <section class="day" data-day={g.day} aria-label={g.day}>
+      <header><h3>{g.day}</h3><span class="today-badge">Heute</span></header>
+      {g.entries.length ? (
+        <ul>
+          {g.entries.map((e) => (
+            <li class:list={['slot', `slot--${color(e)}`]}>
+              <span class="time">{e.from} – {e.to}</span>
+              <span class="team">{e.team}</span>
+              <span class="meta">
+                {e.place && <span class="chip">{e.place}</span>}
+                {mode === 'halle' && e.club && e.club !== e.team && <span class="club">{e.club}</span>}
+                {e.note && <span class="note">{e.note}</span>}
+              </span>
+            </li>
+          ))}
+        </ul>
+      ) : <p class="empty">Keine festen Zeiten</p>}
+    </section>
+  ))}
+</div>
+
+<style>
+  .week { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 170px), 1fr)); align-items: start; }
+  @media (max-width: 560px) { .week { grid-template-columns: 1fr; } }
+  .day { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+  .day header { display: flex; flex-wrap: wrap; gap: 4px 8px; align-items: center; justify-content: space-between; padding: 12px 14px; background: var(--bg-2); border-bottom: 1px solid var(--line); }
+  .day h3 { margin: 0; font-size: 1.02rem; }
+  .today-badge { display: none; font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; background: var(--red); color: #fff; padding: 3px 9px; border-radius: 999px; }
+  .day:global(.today) { border-color: var(--red); box-shadow: 0 0 0 2px var(--red-soft), var(--shadow); }
+  .day:global(.today) header { background: var(--red-soft); }
+  .day:global(.today) .today-badge { display: inline-block; }
+  ul { list-style: none; margin: 0; padding: 10px; display: grid; gap: 8px; }
+  .slot { display: grid; gap: 2px; padding: 10px 12px 10px 14px; border-radius: var(--radius-sm); background: var(--bg-2); border-left: 4px solid var(--ink-3); }
+  .time { font-size: 0.82rem; font-weight: 700; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+  .team { font-weight: 700; line-height: 1.3; overflow-wrap: anywhere; }
+  .meta { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: 0.8rem; color: var(--ink-2); }
+  .meta:empty { display: none; }
+  .chip { background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 1px 8px; font-weight: 650; }
+  .note { font-style: italic; }
+  .empty { margin: 0; padding: 16px; color: var(--ink-3); font-size: 0.92rem; }
+  /* Fußball: Jugend grün, Senioren blau (wie im bisherigen Plan) */
+  .slot--jugend { border-left-color: #3f9a3a; background: #eef7ed; }
+  .slot--senioren { border-left-color: #2f6fd6; background: #edf3fd; }
+  /* Halle: Farbe je Verein */
+  .slot--berssen { border-left-color: var(--red); background: var(--red-soft); }
+  .slot--hueven { border-left-color: #3f9a3a; background: #eef7ed; }
+  .slot--stavern { border-left-color: #2f6fd6; background: #edf3fd; }
+  .slot--blocked { border-left-color: #b8bcc6; background: #f1f2f4; color: var(--ink-3); }
+  .slot--blocked .team { font-weight: 600; }
+</style>
