@@ -5,7 +5,7 @@ import raw from '../../data/downloads.json';
 import { downloadsSchema } from '../../lib/schemas';
 import { url } from '../../lib/url';
 import { BELEGUNG_PDFS } from '../../data/generated-downloads';
-const list = [...downloadsSchema.parse(raw), ...BELEGUNG_PDFS.map((d) => ({ category: 'Belegungspläne', title: d.title, href: d.href, note: d.note }))];
+const list = [...downloadsSchema.parse(raw), ...BELEGUNG_PDFS.map((d) => ({ category: 'Belegungspläne', title: d.title, href: d.href, note: undefined }))];
 const kind = (h: string) => (h.startsWith('/') ? (/\.([a-z0-9]+)$/i.exec(h)?.[1] ?? 'Datei').toUpperCase().slice(0, 4) : 'Link');
 const cats = [...new Set(list.map((d) => d.category))];
 const href = (h: string) => (h.startsWith('/') ? url(h) : h);
