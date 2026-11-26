@@ -2,19 +2,17 @@
 
 Reihenfolge einhalten: Die alte Seite läuft weiter, bis die neue unter eurer Domain funktioniert. **Mittwald erst ganz am Ende kündigen.**
 
-## 1. GitHub-Organisation für den Verein
+## 1. Vereinskonto auf GitHub ✅ erledigt
 
-1. Auf GitHub angemeldet: oben rechts **+ → New organization** → Plan **Free**.
-   Name z. B. `eintracht-berssen`, Kontakt-E-Mail des Vereins.
-2. Ein bis zwei weitere Vorstandsmitglieder mit eigenem GitHub-Konto als **Owner** einladen (*People → Invite member*).
-3. Repository übertragen: `sebutd/EintrachtBerssen` → **Settings → General → Danger Zone → Transfer ownership** → Ziel `eintracht-berssen`.
-   Die Historie bleibt erhalten, alte Links leitet GitHub weiter.
-4. Im übertragenen Repository: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
-5. Den Entwicklungsstand auf `main` bringen (Pull Request mergen). Danach baut GitHub die Seite automatisch.
-   Testadresse: `https://eintracht-berssen.github.io/EintrachtBerssen/`.
-   Dafür unter **Settings → Secrets and variables → Actions → Variables** setzen:
-   - `SITE_URL` = `https://eintracht-berssen.github.io`
-   - `BASE_PATH` = `/EintrachtBerssen`
+Das Repository liegt im Vereinskonto: **`eintrachtberssen/EintrachtBerssen`** (übertragen von `sebutd`). Testadresse: `https://eintrachtberssen.github.io/EintrachtBerssen/`.
+
+Nach der Übertragung prüfen:
+- **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+- **Settings → Environments → github-pages → Deployment branches:** `main` muss erlaubt sein.
+- **Settings → Collaborators:** persönliche Konten der Betreuer (z. B. `sebutd`) mit Rolle *Admin* oder *Write* eintragen, damit niemand das Vereinspasswort benutzen muss.
+- Vereinskonto mit **Zwei-Faktor-Anmeldung** absichern; Zugangsdaten bei mindestens zwei Vorstandsmitgliedern hinterlegen.
+
+Die Testadresse ist im Code hinterlegt; Repo-Variablen sind dafür nicht nötig.
 
 ## 2. Domain und Postfächer bei INWX
 
@@ -36,7 +34,7 @@ Reihenfolge einhalten: Die alte Seite läuft weiter, bis die neue unter eurer Do
 | AAAA | @ | 2606:50c0:8001::153 |
 | AAAA | @ | 2606:50c0:8002::153 |
 | AAAA | @ | 2606:50c0:8003::153 |
-| CNAME | www | eintracht-berssen.github.io. |
+| CNAME | www | eintrachtberssen.github.io. |
 | MX, SPF (TXT), DKIM | – | wie im INWX-Mailpaket angegeben |
 
 ## 4. Eigene Domain in GitHub aktivieren
@@ -51,14 +49,14 @@ Reihenfolge einhalten: Die alte Seite läuft weiter, bis die neue unter eurer Do
 
 ## 5. Eingabemaske einrichten
 
-1. <https://app.pagescms.org> → mit GitHub anmelden → Pages CMS für die Organisation `eintracht-berssen` installieren und das Repository freigeben.
+1. <https://app.pagescms.org> → mit GitHub anmelden → Pages CMS für das Vereinskonto `eintrachtberssen` installieren und das Repository freigeben.
 2. Schreiber in Pages CMS per **E-Mail** einladen (im Projekt unter *Collaborators*). Sie brauchen kein GitHub-Konto und melden sich per Anmeldelink an; die E-Mail-Adresse muss nur eine sein, die sie abrufen.
    Alternativ: Wer ein GitHub-Konto hat, kann als **Collaborator** (Rolle *Write*) zum Repository eingeladen werden (**Settings → Collaborators → Add people**) und meldet sich mit GitHub an.
 3. Den Schreibern [docs/redaktion.md](redaktion.md) schicken.
 
 ## fussball.de-Widgets
 
-fussball.de liefert ein Widget nur an die Website aus, die beim Erstellen im Widgetcenter angegeben wurde. Der Vereinsspielplan ist für `eintracht-berssen.de` angelegt – unter der Testadresse `….github.io` zeigt er deshalb „Uuups… hier ist ein Fehler aufgetreten“. Nach dem Domain-Umzug (Schritt 4) funktioniert er ohne Änderung. Ein Eintrag im Head-Bereich der Seite ist nicht nötig; die Seite lädt das fussball.de-Skript nach dem Klick auf „Inhalt laden“ selbst.
+fussball.de liefert ein Widget nur an die Website aus, die beim Erstellen im Widgetcenter angegeben wurde. Der Vereinsspielplan ist für `eintracht-berssen.de` angelegt – unter der Testadresse `eintrachtberssen.github.io` zeigt er deshalb „Uuups… hier ist ein Fehler aufgetreten“. Nach dem Domain-Umzug (Schritt 4) funktioniert er ohne Änderung. Ein Eintrag im Head-Bereich der Seite ist nicht nötig; die Seite lädt das fussball.de-Skript nach dem Klick auf „Inhalt laden“ selbst.
 
 ## 6. Aufräumen
 

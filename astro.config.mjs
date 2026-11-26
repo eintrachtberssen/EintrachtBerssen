@@ -6,7 +6,7 @@ import { legacyRedirects } from './src/lib/redirects.mjs';
 // Alte Joomla-Adressen → neue Seiten (GitHub Pages kann keine echten 301)
 const redirects = JSON.parse(readFileSync('./src/data/redirects.json', 'utf8'));
 
-const site = process.env.SITE_URL || 'https://sebutd.github.io';
+const site = process.env.SITE_URL || 'https://eintrachtberssen.github.io';
 const base = process.env.BASE_PATH ?? '/EintrachtBerssen';
 
 export default defineConfig({

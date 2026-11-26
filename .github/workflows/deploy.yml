@@ -22,7 +22,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      SITE_URL: ${{ vars.SITE_URL || 'https://sebutd.github.io' }}
+      SITE_URL: ${{ vars.SITE_URL || 'https://eintrachtberssen.github.io' }}
       BASE_PATH: ${{ vars.BASE_PATH || '/EintrachtBerssen' }}
     steps:
       - uses: actions/checkout@v4
