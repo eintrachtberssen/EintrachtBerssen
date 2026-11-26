@@ -1,0 +1,106 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import raw from '../../data/sportgelaende.json';
+import { sportgelaendeSchema } from '../../lib/schemas';
+import { url } from '../../lib/url';
+
+const data = sportgelaendeSchema.parse(raw);
+const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9äöüß]+/g, '-').replace(/^-|-$/g, '');
+---
+<Base title="Sportgelände" description={data.intro} image={data.image ? url(data.image) : undefined}>
+  <PageHero title="Unser Sportgelände" lead={data.intro} crumbs={[{ label: 'Verein', href: '/verein/' }]} image={data.image} />
+
+  {data.facts.length > 0 && (
+    <section class="facts-wrap">
+      <div class="container">
+        <dl class="facts">
+          {data.facts.map((f) => <div class="fact"><dt>{f.label}</dt><dd>{f.value}</dd></div>)}
+        </dl>
+      </div>
+    </section>
+  )}
+
+  <section class="section">
+    <div class="container">
+      <nav class="jump" aria-label="Bereiche">
+        {data.areas.map((a) => <a href={`#${slug(a.title)}`}>{a.title}{a.isNew && <span class="dot" aria-label="neu" />}</a>)}
+      </nav>
+      <div class="areas">
+        {data.areas.map((a, i) => (
+          <article class:list={['area', { reverse: i % 2 === 1 }]} id={slug(a.title)}>
+            <div class="area__media">
+              {a.image ? <img src={url(a.image)} alt={a.title} loading="lazy" decoding="async" /> : <span class="area__ph"><img src={url('/images/site/wappen.png')} alt="" /></span>}
+              {a.isNew && <span class="badge">Neu</span>}
+            </div>
+            <div class="area__body">
+              {a.subtitle && <span class="eyebrow">{a.subtitle}</span>}
+              <h2>{a.title}</h2>
+              {a.text && <p>{a.text}</p>}
+              {a.features.length > 0 && (
+                <ul class="features">{a.features.map((f) => <li>{f}</li>)}</ul>
+              )}
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container cta">
+      <div>
+        <h2>Besuch uns am Platz</h2>
+        <p class="muted">Am Schützenplatz, 49777 Klein Berssen – wer wann wo trainiert, steht im Belegungsplan.</p>
+      </div>
+      <div class="cta__btns">
+        <a class="btn" href={url('/verein/anfahrt/')}>Anfahrt</a>
+        <a class="btn btn--ghost" href={url('/verein/belegungsplan/')}>Belegungsplan</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .facts-wrap { margin-top: -36px; position: relative; z-index: 1; }
+  .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 160px), 1fr)); gap: 0; margin: 0; background: #fff; border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow-lg); overflow: hidden; }
+  .fact { padding: 22px 24px; display: flex; flex-direction: column-reverse; justify-content: flex-end; gap: 2px; border-right: 1px solid var(--line); }
+  .fact:last-child { border-right: 0; }
+  .fact dd { margin: 0; font-size: clamp(1.8rem, 4vw, 2.4rem); font-weight: 800; color: var(--red); letter-spacing: -0.03em; line-height: 1.1; }
+  .fact dt { color: var(--ink-2); font-weight: 600; font-size: 0.92rem; }
+  @media (max-width: 640px) {
+    .facts { grid-template-columns: 1fr 1fr; }
+    .fact { padding: 18px; border-right: 0; }
+    .fact:nth-child(odd) { border-right: 1px solid var(--line); }
+    .fact:nth-child(-n + 2) { border-bottom: 1px solid var(--line); }
+    .fact:last-child:nth-child(odd) { grid-column: 1 / -1; border-right: 0; }
+  }
+
+  .jump { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: clamp(32px, 5vw, 56px); }
+  .jump a { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 999px; background: var(--bg-2); border: 1px solid var(--line); color: var(--ink); text-decoration: none; font-weight: 600; font-size: 0.92rem; }
+  .jump a:hover { border-color: var(--red); color: var(--red); }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--red); }
+
+  .areas { display: grid; gap: clamp(40px, 7vw, 88px); }
+  .area { display: grid; gap: 28px; align-items: center; scroll-margin-top: 90px; }
+  @media (min-width: 860px) {
+    .area { grid-template-columns: 1.1fr 1fr; gap: 56px; }
+    .area.reverse .area__media { order: 2; }
+  }
+  .area__media { position: relative; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); aspect-ratio: 4 / 3; background: var(--bg-2); }
+  .area__media img { width: 100%; height: 100%; object-fit: cover; }
+  .area__ph { display: grid; place-items: center; height: 100%; background: linear-gradient(135deg, var(--red), var(--red-dark)); }
+  .area__ph img { width: 72px; height: auto; object-fit: contain; }
+  .badge { position: absolute; top: 16px; left: 16px; background: var(--red); color: #fff; font-weight: 800; font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 6px 12px; border-radius: 999px; box-shadow: var(--shadow); }
+  .area__body h2 { margin-bottom: 12px; }
+  .area__body p { color: var(--ink-2); margin: 0 0 20px; }
+  .features { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  .features li { position: relative; padding-left: 32px; font-weight: 550; }
+  .features li::before { content: ''; position: absolute; left: 0; top: 2px; width: 22px; height: 22px; border-radius: 50%; background: var(--red-soft); }
+  .features li::after { content: ''; position: absolute; left: 7px; top: 7px; width: 8px; height: 5px; border-left: 2px solid var(--red); border-bottom: 2px solid var(--red); transform: rotate(-45deg); }
+
+  .cta { display: flex; flex-wrap: wrap; gap: 24px; align-items: center; justify-content: space-between; }
+  .cta h2 { margin: 0 0 4px; }
+  .cta p { margin: 0; }
+  .cta__btns { display: flex; gap: 12px; flex-wrap: wrap; }
+</style>

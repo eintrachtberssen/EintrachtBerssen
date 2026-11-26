@@ -6,3 +6,23 @@ export const gallerySchema = z.object({
   year: z.coerce.number().int(),
   images: z.array(z.string()).nullish().transform((v) => v ?? []),
 });
+
+const str = z.string().nullish().transform((v) => v?.trim() || undefined);
+const list = <T extends z.ZodTypeAny>(t: T) => z.array(t).nullish().transform((v) => v ?? []);
+
+/** Sportgelände (src/data/sportgelaende.json), tolerant gegenüber leeren Feldern aus der Eingabemaske. */
+export const sportgelaendeSchema = z.object({
+  intro: str,
+  image: str,
+  facts: list(z.object({ value: z.coerce.string(), label: z.string() })),
+  areas: list(
+    z.object({
+      title: z.string().nullish(),
+      subtitle: str,
+      image: str,
+      text: str,
+      features: list(z.string()),
+      isNew: z.boolean().nullish().transform((v) => v ?? false),
+    }),
+  ).transform((areas) => areas.filter((a): a is typeof a & { title: string } => Boolean(a.title?.trim()))),
+});

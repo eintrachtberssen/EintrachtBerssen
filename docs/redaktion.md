@@ -71,6 +71,7 @@ Das Widget lädt aus Datenschutzgründen erst, wenn Besucher auf „Inhalt laden
 
 - **Abteilungen & Teams:** Für jede Mannschaft gibt es einen Eintrag. Dort kannst du Mannschaftsfoto, Trainingszeiten und eine kurze Beschreibung pflegen. Bitte keine neuen Einträge anlegen – neue Mannschaften richtet die technische Betreuung ein.
 - **Ansprechpartner:** Liste mit Gruppe, Name, Funktion, Telefon und E-Mail. Neue Person: unten auf **Add** klicken. Auf den Team-Seiten erscheinen automatisch die Trainer, deren Funktion den Teamnamen enthält (z. B. „Trainer D-Juniorinnen“).
+- **Sportgelände:** Einleitung, Kennzahlen (z. B. „3 – Fußballplätze“) und die einzelnen Bereiche mit Foto, Beschreibung und Ausstattungsliste. Ein neuer Bereich wird unten mit **Add** angelegt; mit „Als Neu markieren“ bekommt er ein rotes Neu-Abzeichen.
 - **Fotoalben:** Neues Album anlegen, Titel und Jahr eintragen, Bilder hochladen.
 
 ## Wenn etwas nicht klappt

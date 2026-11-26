@@ -102,6 +102,55 @@ content:
             label: E-Mail
             type: string
 
+  - name: sportgelaende
+    label: Sportgelände
+    type: file
+    path: src/data/sportgelaende.json
+    format: json
+    fields:
+      - name: intro
+        label: Einleitung
+        type: text
+      - name: image
+        label: Kopfbild
+        type: image
+      - name: facts
+        label: Kennzahlen (z. B. „3“ – „Fußballplätze“)
+        type: object
+        list: true
+        fields:
+          - name: value
+            label: Zahl
+            type: string
+          - name: label
+            label: Beschriftung
+            type: string
+      - name: areas
+        label: Bereiche (Plätze, Gebäude)
+        type: object
+        list: true
+        fields:
+          - name: title
+            label: Name
+            type: string
+            required: true
+          - name: subtitle
+            label: Untertitel
+            type: string
+          - name: image
+            label: Foto
+            type: image
+          - name: text
+            label: Beschreibung
+            type: text
+          - name: features
+            label: Ausstattung (je Punkt ein Eintrag)
+            type: string
+            list: true
+          - name: isNew
+            label: Als „Neu“ markieren
+            type: boolean
+
   - name: galleries
     label: Fotoalben
     type: collection

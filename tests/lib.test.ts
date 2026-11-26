@@ -187,3 +187,16 @@ describe('parseFussballdeWidget with the real new fussball.de code (UUID ids)', 
     expect(extractFussballdeId(' 138b2849-4bc8-4b61-8460-7d80eff6bbf1 ')).toBe('138b2849-4bc8-4b61-8460-7d80eff6bbf1');
   });
 });
+
+import { sportgelaendeSchema } from '../src/lib/schemas';
+
+describe('sportgelaendeSchema', () => {
+  it('tolerates empty lists and fields saved by the CMS', () => {
+    const d = sportgelaendeSchema.parse({ intro: null, facts: null, areas: [{ title: 'C-Platz', features: null, image: '', isNew: null }] });
+    expect(d.facts).toEqual([]);
+    expect(d.areas[0]).toMatchObject({ title: 'C-Platz', features: [], image: undefined, isNew: false });
+  });
+  it('drops areas without a title instead of failing the build', () => {
+    expect(sportgelaendeSchema.parse({ areas: [{ title: '' }, { title: 'Hauptplatz' }] }).areas.map((a) => a.title)).toEqual(['Hauptplatz']);
+  });
+});
