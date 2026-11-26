@@ -8,7 +8,7 @@ const year = new Date().getFullYear();
     <div>
       <img src={url('/images/site/wappen.png')} alt="" width="48" height="55" class="crest" />
       <p class="name">{SITE.legalName}</p>
-      <p>{SITE.address.map((l) => <>{l}<br /></>)}Telefon {SITE.phone}</p>
+      <p>{SITE.address.map((l, i) => <>{l}{i < SITE.address.length - 1 && <br />}</>)}</p>
     </div>
     <nav aria-label="Verein">
       <h2>Verein</h2>

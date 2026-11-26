@@ -9,7 +9,7 @@ const contacts = await getCollection('contacts');
 const groups = [...new Set(contacts.map((c) => c.data.group))];
 ---
 <Base title="Kontakt & Ansprechpartner">
-  <PageHero title="Kontakt" lead={`${SITE.legalName} · ${SITE.address.join(', ')} · Telefon ${SITE.phone}`}>
+  <PageHero title="Kontakt" lead={`${SITE.legalName} · ${SITE.address.join(', ')}`}>
     <nav class="jump" aria-label="Gruppen">{groups.map((g) => <a href={`#${slugify(g)}`}>{g}</a>)}</nav>
   </PageHero>
   {groups.map((g, i) => (

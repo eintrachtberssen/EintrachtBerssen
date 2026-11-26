@@ -3,7 +3,6 @@ export const SITE = {
   legalName: 'SV Eintracht Berssen 1946 e.V.',
   founded: '30. Mai 1946',
   address: ['Zum Sportzentrum', '49777 Klein Berssen'],
-  phone: '+49 (0)5965/899',
   fanshop: 'https://eintracht-berssen.pd-server.com/',
   fussballdeClub: 'https://www.fussball.de/verein/sv-eintracht-berssen-niedersachsen/-/id/00ES8GN7U400005AVV0AG08LVUPGND5I',
   fussballdeWidget: '022010VSB4000000VS541L4KVVGEASRE',
