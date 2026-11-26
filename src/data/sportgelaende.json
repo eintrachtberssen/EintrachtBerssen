@@ -2,10 +2,22 @@
   "intro": "Unsere Sportanlage am Schützenplatz in Klein Berssen: drei Fußballplätze, zwei Tennisplätze und das Sport- und Schützenhaus – alles in unmittelbarer Nähe zueinander.",
   "image": "/images/seiten/sportgelaende/gesamt.jpg",
   "facts": [
-    { "value": "3", "label": "Fußballplätze" },
-    { "value": "2", "label": "Tennisplätze" },
-    { "value": "ca. 300", "label": "überdachte Sitzplätze" },
-    { "value": "5", "label": "Umkleidekabinen" }
+    {
+      "value": "3",
+      "label": "Fußballplätze"
+    },
+    {
+      "value": "2",
+      "label": "Tennisplätze"
+    },
+    {
+      "value": "ca. 300",
+      "label": "überdachte Sitzplätze"
+    },
+    {
+      "value": "5",
+      "label": "Umkleidekabinen"
+    }
   ],
   "areas": [
     {
@@ -13,23 +25,34 @@
       "subtitle": "A-Platz",
       "image": "/images/seiten/sportgelaende/a-platz.jpg",
       "text": "Das Herzstück unserer Anlage. Hier tragen die ersten Mannschaften ihre Heimspiele aus – unter den Augen von bis zu 300 Zuschauern auf der überdachten Tribüne.",
-      "features": ["Überdachte Tribüne mit ca. 300 Sitzplätzen", "Verkaufsstand für die Zuschauer", "Sanitäranlage", "Mannschaftshäuschen"],
+      "features": [
+        "Überdachte Tribüne mit ca. 300 Sitzplätzen",
+        "Verkaufsstand für die Zuschauer",
+        "Sanitäranlage",
+        "Mannschaftshäuschen"
+      ],
       "isNew": false
     },
     {
-      "title": "Nebenplatz",
-      "subtitle": "B-Platz",
+      "title": "B-Platz",
       "image": "/images/seiten/sportgelaende/b-platz.jpg",
       "text": "Besonders in den Wintermonaten unser Trainingsplatz und die Spielstätte für Spiele unter der Woche.",
-      "features": ["Flutlichtanlage", "Trainings- und Spielbetrieb"],
+      "features": [
+        "Flutlichtanlage",
+        "Trainings- und Spielbetrieb"
+      ],
       "isNew": false
     },
     {
       "title": "C-Platz",
-      "subtitle": "Unser dritter Fußballplatz",
       "image": "/images/seiten/sportgelaende/c-platz.jpg",
       "text": "Der jüngste Platz liegt direkt hinter dem Hauptplatz – schnell erreichbar, ohne Parkplatz oder Straße zu überqueren. Eingeweiht am 14. Juni 2019.",
-      "features": ["Flutlichtanlage", "Eingebaute Beregnungsanlage", "Ausgebautes Entwässerungssystem", "Unterstand"],
+      "features": [
+        "Flutlichtanlage",
+        "Eingebaute Beregnungsanlage",
+        "Ausgebautes Entwässerungssystem",
+        "Unterstand"
+      ],
       "isNew": true
     },
     {
@@ -37,7 +60,14 @@
       "subtitle": "Kabinen & Vereinsräume",
       "image": "/images/seiten/sportgelaende/eingang.jpg",
       "text": "Mittelpunkt des Vereinslebens: Kabinen für Mannschaften und Schiedsrichter, Getränkeraum und Geräteräume. Über einen separaten Eingang erreichbar sind die Schießanlagen und ein Aufenthaltsraum.",
-      "features": ["5 Umkleidekabinen", "2 Schiedsrichterkabinen", "Getränkeraum und 2 Geräteräume", "Sanitäranlagen innen und außen", "Kleinkaliber- und Luftgewehranlage", "Aufenthaltsraum"],
+      "features": [
+        "5 Umkleidekabinen",
+        "2 Schiedsrichterkabinen",
+        "Getränkeraum und 2 Geräteräume",
+        "Sanitäranlagen innen und außen",
+        "Kleinkaliber- und Luftgewehranlage",
+        "Aufenthaltsraum"
+      ],
       "isNew": false
     },
     {
@@ -45,7 +75,11 @@
       "subtitle": "Tennisabteilung",
       "image": "/images/teams/tennis/tennis-anlage.jpg",
       "text": "Zwei gepflegte Sandplätze mit eigenem Aufenthaltsraum – Treffpunkt der Tennisabteilung für Training, Turniere und gesellige Abende.",
-      "features": ["2 Tennisplätze", "Aufenthaltsraum mit Küche", "Sanitäranlagen"],
+      "features": [
+        "2 Tennisplätze",
+        "Aufenthaltsraum mit Küche",
+        "Sanitäranlagen"
+      ],
       "isNew": false
     }
   ]
