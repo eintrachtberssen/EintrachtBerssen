@@ -4,21 +4,23 @@ import Base from '../../../layouts/Base.astro';
 import PageHero from '../../../components/PageHero.astro';
 import Gallery from '../../../components/Gallery.astro';
 import { url } from '../../../lib/url';
+import { albumImages, linkify } from '../../../lib/gallery';
 export async function getStaticPaths() {
   return (await getCollection('galleries')).map((album) => ({ params: { slug: album.id }, props: { album } }));
 }
 const { album } = Astro.props as { album: CollectionEntry<'galleries'> };
+const images = albumImages(album.id, album.data.images);
 ---
-<Base title={album.data.title} image={album.data.images[0] ? url(album.data.images[0]) : undefined} description={album.data.description}>
-  <PageHero title={album.data.title} lead={`${album.data.year} · ${album.data.images.length} Bilder`} crumbs={[{ label: 'Verein', href: '/verein/' }, { label: 'Fotos', href: '/verein/fotos/' }]} />
+<Base title={album.data.title} image={images[0] ? url(images[0]) : undefined} description={album.data.description}>
+  <PageHero title={album.data.title} lead={images.length ? `${album.data.year} · ${images.length} Bilder` : `${album.data.year}`} crumbs={[{ label: 'Verein', href: '/verein/' }, { label: 'Fotos', href: '/verein/fotos/' }]} />
   <section class="section">
     <div class="container">
-      {album.data.description && <p class="album-text">{album.data.description}</p>}
-      <Gallery images={album.data.images} title={album.data.title} />
+      {album.data.description && <p class="album-text">{linkify(album.data.description).map((p) => (p.href ? <a href={p.href} rel="noopener" target="_blank">{p.text}</a> : p.text))}</p>}
+      {images.length ? <Gallery images={images} title={album.data.title} /> : <p class="muted">Fotos folgen.</p>}
     </div>
   </section>
 </Base>
 
 <style>
-  .album-text { max-width: 72ch; margin: 0 0 8px; font-size: 1.08rem; color: var(--ink-2); white-space: pre-line; }
+  .album-text { max-width: 72ch; margin: 0 0 8px; font-size: 1.08rem; color: var(--ink-2); white-space: pre-line; overflow-wrap: anywhere; }
 </style>

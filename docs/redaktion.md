@@ -80,6 +80,19 @@ Das Widget lädt aus Datenschutzgründen erst, wenn Besucher auf „Inhalt laden
   - *PDFs:* Bei jedem Speichern erzeugt die Seite die beiden Belegungspläne automatisch neu als PDF (A4 quer). Sie stehen auf der Belegungsplan-Seite und unter *Downloads → Belegungspläne*. Für Google Drive das neue PDF herunterladen und in Drive bei der bestehenden Datei über **Rechtsklick → Dateiinformationen → Versionen verwalten → Neue Version hochladen** ersetzen – so bleibt der Drive-Link gleich.
 - **Fotoalben:** Neues Album anlegen, Titel und Jahr eintragen, Bilder hochladen. Optional gibt es pro Album eine **Beschreibung** (ein paar Sätze zum Anlass); sie steht über den Fotos und gekürzt in der Albenübersicht.
 
+## Viele Fotos auf einmal in ein Album hochladen
+
+Jedes Fotoalbum zeigt automatisch **alle Bilder aus seinem Ordner** `public/images/galerien/<album>/` (sortiert nach Dateiname, also am besten durchnummeriert: `001-…jpg`, `002-…jpg`). So geht's:
+
+1. **Album anlegen** (falls neu): in der Eingabemaske unter *Fotoalben* mit Titel, Jahr und optional Beschreibung – Bilder dort leer lassen. Der Ordnername ist der Dateiname des Albums, z. B. `2026-legendenspiel`.
+2. Auf GitHub das Repository öffnen → Ordner `public/images/galerien/` → Album-Ordner öffnen (bei neuen Alben: **Add file → Upload files** und den Ordnernamen in den Pfad schreiben).
+3. **Add file → Upload files**, Fotos per Drag & Drop hineinziehen (bis zu 100 Dateien pro Durchgang, je max. 25 MB) → unten **Commit changes**.
+4. Nach ca. 3–5 Minuten ist das Album online. Zu große Fotos werden beim Veröffentlichen automatisch auf 1600 Pixel Breite verkleinert.
+
+**Für scharfe Fotos:** Bitte Fotos mit **guter JPEG-Qualität (85–95 %)** hochladen, idealerweise auf ca. **2000–2500 Pixel** lange Seite verkleinert (z. B. Lightroom-Export „Lange Kante 2500 px, Qualität 90“). Nicht die stark komprimierten „Web“-Exporte nehmen – die erzeugen fleckige Farbflächen, die man nicht mehr reparieren kann. Volle Kameradateien (10+ MB) bitte vorher verkleinern, sonst wird das Repository unnötig groß.
+
+**Fotos löschen:** im Album-Ordner auf GitHub die Datei öffnen → Menü (⋯) → **Delete file**.
+
 ## Wenn etwas nicht klappt
 
 - Beitrag erscheint nach 5 Minuten nicht? Die Seite neu laden (Strg + F5 bzw. am Handy herunterziehen).

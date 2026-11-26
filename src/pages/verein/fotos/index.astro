@@ -3,7 +3,8 @@ import { getCollection } from 'astro:content';
 import Base from '../../../layouts/Base.astro';
 import PageHero from '../../../components/PageHero.astro';
 import { url } from '../../../lib/url';
-const albums = (await getCollection('galleries')).sort((a, b) => b.data.year - a.data.year || a.data.title.localeCompare(b.data.title));
+import { albumImages } from '../../../lib/gallery';
+const albums = (await getCollection('galleries')).map((a) => ({ ...a, images: albumImages(a.id, a.data.images) })).sort((a, b) => b.data.year - a.data.year || a.data.title.localeCompare(b.data.title));
 ---
 <Base title="Fotos">
   <PageHero title="Fotos" lead={`${albums.length} Alben von Festen, Turnieren und Spielen.`} crumbs={[{ label: 'Verein', href: '/verein/' }]} />
@@ -11,8 +12,8 @@ const albums = (await getCollection('galleries')).sort((a, b) => b.data.year - a
     <div class="container grid grid--cards">
       {albums.map((a) => (
         <a class="album card" href={url(`/verein/fotos/${a.id}/`)}>
-          <span class="img">{a.data.images[0] && <img src={url(a.data.images[0])} alt="" loading="lazy" />}</span>
-          <span class="txt"><small>{a.data.year} · {a.data.images.length} Bilder</small><strong>{a.data.title}</strong>{a.data.description && <span class="desc">{a.data.description}</span>}</span>
+          <span class="img">{a.images[0] ? <img src={url(a.images[0])} alt="" loading="lazy" /> : <span class="ph">Fotos folgen</span>}</span>
+          <span class="txt"><small>{a.data.year}{a.images.length ? ` · ${a.images.length} Bilder` : ''}</small><strong>{a.data.title}</strong>{a.data.description && <span class="desc">{a.data.description}</span>}</span>
         </a>
       ))}
     </div>
@@ -23,6 +24,7 @@ const albums = (await getCollection('galleries')).sort((a, b) => b.data.year - a
   .album:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
   .img { aspect-ratio: 3 / 2; background: var(--bg-2); overflow: hidden; }
   .img img { width: 100%; height: 100%; object-fit: cover; }
+  .ph { display: grid; place-items: center; height: 100%; background: linear-gradient(135deg, var(--red), var(--red-dark)); color: #fff; font-weight: 700; }
   .txt { padding: 16px 20px 20px; display: grid; gap: 2px; }
   small { color: var(--ink-3); font-weight: 600; }
   .desc { color: var(--ink-2); font-size: 0.92rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-top: 2px; }

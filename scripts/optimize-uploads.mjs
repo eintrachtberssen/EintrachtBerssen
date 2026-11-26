@@ -30,6 +30,8 @@ export async function optimizeImages(dir, max = MAX) {
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  const n = await optimizeImages(process.argv[2] ?? 'public/images/uploads');
+  const dirs = process.argv.length > 2 ? process.argv.slice(2) : ['public/images/uploads', 'public/images/galerien'];
+  let n = 0;
+  for (const d of dirs) n += await optimizeImages(d);
   console.log(`${n} Bild(er) verkleinert`);
 }
