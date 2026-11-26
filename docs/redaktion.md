@@ -78,7 +78,7 @@ Das Widget lädt aus Datenschutzgründen erst, wenn Besucher auf „Inhalt laden
   - *Dokument entfernen:* den Eintrag in der Liste löschen und speichern. Die alte Datei bleibt im Medienordner liegen und kann dort bei Bedarf gelöscht werden.
 - **Belegungsplan:** zwei Bereiche – *Fußballplätze* und *Turnhalle*. Jede Zeit ist ein Eintrag mit Wochentag, Von/Bis (z. B. `17:30`), Mannschaft und Platz bzw. Verein. Die Seite sortiert automatisch nach Tag und Uhrzeit und färbt ein (Fußball: Jugend grün, Herren/Damen blau; Halle: je Verein). Zum Ändern einfach den Eintrag anpassen, neue Zeiten mit **Add** anlegen, wegfallende löschen. Saison, Einleitung und Hinweise (z. B. Hallenregeln, Schlüsselverantwortliche) stehen oben im jeweiligen Bereich.
   - *PDFs:* Bei jedem Speichern erzeugt die Seite die beiden Belegungspläne automatisch neu als PDF (A4 quer). Sie stehen auf der Belegungsplan-Seite und unter *Downloads → Belegungspläne*. Für Google Drive das neue PDF herunterladen und in Drive bei der bestehenden Datei über **Rechtsklick → Dateiinformationen → Versionen verwalten → Neue Version hochladen** ersetzen – so bleibt der Drive-Link gleich.
-- **Fotoalben:** Neues Album anlegen, Titel und Jahr eintragen, Bilder hochladen.
+- **Fotoalben:** Neues Album anlegen, Titel und Jahr eintragen, Bilder hochladen. Optional gibt es pro Album eine **Beschreibung** (ein paar Sätze zum Anlass); sie steht über den Fotos und gekürzt in der Albenübersicht.
 
 ## Wenn etwas nicht klappt
 

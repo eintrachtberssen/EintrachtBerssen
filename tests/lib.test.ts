@@ -230,3 +230,11 @@ describe('sportgelaendeSchema link button', () => {
     expect(d.areas[1].link).toBeUndefined();
   });
 });
+
+describe('gallerySchema description', () => {
+  it('keeps an optional description and treats empty text as none', () => {
+    expect(gallerySchema.parse({ title: 'A', year: 2026, description: 'Unser Legendenspiel gegen den 1. FC Köln.' }).description).toBe('Unser Legendenspiel gegen den 1. FC Köln.');
+    expect(gallerySchema.parse({ title: 'A', year: 2026, description: '  ' }).description).toBeUndefined();
+    expect(gallerySchema.parse({ title: 'A', year: 2026 }).description).toBeUndefined();
+  });
+});

@@ -12,7 +12,7 @@ const albums = (await getCollection('galleries')).sort((a, b) => b.data.year - a
       {albums.map((a) => (
         <a class="album card" href={url(`/verein/fotos/${a.id}/`)}>
           <span class="img">{a.data.images[0] && <img src={url(a.data.images[0])} alt="" loading="lazy" />}</span>
-          <span class="txt"><small>{a.data.year} · {a.data.images.length} Bilder</small><strong>{a.data.title}</strong></span>
+          <span class="txt"><small>{a.data.year} · {a.data.images.length} Bilder</small><strong>{a.data.title}</strong>{a.data.description && <span class="desc">{a.data.description}</span>}</span>
         </a>
       ))}
     </div>
@@ -25,4 +25,5 @@ const albums = (await getCollection('galleries')).sort((a, b) => b.data.year - a
   .img img { width: 100%; height: 100%; object-fit: cover; }
   .txt { padding: 16px 20px 20px; display: grid; gap: 2px; }
   small { color: var(--ink-3); font-weight: 600; }
+  .desc { color: var(--ink-2); font-size: 0.92rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-top: 2px; }
 </style>

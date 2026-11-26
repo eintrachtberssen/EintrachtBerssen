@@ -308,6 +308,9 @@ content:
         label: Jahr
         type: number
         required: true
+      - name: description
+        label: Beschreibung (optional, ein paar Sätze zum Anlass)
+        type: text
       - name: images
         label: Bilder
         type: image

@@ -3,12 +3,22 @@ import { getCollection, type CollectionEntry } from 'astro:content';
 import Base from '../../../layouts/Base.astro';
 import PageHero from '../../../components/PageHero.astro';
 import Gallery from '../../../components/Gallery.astro';
+import { url } from '../../../lib/url';
 export async function getStaticPaths() {
   return (await getCollection('galleries')).map((album) => ({ params: { slug: album.id }, props: { album } }));
 }
 const { album } = Astro.props as { album: CollectionEntry<'galleries'> };
 ---
-<Base title={album.data.title} image={album.data.images[0]}>
+<Base title={album.data.title} image={album.data.images[0] ? url(album.data.images[0]) : undefined} description={album.data.description}>
   <PageHero title={album.data.title} lead={`${album.data.year} · ${album.data.images.length} Bilder`} crumbs={[{ label: 'Verein', href: '/verein/' }, { label: 'Fotos', href: '/verein/fotos/' }]} />
-  <section class="section"><div class="container"><Gallery images={album.data.images} title={album.data.title} /></div></section>
+  <section class="section">
+    <div class="container">
+      {album.data.description && <p class="album-text">{album.data.description}</p>}
+      <Gallery images={album.data.images} title={album.data.title} />
+    </div>
+  </section>
 </Base>
+
+<style>
+  .album-text { max-width: 72ch; margin: 0 0 8px; font-size: 1.08rem; color: var(--ink-2); white-space: pre-line; }
+</style>
