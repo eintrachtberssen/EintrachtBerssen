@@ -1,23 +1,25 @@
-[
-  {
-    "category": "Mitgliedschaft",
-    "title": "Aufnahmeantrag Sportverein",
-    "href": "/downloads/aufnahmeantrag-sportverein.pdf"
-  },
-  {
-    "category": "Mitgliedschaft",
-    "title": "Aufnahmeantrag Tennisverein",
-    "href": "/downloads/aufnahmeantrag-tennisverein.pdf",
-    "note": "Der Tennisverein bietet eine separate Mitgliedschaft an."
-  },
-  {
-    "category": "Fußball",
-    "title": "Antrag auf eine Spielerlaubnis (NFV)",
-    "href": "https://www.nfv.de/fileadmin/user_upload/NFV/Inhalt/Spielbetrieb/Passstelle/Spielerlaubnisantrag_0624.pdf"
-  },
-  {
-    "category": "Protokolle",
-    "title": "Protokoll Generalversammlung 2025",
-    "href": "/downloads/gv-25.pdf"
-  }
-]
+{
+  "downloads": [
+    {
+      "category": "Mitgliedschaft",
+      "title": "Aufnahmeantrag Sportverein",
+      "file": "/downloads/aufnahmeantrag-sportverein.pdf"
+    },
+    {
+      "category": "Mitgliedschaft",
+      "title": "Aufnahmeantrag Tennisverein",
+      "file": "/downloads/aufnahmeantrag-tennisverein.pdf",
+      "note": "Der Tennisverein bietet eine separate Mitgliedschaft an."
+    },
+    {
+      "category": "Fußball",
+      "title": "Antrag auf eine Spielerlaubnis (NFV)",
+      "url": "https://www.nfv.de/fileadmin/user_upload/NFV/Inhalt/Spielbetrieb/Passstelle/Spielerlaubnisantrag_0624.pdf"
+    },
+    {
+      "category": "Protokolle",
+      "title": "Protokoll Generalversammlung 2025",
+      "file": "/downloads/gv-25.pdf"
+    }
+  ]
+}

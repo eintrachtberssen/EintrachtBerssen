@@ -72,6 +72,10 @@ Das Widget lädt aus Datenschutzgründen erst, wenn Besucher auf „Inhalt laden
 - **Abteilungen & Teams:** Für jede Mannschaft gibt es einen Eintrag. Dort kannst du Mannschaftsfoto, Trainingszeiten und eine kurze Beschreibung pflegen. Bitte keine neuen Einträge anlegen – neue Mannschaften richtet die technische Betreuung ein.
 - **Ansprechpartner:** Liste mit Gruppe, Name, Funktion, Telefon und E-Mail. Neue Person: unten auf **Add** klicken. Auf den Team-Seiten erscheinen automatisch die Trainer, deren Funktion den Teamnamen enthält (z. B. „Trainer D-Juniorinnen“).
 - **Sportgelände:** Einleitung, Kennzahlen (z. B. „3 – Fußballplätze“) und die einzelnen Bereiche mit Foto, Beschreibung und Ausstattungsliste. Ein neuer Bereich wird unten mit **Add** angelegt; mit „Als Neu markieren“ bekommt er ein rotes Neu-Abzeichen.
+- **Downloads:** Liste der Dokumente auf der Seite *Verein → Downloads*.
+  - *Neues Dokument:* unten auf **Add**, Titel und Kategorie eintragen (Einträge mit gleicher Kategorie stehen zusammen, z. B. „Protokolle“), bei **Datei hochladen** das PDF auswählen – oder statt einer Datei einen **Link** zu einer externen Datei eintragen. Speichern.
+  - *Dokument ersetzen* (z. B. neuer Aufnahmeantrag): den Eintrag öffnen, bei **Datei hochladen** die neue Datei wählen, speichern. Der Download-Link zeigt dann automatisch auf die neue Datei. Am besten der neuen Datei einen eigenen Namen geben (z. B. `aufnahmeantrag-2027.pdf`), dann bekommt niemand eine alte Fassung aus dem Browser-Zwischenspeicher.
+  - *Dokument entfernen:* den Eintrag in der Liste löschen und speichern. Die alte Datei bleibt im Medienordner liegen und kann dort bei Bedarf gelöscht werden.
 - **Fotoalben:** Neues Album anlegen, Titel und Jahr eintragen, Bilder hochladen.
 
 ## Wenn etwas nicht klappt

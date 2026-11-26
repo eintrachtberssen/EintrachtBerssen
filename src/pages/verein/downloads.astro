@@ -1,10 +1,11 @@
 ---
 import Base from '../../layouts/Base.astro';
 import PageHero from '../../components/PageHero.astro';
-import downloads from '../../data/downloads.json';
+import raw from '../../data/downloads.json';
+import { downloadsSchema } from '../../lib/schemas';
 import { url } from '../../lib/url';
-type D = { category: string; title: string; href: string; note?: string };
-const list = downloads as D[];
+const list = downloadsSchema.parse(raw);
+const kind = (h: string) => (h.startsWith('/') ? (/\.([a-z0-9]+)$/i.exec(h)?.[1] ?? 'Datei').toUpperCase().slice(0, 4) : 'Link');
 const cats = [...new Set(list.map((d) => d.category))];
 const href = (h: string) => (h.startsWith('/') ? url(h) : h);
 ---
@@ -18,8 +19,8 @@ const href = (h: string) => (h.startsWith('/') ? url(h) : h);
           <ul class="files">
             {list.filter((d) => d.category === c).map((d) => (
               <li>
-                <a class="file card" href={href(d.href)} download={d.href.startsWith('/') ? '' : undefined}>
-                  <span class="ico" aria-hidden="true">PDF</span>
+                <a class="file card" href={href(d.href)} download={d.href.startsWith('/') ? '' : undefined} rel={d.href.startsWith('/') ? undefined : 'noopener'}>
+                  <span class="ico" aria-hidden="true">{kind(d.href)}</span>
                   <span><strong>{d.title}</strong>{d.note && <small>{d.note}</small>}</span>
                 </a>
               </li>

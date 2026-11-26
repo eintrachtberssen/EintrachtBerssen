@@ -151,6 +151,34 @@ content:
             label: Als „Neu“ markieren
             type: boolean
 
+  - name: downloads
+    label: Downloads
+    type: file
+    path: src/data/downloads.json
+    format: json
+    fields:
+      - name: downloads
+        label: Dokumente
+        type: object
+        list: true
+        fields:
+          - name: title
+            label: Titel
+            type: string
+            required: true
+          - name: category
+            label: Kategorie (z. B. Mitgliedschaft, Fußball, Protokolle)
+            type: string
+          - name: file
+            label: Datei hochladen (PDF, Word …)
+            type: file
+          - name: url
+            label: … oder Link zu einer externen Datei
+            type: string
+          - name: note
+            label: Hinweis (optional)
+            type: string
+
   - name: galleries
     label: Fotoalben
     type: collection

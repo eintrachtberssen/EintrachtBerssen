@@ -26,3 +26,22 @@ export const sportgelaendeSchema = z.object({
     }),
   ).transform((areas) => areas.filter((a): a is typeof a & { title: string } => Boolean(a.title?.trim()))),
 });
+
+/** Downloads (src/data/downloads.json): Datei-Upload oder externer Link; unvollständige Einträge werden ausgelassen. */
+export const downloadsSchema = z
+  .object({
+    downloads: list(
+      z.object({
+        category: str,
+        title: str,
+        file: str,
+        url: str,
+        note: str,
+      }),
+    ),
+  })
+  .transform(({ downloads }) =>
+    downloads
+      .filter((d) => d.title && (d.file || d.url))
+      .map((d) => ({ category: d.category ?? 'Weitere Dokumente', title: d.title!, href: (d.file ?? d.url)!, note: d.note })),
+  );

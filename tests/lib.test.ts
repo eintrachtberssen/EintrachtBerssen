@@ -200,3 +200,22 @@ describe('sportgelaendeSchema', () => {
     expect(sportgelaendeSchema.parse({ areas: [{ title: '' }, { title: 'Hauptplatz' }] }).areas.map((a) => a.title)).toEqual(['Hauptplatz']);
   });
 });
+
+import { downloadsSchema } from '../src/lib/schemas';
+
+describe('downloadsSchema', () => {
+  it('uses the uploaded file, else the external link', () => {
+    const d = downloadsSchema.parse({ downloads: [
+      { category: 'Mitgliedschaft', title: 'Antrag', file: '/images/uploads/antrag.pdf', url: '' },
+      { category: 'Fußball', title: 'NFV', file: null, url: 'https://www.nfv.de/x.pdf' },
+    ] });
+    expect(d.map((x) => x.href)).toEqual(['/images/uploads/antrag.pdf', 'https://www.nfv.de/x.pdf']);
+  });
+  it('drops entries without title or without file/link instead of failing the build', () => {
+    expect(downloadsSchema.parse({ downloads: [{ title: '', file: '/a.pdf' }, { title: 'Ohne Datei' }, { title: 'Ok', file: '/b.pdf' }] }).map((x) => x.title)).toEqual(['Ok']);
+  });
+  it('puts entries without category under "Weitere Dokumente" and tolerates an empty file', () => {
+    expect(downloadsSchema.parse({ downloads: [{ title: 'X', file: '/x.pdf', category: null }] })[0].category).toBe('Weitere Dokumente');
+    expect(downloadsSchema.parse({})).toEqual([]);
+  });
+});

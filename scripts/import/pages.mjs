@@ -108,12 +108,12 @@ async function run(MIRROR) {
   const tv = importFile('/download/Aufnahmeantrag/Aufnahmeantrag_Tennisverein.pdf', 'downloads', MIRROR);
   const gv = importFile('/download/Protokoll_Generalversammlung/gv_25.pdf', 'downloads', MIRROR);
   const downloads = [
-    { category: 'Mitgliedschaft', title: 'Aufnahmeantrag Sportverein', href: sv },
-    { category: 'Mitgliedschaft', title: 'Aufnahmeantrag Tennisverein', href: tv, note: 'Der Tennisverein bietet eine separate Mitgliedschaft an.' },
-    { category: 'Fußball', title: 'Antrag auf eine Spielerlaubnis (NFV)', href: 'https://www.nfv.de/fileadmin/user_upload/NFV/Inhalt/Spielbetrieb/Passstelle/Spielerlaubnisantrag_0624.pdf' },
-    { category: 'Protokolle', title: 'Protokoll Generalversammlung 2025', href: gv },
+    { category: 'Mitgliedschaft', title: 'Aufnahmeantrag Sportverein', file: sv },
+    { category: 'Mitgliedschaft', title: 'Aufnahmeantrag Tennisverein', file: tv, note: 'Der Tennisverein bietet eine separate Mitgliedschaft an.' },
+    { category: 'Fußball', title: 'Antrag auf eine Spielerlaubnis (NFV)', url: 'https://www.nfv.de/fileadmin/user_upload/NFV/Inhalt/Spielbetrieb/Passstelle/Spielerlaubnisantrag_0624.pdf' },
+    { category: 'Protokolle', title: 'Protokoll Generalversammlung 2025', file: gv },
   ];
-  writeFileSync('src/data/downloads.json', JSON.stringify(downloads, null, 2) + '\n');
+  writeFileSync('src/data/downloads.json', JSON.stringify({ downloads }, null, 2) + '\n');
   console.log('Seiten, Abteilungen, Galerien und Downloads importiert');
 }
 
