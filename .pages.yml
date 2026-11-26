@@ -101,6 +101,9 @@ content:
           - name: email
             label: E-Mail
             type: string
+          - name: image
+            label: Foto (optional, quadratisch sieht am besten aus)
+            type: image
 
   - name: sportgelaende
     label: Sportgelände

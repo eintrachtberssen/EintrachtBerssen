@@ -85,3 +85,20 @@ describe('consentHtml for fussball.de widgets', () => {
     expect(consentHtml('fussballde', 'ABC123', 'Spielplan')).not.toContain('data-consent-type');
   });
 });
+
+import ContactCard from '../src/components/ContactCard.astro';
+
+describe('ContactCard', () => {
+  it('shows the photo on the left when one is set', async () => {
+    const html = await render(ContactCard, { contact: { id: 'x', data: { name: 'Max Muster', role: 'Trainer', image: '/images/uploads/max.jpg' } } });
+    expect(html).toMatch(/<img[^>]+src="[^"]*\/images\/uploads\/max\.jpg"/);
+    expect(html).toContain('alt="Max Muster"');
+  });
+  it('shows no photo (initials only) when none is set or the field is empty', async () => {
+    for (const image of [undefined, null, '']) {
+      const html = await render(ContactCard, { contact: { id: 'x', data: { name: 'Max Muster', role: 'Trainer', image } } });
+      expect(html).not.toContain('<img');
+      expect(html).toContain('MM');
+    }
+  });
+});
