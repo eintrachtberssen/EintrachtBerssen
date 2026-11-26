@@ -219,3 +219,14 @@ describe('downloadsSchema', () => {
     expect(downloadsSchema.parse({})).toEqual([]);
   });
 });
+
+describe('sportgelaendeSchema link button', () => {
+  it('keeps an optional link with label and drops a link without target', () => {
+    const d = sportgelaendeSchema.parse({ areas: [
+      { title: 'Turnhalle', link: '/verein/belegungsplan/#halle', linkLabel: 'Hallenzeiten ansehen' },
+      { title: 'Ohne Ziel', link: '', linkLabel: 'Klick' },
+    ] });
+    expect(d.areas[0]).toMatchObject({ link: '/verein/belegungsplan/#halle', linkLabel: 'Hallenzeiten ansehen' });
+    expect(d.areas[1].link).toBeUndefined();
+  });
+});

@@ -23,6 +23,8 @@ export const sportgelaendeSchema = z.object({
       text: str,
       features: list(z.string()),
       isNew: z.boolean().nullish().transform((v) => v ?? false),
+      link: str,
+      linkLabel: str,
     }),
   ).transform((areas) => areas.filter((a): a is typeof a & { title: string } => Boolean(a.title?.trim()))),
 });

@@ -1,5 +1,5 @@
 {
-  "intro": "Unsere Sportanlage am Schützenplatz in Klein Berssen: drei Fußballplätze, zwei Tennisplätze und das Sport- und Schützenhaus – alles in unmittelbarer Nähe zueinander.",
+  "intro": "Unsere Sportanlage am Schützenplatz in Klein Berssen: drei Fußballplätze, zwei Tennisplätze und das Sport- und Schützenhaus – alles in unmittelbarer Nähe zueinander. Dazu kommt die Turnhalle Klein Berssen für den Hallensport.",
   "image": "/images/seiten/sportgelaende/gesamt.jpg",
   "facts": [
     {
@@ -17,6 +17,10 @@
     {
       "value": "5",
       "label": "Umkleidekabinen"
+    },
+    {
+      "value": "1",
+      "label": "Turnhalle"
     }
   ],
   "areas": [
@@ -81,6 +85,21 @@
         "Sanitäranlagen"
       ],
       "isNew": false
+    },
+    {
+      "title": "Turnhalle Klein Berssen",
+      "subtitle": "Hallensport",
+      "image": "",
+      "text": "In der Turnhalle Klein Berssen trainieren unsere Jugendmannschaften im Winter, außerdem Volleyball, Rückensport und Frauensport. Die Halle teilen wir uns mit dem SV Eisten/Hüven und dem SV Stavern; montags bis freitags ist sie bis 16 Uhr für den Schulsport reserviert.",
+      "features": [
+        "Genutzt von Eintracht Berssen, SV Eisten/Hüven und SV Stavern",
+        "Hallentraining für Jugend, Volleyball und Rückensport",
+        "Nur mit Turnschuhen mit abriebfester Sohle",
+        "Anwesenheitsbuch für jede Gruppe"
+      ],
+      "isNew": false,
+      "link": "/verein/belegungsplan/#halle",
+      "linkLabel": "Hallenzeiten ansehen"
     }
   ]
 }

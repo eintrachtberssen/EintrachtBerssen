@@ -153,6 +153,12 @@ content:
           - name: isNew
             label: Als „Neu“ markieren
             type: boolean
+          - name: link
+            label: Link-Knopf – Ziel (optional, z. B. /verein/belegungsplan/#halle)
+            type: string
+          - name: linkLabel
+            label: Link-Knopf – Beschriftung (z. B. Hallenzeiten ansehen)
+            type: string
 
   - name: downloads
     label: Downloads
