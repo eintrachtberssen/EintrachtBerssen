@@ -2,8 +2,8 @@
 title: 1. Herren
 image: /images/teams/1-herren/erste-herren.jpg
 training: |-
-  <h3>Dienstag 19 Uhr</h3>
-  <h3>Freitag 18:30 Uhr</h3>
+  Dienstag 19 Uhr<br>
+  Freitag 18:30 Uhr
 fussballde: |-
   <div 
     class="fussballde_widget"
