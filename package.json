@@ -8,7 +8,8 @@
     "preview": "astro preview",
     "test": "vitest run",
     "check": "astro build && node scripts/check-site.mjs",
-    "smoke": "node scripts/smoke.mjs"
+    "smoke": "node scripts/smoke.mjs",
+    "pdf": "astro build && node scripts/belegung-pdf.mjs"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.19",

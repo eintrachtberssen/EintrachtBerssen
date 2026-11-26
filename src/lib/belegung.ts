@@ -57,3 +57,26 @@ export function clubKey(club: string | undefined): 'berssen' | 'stavern' | 'huev
   if (/hüven|hueven|eisten/.test(c)) return 'hueven';
   return 'other';
 }
+
+export const toMinutes = (t: string) => Number(t.slice(0, 2)) * 60 + Number(t.slice(3, 5));
+
+/** Überlappende Einheiten nebeneinander anordnen (für den Druck): je Eintrag eine Spur. */
+export function assignLanes(entries: Entry[]): { items: { entry: Entry; lane: number }[]; lanes: number } {
+  const sorted = [...entries].sort((a, b) => toMinutes(a.from) - toMinutes(b.from) || toMinutes(a.to) - toMinutes(b.to));
+  const laneEnds: number[] = [];
+  const items = sorted.map((entry) => {
+    let lane = laneEnds.findIndex((end) => end <= toMinutes(entry.from));
+    if (lane === -1) lane = laneEnds.length;
+    laneEnds[lane] = toMinutes(entry.to);
+    return { entry, lane };
+  });
+  return { items, lanes: laneEnds.length };
+}
+
+/** Zeitachse in vollen Stunden um alle Einträge herum. */
+export function axisRange(entries: Entry[]): [number, number] {
+  if (!entries.length) return [16, 21];
+  const start = Math.floor(Math.min(...entries.map((e) => toMinutes(e.from))) / 60);
+  const end = Math.ceil(Math.max(...entries.map((e) => toMinutes(e.to))) / 60);
+  return [start, end];
+}

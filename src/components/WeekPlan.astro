@@ -5,7 +5,7 @@ const { entries, mode } = Astro.props;
 // Mo–Fr immer; Wochenende nur, wenn dort etwas eingetragen ist
 const days = Astro.props.days ?? DAYS.filter((d, i) => i < 5 || entries.some((e) => e.day === d));
 const groups = byDay(entries, days);
-const color = (e: Entry) => (mode === 'platz' ? teamKind(e.team) : /^belegt$/i.test(e.team) ? 'blocked' : clubKey(e.club));
+const color = (e: Entry) => (mode === 'platz' ? teamKind(e.team) : /^(belegt|schulsport)$/i.test(e.team) ? 'blocked' : clubKey(e.club));
 ---
 <div class="week">
   {groups.map((g) => (

@@ -49,7 +49,7 @@ try {
       // Alle gebauten Seiten auf Handybreite: kein horizontales Scrollen
       const { readdirSync, statSync } = await import('node:fs');
       const walk = (d) => readdirSync(d).flatMap((f) => { const p = `${d}/${f}`; return statSync(p).isDirectory() ? walk(p) : [p]; });
-      const all = walk('dist').filter((f) => f.endsWith('/index.html') && !f.includes('/_astro/')).map((f) => f.slice(4, -10) || '/');
+      const all = walk('dist').filter((f) => f.endsWith('/index.html') && !f.includes('/_astro/') && !f.includes('/druck/')) // Druckseiten sind feste A4-Seiten.map((f) => f.slice(4, -10) || '/');
       for (const path of all) {
         await page.goto(`http://localhost:${PORT}${base}${path}`, { waitUntil: 'load' });
         const overflow = await evalSettled(page, () => document.documentElement.scrollWidth - window.innerWidth);

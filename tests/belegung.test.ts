@@ -53,3 +53,25 @@ describe('clubKey', () => {
     expect(clubKey('Schule')).toBe('other');
   });
 });
+
+import { assignLanes, axisRange, toMinutes } from '../src/lib/belegung';
+
+describe('print layout helpers', () => {
+  const e = (from: string, to: string, team = 'X') => ({ day: 'Donnerstag', from, to, team } as any);
+  it('converts times to minutes', () => {
+    expect(toMinutes('17:30')).toBe(1050);
+  });
+  it('puts overlapping entries side by side and reuses free lanes', () => {
+    const r = assignLanes([e('18:00', '19:30', 'C-Junioren'), e('18:00', '19:30', 'D-Junioren'), e('19:30', '21:00', 'Herren')]);
+    expect(r.lanes).toBe(2);
+    expect(r.items.map((x) => [x.entry.team, x.lane])).toEqual([['C-Junioren', 0], ['D-Junioren', 1], ['Herren', 0]]);
+  });
+  it('a single entry needs one lane, none needs zero', () => {
+    expect(assignLanes([e('17:00', '18:00')]).lanes).toBe(1);
+    expect(assignLanes([]).lanes).toBe(0);
+  });
+  it('axis spans whole hours around all entries', () => {
+    expect(axisRange([e('17:30', '19:00'), e('18:30', '20:30')])).toEqual([17, 21]);
+    expect(axisRange([])).toEqual([16, 21]);
+  });
+});
