@@ -4,11 +4,16 @@ Für alle, die auf der Vereinsseite Beiträge veröffentlichen. Du brauchst nur 
 
 ## Einmalig: Zugang einrichten
 
-1. **GitHub-Konto anlegen** (kostenlos): <https://github.com/signup>. Benutzername und Passwort merken.
-2. Deinen **Benutzernamen** dem Vorstand bzw. der Person schicken, die die Seite betreut. Sie lädt dich ein.
-3. Du bekommst eine **E-Mail von GitHub** („invited you to collaborate“). Auf **Accept invitation** klicken.
-4. <https://app.pagescms.org> öffnen → **Sign in with GitHub** → beim ersten Mal den Zugriff erlauben.
-5. Das Projekt **EintrachtBerssen** auswählen. Fertig – ab jetzt reicht Schritt 4.
+Du brauchst **kein GitHub-Konto** – nur eine E-Mail-Adresse, die du abrufst.
+
+1. Die Person, die die Seite betreut, lädt dich in Pages CMS mit deiner E-Mail-Adresse ein.
+2. Du bekommst eine **E-Mail von Pages CMS**. Auf den Link darin klicken.
+3. Später meldest du dich unter <https://app.pagescms.org> an: deine E-Mail-Adresse eingeben und auf den **Anmeldelink** klicken, der dir dann zugeschickt wird. Ein Passwort gibt es nicht.
+4. Das Projekt **EintrachtBerssen** auswählen. Fertig.
+
+Kommt keine E-Mail an? Bitte im Spam-Ordner nachsehen. Die Adresse muss genau die sein, mit der du eingeladen wurdest.
+
+**Du hast schon ein GitHub-Konto?** Dann geht es auch so: Benutzernamen an die Betreuung schicken, die Einladung von GitHub annehmen und bei Pages CMS mit **Sign in with GitHub** anmelden.
 
 > Tipp: Lege dir ein Lesezeichen auf app.pagescms.org an.
 

@@ -52,8 +52,13 @@ Reihenfolge einhalten: Die alte Seite läuft weiter, bis die neue unter eurer Do
 ## 5. Eingabemaske einrichten
 
 1. <https://app.pagescms.org> → mit GitHub anmelden → Pages CMS für die Organisation `eintracht-berssen` installieren und das Repository freigeben.
-2. Schreiber als **Collaborator** (Rolle *Write*) zum Repository einladen: **Settings → Collaborators → Add people**.
+2. Schreiber in Pages CMS per **E-Mail** einladen (im Projekt unter *Collaborators*). Sie brauchen kein GitHub-Konto und melden sich per Anmeldelink an; die E-Mail-Adresse muss nur eine sein, die sie abrufen.
+   Alternativ: Wer ein GitHub-Konto hat, kann als **Collaborator** (Rolle *Write*) zum Repository eingeladen werden (**Settings → Collaborators → Add people**) und meldet sich mit GitHub an.
 3. Den Schreibern [docs/redaktion.md](redaktion.md) schicken.
+
+## fussball.de-Widgets
+
+fussball.de liefert ein Widget nur an die Website aus, die beim Erstellen im Widgetcenter angegeben wurde. Der Vereinsspielplan ist für `eintracht-berssen.de` angelegt – unter der Testadresse `….github.io` zeigt er deshalb „Uuups… hier ist ein Fehler aufgetreten“. Nach dem Domain-Umzug (Schritt 4) funktioniert er ohne Änderung. Ein Eintrag im Head-Bereich der Seite ist nicht nötig; die Seite lädt das fussball.de-Skript nach dem Klick auf „Inhalt laden“ selbst.
 
 ## 6. Aufräumen
 
