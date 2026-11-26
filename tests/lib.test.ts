@@ -158,3 +158,32 @@ describe('extractFussballdeScript', () => {
     expect(extractFussballdeScript('ABCDEFGHIJKLMNOPQRSTUV1234')).toBeUndefined();
   });
 });
+
+import { parseFussballdeWidget } from '../src/lib/fussballde';
+
+describe('parseFussballdeWidget', () => {
+  const NEW_BODY = '<div class="fussballde_widget" data-id="02TESTWIDGETID0000000000000000AB" data-type="team-matches"></div>';
+  it('loads widgets.js automatically when only the body part of the new code is pasted', () => {
+    expect(parseFussballdeWidget(NEW_BODY)).toEqual({ id: '02TESTWIDGETID0000000000000000AB', type: 'team-matches', script: 'https://www.fussball.de/widgets.js' });
+  });
+  it('accepts head and body part pasted together', () => {
+    const both = '<script type="text/javascript" src="https://www.fussball.de/widgets.js"></script>\n' + NEW_BODY;
+    expect(parseFussballdeWidget(both)?.script).toBe('https://www.fussball.de/widgets.js');
+  });
+  it('keeps the old API (no script, no type) for old codes and bare ids', () => {
+    expect(parseFussballdeWidget('022010VSB4000000VS541L4KVVGEASRE')).toEqual({ id: '022010VSB4000000VS541L4KVVGEASRE', type: undefined, script: undefined });
+  });
+  it('returns undefined when only the head script is pasted (no widget id)', () => {
+    expect(parseFussballdeWidget('<script type="text/javascript" src="https://www.fussball.de/widgets.js"></script>')).toBeUndefined();
+  });
+});
+
+describe('parseFussballdeWidget with the real new fussball.de code (UUID ids)', () => {
+  const REAL = '<div \n  class="fussballde_widget"\n  data-id="138b2849-4bc8-4b61-8460-7d80eff6bbf1"\n  data-type="team-matches"\n  style="width: 600px"\n></div>';
+  it('keeps the UUID exactly as given (lower case, with hyphens)', () => {
+    expect(parseFussballdeWidget(REAL)).toEqual({ id: '138b2849-4bc8-4b61-8460-7d80eff6bbf1', type: 'team-matches', script: 'https://www.fussball.de/widgets.js' });
+  });
+  it('accepts a bare UUID as well', () => {
+    expect(extractFussballdeId(' 138b2849-4bc8-4b61-8460-7d80eff6bbf1 ')).toBe('138b2849-4bc8-4b61-8460-7d80eff6bbf1');
+  });
+});

@@ -65,7 +65,7 @@ content:
         label: Spielplan (Spiele selbst eintragen, z. B. als Liste oder Tabelle)
         type: rich-text
       - name: fussballde
-        label: fussball.de-Widget (Widget-ID oder kompletten Einbettungscode von fussball.de einfügen)
+        label: fussball.de-Widget (Code aus dem <body>-Kasten von fussball.de einfügen – der <head>-Teil ist nicht nötig)
         type: text
       - name: body
         label: Beschreibung

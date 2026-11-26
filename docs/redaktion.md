@@ -62,7 +62,8 @@ Unter **Abteilungen & Teams** gibt es für jede Mannschaft zwei Felder. Ist mind
 - **fussball.de-Widget** – den Spielplan direkt von fussball.de anzeigen:
   1. Auf [fussball.de](https://www.fussball.de) die Mannschaft aufrufen und **Widget** bzw. „Für deine Webseite“ wählen.
   2. Als Webseite die Vereinsdomain angeben (`eintracht-berssen.de`), Anzeige wählen (z. B. Spielplan oder Tabelle) und den Code erzeugen.
-  3. Den **kompletten Code** (oder nur die lange Widget-ID) in das Feld kopieren und speichern.
+  3. fussball.de zeigt zwei Kästen: „Einbindung des API-Javascripts im `<head>`-Bereich“ und „Einbindung des Widgets im `<body>`-Bereich“. Es genügt, den Code aus dem **`<body>`-Kasten** in das Feld zu kopieren (beide Kästen zusammen gehen auch). Das Skript aus dem `<head>`-Kasten lädt die Seite selbst.
+  4. Speichern. Wichtig: Das Widget erscheint nur auf der Website, die bei fussball.de eingetragen ist – also z. B. erst nach dem Umzug auf `eintracht-berssen.de`, wenn es dafür angelegt wurde.
 
 Das Widget lädt aus Datenschutzgründen erst, wenn Besucher auf „Inhalt laden“ klicken. Der Vereinsspielplan aller Mannschaften steht auf der Fußball-Seite.
 
