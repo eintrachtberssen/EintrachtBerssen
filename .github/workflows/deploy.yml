@@ -34,6 +34,9 @@ jobs:
       - run: npm test
       - run: node scripts/optimize-uploads.mjs
       - run: npm run build
+      # Belegungspläne als PDF (A4) aus den Druckseiten erzeugen → dist/downloads/
+      - run: npx playwright install --with-deps chromium
+      - run: node scripts/belegung-pdf.mjs dist/downloads
       - run: node scripts/check-site.mjs
       - uses: actions/upload-pages-artifact@v3
         with:

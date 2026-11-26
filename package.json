@@ -7,7 +7,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "test": "vitest run",
-    "check": "astro build && node scripts/check-site.mjs",
+    "check": "astro build && node scripts/belegung-pdf.mjs && node scripts/check-site.mjs",
     "smoke": "node scripts/smoke.mjs",
     "pdf": "astro build && node scripts/belegung-pdf.mjs"
   },
@@ -20,6 +20,7 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.12",
     "cheerio": "^1.2.0",
+    "playwright": "^1.63.0",
     "rehype-parse": "^9.0.1",
     "rehype-stringify": "^10.0.1",
     "sharp": "^0.35.5",
