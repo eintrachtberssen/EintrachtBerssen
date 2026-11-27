@@ -79,34 +79,35 @@
       "name": "Mike Dworak",
       "role": "1. Vorsitzender",
       "phone": "05965 942155",
-      "email": "tennis@eintracht-berssen.de"
+      "email": "tennis@eintracht-berssen.de",
+      "image": "/images/uploads/mike_dworak.png"
     },
     {
       "group": "Vorstand Tennis",
-      "name": "Heiner Voss",
-      "role": "2. Vorsitzender/Platzwart",
-      "phone": "05965 1363",
-      "email": "heinrich.voss59@googlemail.com"
+      "name": "Matthias Scheper",
+      "role": "2. Vorsitzender",
+      "image": "/images/uploads/matthias_scheper.png"
+    },
+    {
+      "group": "Vorstand Tennis",
+      "name": "Marc Krokowski",
+      "role": "Schriftführerin",
+      "image": "/images/uploads/marc_krokowski.png"
     },
     {
       "group": "Vorstand Tennis",
       "name": "Jens Voss",
       "role": "Kassenwart",
-      "email": "jens.voss84@googlemail.com"
+      "email": "jens.voss84@googlemail.com",
+      "image": "/images/uploads/jens_voss.png"
     },
     {
       "group": "Vorstand Tennis",
       "name": "Bernhard Lübken",
       "role": "Jugendwart",
       "phone": "05965 887",
-      "email": "Bernhard.Luebken@web.de"
-    },
-    {
-      "group": "Vorstand Tennis",
-      "name": "Maria Oeldig",
-      "role": "Schriftführerin",
-      "phone": "05965 678",
-      "email": "info@oeldig.de"
+      "email": "Bernhard.Luebken@web.de",
+      "image": "/images/uploads/bernd_luebken.png"
     },
     {
       "group": "Fußball Senioren",
