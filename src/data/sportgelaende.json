@@ -57,7 +57,7 @@
         "Ausgebautes Entwässerungssystem",
         "Unterstand"
       ],
-      "isNew": true
+      "isNew": false
     },
     {
       "title": "Sport- und Schützenhaus",
@@ -89,7 +89,6 @@
     {
       "title": "Turnhalle Klein Berssen",
       "subtitle": "Hallensport",
-      "image": "",
       "text": "In der Turnhalle Klein Berssen trainieren unsere Jugendmannschaften im Winter, außerdem Volleyball, Rückensport und Frauensport. Die Halle teilen wir uns mit dem SV Eisten/Hüven und dem SV Stavern; montags bis freitags ist sie bis 16 Uhr für den Schulsport reserviert.",
       "features": [
         "Genutzt von Eintracht Berssen, SV Eisten/Hüven und SV Stavern",
