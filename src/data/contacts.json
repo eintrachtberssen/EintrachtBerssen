@@ -117,14 +117,14 @@
     {
       "group": "Fußball Senioren",
       "name": "Marcel Geers",
-      "role": "Betreuer 1. Herren",
+      "role": "1. Herren Betreuer",
       "phone": "0151 28756551",
       "email": "marcel.geers1@gmail.com"
     },
     {
       "group": "Fußball Senioren",
       "name": "Janina Schröer",
-      "role": "Trainerin 1. Damen",
+      "role": "1. Damen Trainerin",
       "phone": "0176 40599391"
     },
     {
@@ -143,14 +143,14 @@
     {
       "group": "Fußball Junioren",
       "name": "Jan Neeland",
-      "role": "Trainer B-Junioren",
+      "role": "B-Junioren Trainer",
       "phone": "0172 9071600",
       "email": "Jjaannnneellaanndd@gmail.com"
     },
     {
       "group": "Fußball Junioren",
       "name": "Mathis Jansen",
-      "role": "Trainer B-Junioren",
+      "role": "B-Junioren Trainer",
       "phone": "0175 6268467",
       "email": "Jansenmathis947@gmail.com"
     },
@@ -163,21 +163,21 @@
     {
       "group": "Fußball Junioren",
       "name": "Leon Wester",
-      "role": "Trainer C-Junioren",
+      "role": "C-Junioren Trainer",
       "phone": "0151 43361471",
       "email": "leon.wester2004@gmail.com"
     },
     {
       "group": "Fußball Junioren",
       "name": "Jonas Nieters",
-      "role": "Trainer D-Junioren",
+      "role": "D-Junioren Trainer",
       "phone": "01512 8759836",
       "email": "jonas-nieters@gmx.de"
     },
     {
       "group": "Fußball Junioren",
       "name": "Marcel Geers",
-      "role": "Trainer D-Junioren",
+      "role": "D-Junioren Trainer",
       "phone": "01512 8756551",
       "email": "marcel.geers1@gmail.com"
     },
@@ -208,7 +208,7 @@
     {
       "group": "Fußball Juniorinnen",
       "name": "Christian Pülsken",
-      "role": "Trainer B-Juniorinnen",
+      "role": "B-Juniorinnen Trainer",
       "phone": "0160 7597118",
       "email": "c.puelle@gmx.de"
     },
@@ -221,7 +221,7 @@
     {
       "group": "Fußball Juniorinnen",
       "name": "Andreas Schwerdt",
-      "role": "Trainer D-Juniorinnen",
+      "role": "D-Juniorinnen Trainer",
       "phone": "0172 5685883",
       "email": "a.schwerdt@outlook.com"
     },
